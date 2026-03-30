@@ -196,8 +196,8 @@ nav a:hover { opacity: 0.5; }
     font-family: 'Courier New', Courier, monospace;
 }
 
-.inter-bold { color: #8c8c8c; font-size: 0.8rem; }
-.event-name { color: #fff; font-size: 1rem; font-family: 'Inter', sans-serif; }
+.inter-bold { color: #ffffff; font-size: 0.8rem; }
+.event-name { color: #ffffff; font-size: 1rem; font-family: 'Inter', sans-serif; }
 .status.upcoming { color: #4ade80; text-align: right; }
 .status.past { color: #555; text-align: right; text-decoration: line-through; }
 
@@ -233,25 +233,34 @@ nav a:hover { opacity: 0.5; }
     margin: 100px 5%;
 }
 
-.chapter-box {
-    position: absolute;
-    width: 280px;
-    padding: 2.2rem;
-    background: #fdfcf8;
-    text-decoration: none;
-    color: var(--ink);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
 .chapter-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
-    margin: 0;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* The Divider Line */
+.chapter-box h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px; /* Short, stylish line */
+    height: 1px;
+    background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);
+}
+
+/* Optional: Add a very slight paper texture depth to the box itself */
+.chapter-box {
+    box-shadow: 
+        2px 2px 0px rgba(0,0,0,0.02), /* Subtle "edge" shadow */
+        10px 15px 30px rgba(0,0,0,0.05);
 }
 
 .box-weddings { top: 0; left: 22%; transform: rotate(-2.5deg); background: #5bcefa; }
-.box-producing { top: 130px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
+.box-producing { top: 140px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
 .box-socials { top: 210px; left: 25%; transform: rotate(1.5deg); background: #fa9d5b; }
 
 .chapter-box:hover {
