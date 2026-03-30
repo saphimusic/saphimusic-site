@@ -1,507 +1,195 @@
-/* --- 1. CORE THEME & FONTS --- */
+/* --- 1. CORE THEME --- */
 :root {
-    --paper: #f4f1ea;   /* Warm, aged paper */
-    --ink: #2a2a2a;     /* Soft charcoal */
-    --accent: #8c8c8c;  /* Faded grey for journal notes */
-    --white: #ffffff;
+    --paper: #f4f1ea;   
+    --ink: #2a2a2a;     
+    --accent: #8c8c8c;  
+    --border-soft: rgba(42, 42, 42, 0.08);
+    --border-bold: rgba(42, 42, 42, 0.2);
 }
 
 body {
     background-color: var(--paper);
     color: var(--ink);
     font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     overflow-x: hidden;
 }
-body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, 
-        rgba(42, 42, 42, 0) 0%, 
-        rgba(42, 42, 42, 0.1) 5%, 
-        rgba(42, 42, 42, 0.1) 95%, 
-        rgba(42, 42, 42, 0) 100%);
-    z-index: -1; /* Sits behind everything */
-}
-section {
-    margin-top: 20px;    /* Reduced from the default */
-    margin-bottom: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
 
-/* Specific fix for the space under the header photo */
-header {
-    margin-bottom: 10px; 
-}
-
-/* Ensure headings aren't pushing sections away with their own margins */
-h1, h2, h3 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-/* The Film Grain Overlay */
+/* Film Grain - Subtle and fixed */
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Increased baseFrequency to 0.8 and added a high-contrast filter */
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3CfeContrast amount='150%25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.15; /* Bumped up from 0.08 */
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: multiply; /* This helps the grain 'sink' into the paper color */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.12; pointer-events: none; z-index: 9999; mix-blend-mode: multiply;
 }
 
-/* --- 2. NAVIGATION --- */
-nav {
-    display: flex;
-    justify-content: flex-end;
-    padding: 2rem 5%;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-size: 0.8rem;
+/* --- 2. LAYOUT STRUCTURE --- */
+section {
+    padding: 100px 5%;
+    border-bottom: 1px solid var(--border-soft);
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-nav a {
-    text-decoration: none;
-    color: var(--ink);
-    margin-left: 2rem;
-    transition: opacity 0.3s;
-}
-
-nav a:hover { opacity: 0.5; }
-
-/* --- 3. HERO SPREAD (Logo Left, Photo Right) --- */
+/* --- 3. HERO SECTION --- */
 .hero-spread {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Increase the second number (5%) to 8% if you want a wider margin */
-    padding: 60px 5%; 
-    box-sizing: border-box; /* Ensures padding doesn't break the width */
+    align-items: flex-start;
+    gap: 80px;
+    min-height: 80vh;
 }
+
 .hero-left {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    /* This ensures your text doesn't touch the very edge of the left column */
-    padding-left: 150px; 
-}
-
-.date-stamp {
-    font-family: monospace;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-
-.logo-container {
-    padding: 20px 0 25px 0;
+    padding-top: 40px;
 }
 
 .main-logo {
-    width: 320px;
-    height: auto;
-    opacity: 0.9;
-    transition: transform 0.3s ease;
-}
-
-.hero-text {
-    margin-bottom: 30px;
-}
-
-.caption {
-    font-family: 'Covered By Your Grace', cursive;
-    font-size: 1.2rem;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 8px;
-}
-
-.journal-entry {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 420px;
-    margin: 0;
-}
-
-/* Right Column Photo */
-.hero-right {
-    flex: 1.2;
-    display: flex;
-    justify-content: center;
+    width: 380px;
+    margin-bottom: 40px;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
 }
 
 .hero-image-wrapper {
-    width: 100%;
-    max-width: 450px;
-    background: #f6f5ef;
-    padding: 12px 12px 45px 12px; /* Polaroid frame */
-    box-shadow: 10px 15px 35px rgba(0,0,0,0.05);
-    transform: rotate(1.5deg);
+    flex: 1.2;
+    position: relative;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 20px 30px 60px rgba(0,0,0,0.07);
+    transform: rotate(1deg);
 }
 
-.film-photo {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: sepia(0.15) contrast(1.05);
-}
-
+/* The "Tape" - Refined */
 .hero-image-wrapper::before {
     content: "";
     position: absolute;
-    top: -15px;
-    left: 20%;
-    width: 100px;
-    height: 30px;
-    background: rgba(255, 255, 230, 0.5); /* Translucent yellowish tape */
-    backdrop-filter: blur(2px);
-    transform: rotate(4deg);
-    border-left: 2px solid rgba(0,0,0,0.05);
-    border-right: 2px solid rgba(0,0,0,0.05);
+    top: -20px; left: 30%;
+    width: 120px; height: 40px;
+    background: rgba(255, 255, 220, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0,0,0,0.03);
+    z-index: 2;
 }
 
-/* --- 4. MARGIN NOTES & SCRIBBLES --- */
-.margin-note {
-    font-family: 'Covered By Your Grace', cursive;
-    position: absolute; /* Floating over the layout */
-    z-index: 10;        /* Ensures it stays on top of images */
-    pointer-events: none; /* Allows clicking 'through' the note */
-    width: 180px;
-    color: #2a2a2a;
-    line-height: 1.1;
-    font-size: 1.1rem;
-}
-
-.note-1 { 
-    top: 0%; 
-    left: 5%; 
-    transform: rotate(-8deg); 
-}
-
-/* Note 2: Bottom Right (Often near the Hero Photo or Chapters) */
-.note-2 { 
-    top: 30%; 
-    right: 5%; 
-    transform: rotate(4deg); 
-}
-.note-3 { 
-    top: auto; 
-    right: 10%; 
-    transform: rotate(5deg); 
-}
-
-.scribble {
+/* --- 4. MEDIA & DATES (The "Studio" Blocks) --- */
+.media-spread, .dates-container {
+    background: #111; /* Strong contrast break */
+    color: #fff;
+    margin: 80px 0;
+    width: 100vw;
     position: relative;
-    display: inline-block;
-}
-
-.scribble::after {
-    content: "";
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 100%; height: 6px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="grey" stroke-width="2"/></svg>');
-    background-size: cover;
-    opacity: 0.4;
-}
-
-/* --- DATES SECTION (Glassmorphism Version) --- */
-.dates-container {
-    width: 100%;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     display: flex;
     justify-content: center;
-    padding: 100px 0;
-    background-color: #f4f1ea; /* Dark strip */
-    margin: 40px 0;
-    box-sizing: border-box;
-    /* This ensures it ignores any padding leaking from the hero section */
-    clear: both; 
-}
-
-.photo-card {
-    background: #0f0f0f; 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px 50px;
-    width: 90%;
-    max-width: 700px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-    border-radius: 2px;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-}
-
-.playfair {
-    font-family: 'Playfair Display', serif !important;
-    color: #ffffff;
-    font-size: 1.6rem;
-    margin: 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.status-dot {
-    width: 10px;
-    height: 10px;
-    background: #ff0000;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #ff0000;
-    animation: pulse-red 1.5s infinite;
-}
-
-.date-rows {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.date-rows li {
-    display: grid;
-    /* Increased the first column to 120px to prevent date squashing */
-    grid-template-columns: 120px 1fr 100px; 
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-family: 'Inter', sans-serif !important;
-    color: #d1d1d1;
-    align-items: center;
-}
-
-.inter-bold { 
-    font-weight: 800; 
-    font-size: 0.85rem; 
-    color: #fff; 
-    text-transform: uppercase;
-}
-
-.inter-light { 
-    font-weight: 300; 
-    font-size: 1rem; 
-    line-height: 1.4;
-}
-
-.status {
-    font-size: 0.7rem;
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.status.upcoming { color: #4ade80; opacity: 1; }
-.status.past { opacity: 0.4; text-decoration: none; } /* Removed line-through for cleaner look */
-
-.journal-footer {
-    font-family: 'Inter', sans-serif;
-    font-style: italic;
-    font-size: 0.8rem;
-    text-align: center;
-    margin-top: 30px;
-    color: #666;
-}
-
-/* --- 5. CHAPTER CARDS (The Scattered Section) --- */
-.chapter-links {
-    position: relative;
-    height: 500px; /* Essential to keep the cards from overlapping the next section */
-    margin: 100px 5%;
-}
-
-.chapter-box {
-    position: absolute; /* Restored manual positioning */
-    width: 280px;
-    padding: 2.2rem;
-    background: #f6f5ef;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.04);
-    text-decoration: none;
-    color: var(--ink);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Your Specific Placements */
-.box-weddings {
-    top: 0;
-    left: 22%;
-    transform: rotate(-2.5deg);
-    background: #5bcefa;
-}
-
-.box-producing {
-    top: 100px;
-    right: 22%;
-    transform: rotate(2deg);
-    background: #5bfad5;
-}
-
-.box-socials {
-    top: 205px;
-    left: 25%;
-    transform: rotate(1.5deg);
-    background: #fa9d5b;
-}
-
-.chapter-box:hover {
-    transform: scale(1.05) rotate(0deg) !important;
-    z-index: 100;
-    box-shadow: 15px 20px 40px rgba(0,0,0,0.08);
-}
-
-.num {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 1.5rem;
-}
-
-.chapter-box h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
-    margin: 0 0 0.8rem 0;
-}
-
-.chapter-box p {
-    font-size: 0.95rem;
-    color: var(--accent);
-    margin: 0;
-}
-
-/* --- 6. MEDIA SPREAD (Spotify & YouTube) --- */
-.media-spread {
-    display: flex;
-    flex-direction: column; /* Stack video over audio */
-    align-items: center;    /* Horizontal center */
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;         /* Backup centering */
-    text-align: center;
-}
-
-.media-spread video, 
-.media-spread audio {
-    max-width: 90%;         /* Ensures it doesn't hit the screen edges on mobile */
-    width: 640px;           /* Or your preferred size */
 }
 
 .media-stack {
     display: flex;
-    flex-direction: row; /* Forces side-by-side */
-    align-items: flex-end; /* Keeps them aligned at the bottom */
-    gap: 40px; 
-    max-width: 1000px;
+    gap: 40px;
+    width: 90%;
+    max-width: 1100px;
+    padding: 100px 0;
 }
 
-.video-card::before {
+.video-card, .spotify-card, .photo-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    position: relative;
+}
+
+/* Decorative Framing Lines (The Depth/Context you liked) */
+.photo-card::before {
     content: "";
     position: absolute;
-    top: -15px;
-    left: 20%;
-    width: 100px;
-    height: 30px;
-    background: rgba(255, 255, 230, 0.5); /* Translucent yellowish tape */
-    backdrop-filter: blur(2px);
-    transform: rotate(-3deg);
-    border-left: 2px solid rgba(0,0,0,0.05);
-    border-right: 2px solid rgba(0,0,0,0.05);
+    top: -20px; left: -20px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(255,255,255,0.05);
+    z-index: -1;
 }
 
-.spotify-card::before {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 20%;
-    width: 100px;
-    height: 30px;
-    background: rgba(255, 255, 230, 0.5); /* Translucent yellowish tape */
-    backdrop-filter: blur(2px);
-    transform: rotate(4deg);
-    border-left: 2px solid rgba(0,0,0,0.05);
-    border-right: 2px solid rgba(0,0,0,0.05);
+.playfair {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
 }
 
-.video-card {
-    flex: 1.5; /* Gives the video more room */
-    max-width: 500px;
-    background: #f6f5ef;
-    padding: 12px 12px 40px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    transform: rotate(-1.5deg);
-    z-index: 2;
-}
-.video-card iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
+.date-rows li {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.spotify-card {
-    flex: 1; /* Spotify is narrower */
-    max-width: 320px;
-    transform: rotate(2deg) translateY(-20px); /* Lifted slightly for depth */
-    z-index: 3;
+.inter-bold { 
+    font-family: monospace; 
+    color: #8c8c8c; 
+    font-size: 0.8rem; 
 }
-/* --- 7. MOBILE RESPONSIVENESS --- */
-@media (max-width: 900px) {
-    .hero-spread, .media-spread {
+
+/* --- 5. CHAPTER LINKS (Zine / Editorial Style) --- */
+.chapter-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 150px 5%;
+}
+
+.chapter-box {
+    background: #fff;
+    padding: 40px;
+    border: 1px solid var(--border-soft);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+}
+
+.chapter-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--ink);
+    box-shadow: 30px 40px 80px rgba(0,0,0,0.05);
+}
+
+.chapter-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin: 20px 0;
+}
+
+.num {
+    font-family: monospace;
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+/* --- 6. MARGIN NOTES (The Character) --- */
+.margin-note {
+    font-family: 'Covered By Your Grace', cursive;
+    color: var(--accent);
+    font-size: 1.3rem;
+    max-width: 200px;
+    line-height: 1.2;
+}
+
+/* --- 7. MOBILE --- */
+@media (max-width: 1000px) {
+    .hero-spread, .media-stack, .chapter-links {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 40px;
+        grid-template-columns: 1fr;
     }
-
-    .media-stack {
-        flex-direction: column;
-        align-items: center;
-    }
-    .video-card, .spotify-card {
-        width: 100%;
-        max-width: 450px;
-        transform: rotate(0);
-    }
-
-    .hero-left { align-items: center; }
-
-    .chapter-links {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        align-items: center;
-        margin: 50px 5%;
-    }
-
-    .chapter-box {
-        position: relative;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        transform: rotate(1deg) !important;
-        width: 85%;
-    }
+    .hero-left { padding-left: 0; text-align: center; }
+    .main-logo { width: 80%; }
+    .date-rows li { grid-template-columns: 1fr; gap: 10px; text-align: center; }
 }
