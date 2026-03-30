@@ -208,22 +208,18 @@ nav a:hover { opacity: 0.5; }
     background-size: cover;
     opacity: 0.4;
 }
-/* --- DATES SECTION --- */
+
 /* --- DATES SECTION (Glassmorphism Version) --- */
 .dates-container {
-    width: 100vw;             /* Force it to span the full screen width */
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;      /* These 4 lines break it out of any side-padding */
-    
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 100px 0;
-    background-color: #0f0f0f; /* Pure dark for the glass to pop */
+    background-color: #0f0f0f; /* Dark strip */
+    margin: 40px 0;
     box-sizing: border-box;
-    z-index: 5;
+    /* This ensures it ignores any padding leaking from the hero section */
+    clear: both; 
 }
 
 .photo-card {
@@ -231,38 +227,31 @@ nav a:hover { opacity: 0.5; }
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 60px;
+    padding: 40px 50px;
     width: 90%;
-    max-width: 650px;
+    max-width: 700px;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-    border-radius: 2px; /* Very sharp, pro edges */
+    border-radius: 2px;
 }
 
-/* Ensure the titles and list match your brand fonts */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
 .playfair {
     font-family: 'Playfair Display', serif !important;
     color: #ffffff;
     font-size: 1.6rem;
-    text-align: left;
+    margin: 0;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 3px;
 }
 
-.date-rows li {
-    display: grid;
-    grid-template-columns: 100px 1fr 100px;
-    gap: 20px;
-    padding: 25px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    font-family: 'Inter', sans-serif !important;
-    color: #d1d1d1;
-    align-items: center;
-}
-
-.inter-bold { font-weight: 800; font-size: 0.9rem; color: #fff; }
-.inter-light { font-weight: 300; font-size: 1rem; }
-
-/* Blinking Red Dot */
 .status-dot {
     width: 10px;
     height: 10px;
@@ -270,12 +259,6 @@ nav a:hover { opacity: 0.5; }
     border-radius: 50%;
     box-shadow: 0 0 15px #ff0000;
     animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
 }
 
 .date-rows {
@@ -286,29 +269,45 @@ nav a:hover { opacity: 0.5; }
 
 .date-rows li {
     display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    gap: 15px;
+    /* Increased the first column to 120px to prevent date squashing */
+    grid-template-columns: 120px 1fr 100px; 
+    gap: 20px;
     padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-family: 'Inter', sans-serif;
-    color: #e0e0e0;
+    font-family: 'Inter', sans-serif !important;
+    color: #d1d1d1;
     align-items: center;
 }
 
-.inter-bold { font-weight: 700; font-size: 0.85rem; }
-.inter-light { font-weight: 300; font-size: 0.95rem; }
+.inter-bold { 
+    font-weight: 800; 
+    font-size: 0.85rem; 
+    color: #fff; 
+    text-transform: uppercase;
+}
 
-.btn-link { color: #fff; text-decoration: underline; text-align: right; font-size: 0.8rem; }
-.sold-out, .past { opacity: 0.4; text-align: right; font-size: 0.7rem; text-transform: uppercase; }
+.inter-light { 
+    font-weight: 300; 
+    font-size: 1rem; 
+    line-height: 1.4;
+}
 
-/* Status specific colors */
-.upcoming { color: green; }
-.past { color: #999; text-decoration: line-through; }
+.status {
+    font-size: 0.7rem;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status.upcoming { color: #4ade80; opacity: 1; }
+.status.past { opacity: 0.4; text-decoration: none; } /* Removed line-through for cleaner look */
 
 .journal-footer {
+    font-family: 'Inter', sans-serif;
     font-style: italic;
-    margin-top: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 30px;
     color: #666;
 }
 
