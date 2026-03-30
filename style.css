@@ -209,77 +209,118 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.4;
 }
 /* --- DATES SECTION --- */
-.notebook-page {
-    background-color: #fdfcf8; /* A slightly aged, premium paper cream */
-    padding: 40px;
+/* Container to center everything on the page */
+.diary-section {
     width: 100%;
-    max-width: 550px;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
-    transform: rotate(-1.2deg);
-    position: relative;
-    
-    /* This creates the "torn" bottom edge effect */
-    clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 95% 98%, 85% 94%, 75% 99%, 60% 95%, 50% 97%, 40% 94%, 25% 99%, 10% 95%, 0% 100%);
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    box-sizing: border-box;
 }
 
-.notebook-page h2 {
-    font-family: 'serif'; /* Or your main brand font */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 1.2rem;
+.notebook-page {
+    background-color: #fdfcf8; /* Premium eggshell paper */
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* Centers the paper itself */
+    box-shadow: 15px 15px 40px rgba(0,0,0,0.08);
+    transform: rotate(-1deg);
+    position: relative;
+    
+    /* Artistic torn bottom edge */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 92% 97%, 80% 93%, 70% 98%, 55% 94%, 40% 99%, 25% 93%, 15% 98%, 0% 92%);
+}
+
+/* Washi Tape Accent */
+.notebook-page::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 90px;
+    height: 25px;
+    background: rgba(30, 30, 30, 0.85); /* Dark matte tape */
+    backdrop-filter: blur(1px);
+}
+
+.diary-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    text-align: center;
     margin-bottom: 30px;
-    border-bottom: 1px solid #333;
-    display: inline-block;
+    color: #1a1a1a;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
 
 .date-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .date-list li {
     display: grid;
-    grid-template-columns: 80px 1fr 100px; /* Aligns everything in clean columns */
+    grid-template-columns: 100px 1fr 80px;
     align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    transition: all 0.3s ease;
 }
 
-/* Hover effect makes it feel premium and interactive */
 .date-list li:hover {
-    transform: scale(1.02) translateX(5px);
-    color: #555;
+    transform: translateX(8px);
+    color: #000;
 }
 
-.date { 
-    font-family: 'Courier New', monospace; 
-    font-weight: bold; 
+.date {
+    font-weight: 700;
     font-size: 0.9rem;
-}
-
-.venue { 
-    font-style: italic;
-    font-family: Georgia, serif;
-}
-
-.status { 
-    font-size: 0.7rem; 
-    text-align: right;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: 300;
 }
 
-/* The "Washi Tape" fix: make it look like thin, matte black tape */
-.notebook-page::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 35%;
-    width: 80px;
-    height: 20px;
-    background: rgba(40, 40, 40, 0.8); /* Dark matte tape */
-    transform: rotate(2deg);
+.venue {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.status {
+    font-size: 0.7rem;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+.status.upcoming {
+    color: #2c5e2e;
+    opacity: 1;
+}
+
+.journal-footer {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+    .date-list li {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        text-align: center;
+    }
+    .status { text-align: center; margin-top: 5px; }
+    .notebook-page { padding: 30px 20px; }
 }
 
 /* Status specific colors */
