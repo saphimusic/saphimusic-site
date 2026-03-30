@@ -113,56 +113,60 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* --- 4. THE SCATTERED HUB --- */
+//* --- 4. THE SCATTERED HUB (The "Tossed on a Desk" Layout) --- */
 .bento-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0; /* We handle spacing with margins for overlap */
     max-width: 1100px;
-    margin: 60px auto;
-    padding: 0 20px;
+    margin: 100px auto; /* More space below Hero */
+    padding: 0 5%;
+    display: block; /* Standard flow */
 }
 
-/* Light Cards (Video & Spotify) */
+/* Base styling for the two light paper cards */
 .video-card, .spotify-card {
-    background: #fdfcf8; /* Solid light paper */
-    border: 1px solid rgba(0,0,0,0.05);
+    background: #fdfcf8;
+    border: 1px solid rgba(0,0,0,0.06);
     padding: 15px;
-    box-shadow: 10px 15px 30px rgba(0,0,0,0.05);
+    box-shadow: 12px 15px 40px rgba(0,0,0,0.05);
+    display: inline-block; /* Allows them to sit side-by-side */
+    vertical-align: top;
+    transition: transform 0.3s ease;
 }
 
-/* Video: Large and angled left */
+/* Video: Main feature, tilted left */
 .video-card {
-    flex: 0 1 550px;
+    width: 60%;
     transform: rotate(-1.5deg);
-    margin-right: -40px; /* Force overlap with Spotify */
+    position: relative;
     z-index: 2;
 }
 
 .video-card iframe {
     width: 100%;
     aspect-ratio: 16/9;
+    border: none;
     display: block;
 }
 
-/* Spotify: Small and angled right */
+/* Spotify: Smaller, tilted right, tucked slightly behind/beside */
 .spotify-card {
-    flex: 0 1 320px;
-    transform: rotate(2deg) translateY(40px);
+    width: 35%;
+    margin-left: -5%; /* The "Magic" overlap */
+    margin-top: 40px;
+    transform: rotate(2deg);
     z-index: 3;
 }
 
-/* --- THE LIVE SCHEDULE (Landscape & Quirky) --- */
+/* --- THE LIVE SCHEDULE (Landscape Studio Glass) --- */
 .photo-card {
-    flex: 0 1 850px; /* Landscape width */
-    margin-top: -20px; /* Tucks under the video/spotify */
+    width: 90%;
+    max-width: 950px;
+    margin: -30px auto 0 auto; /* Tucks UNDER the video and spotify */
     background: #0f0f0f; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px 40px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    padding: 40px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
     transform: rotate(-0.5deg);
+    position: relative;
     z-index: 1;
 }
 
@@ -172,22 +176,24 @@ nav a:hover { opacity: 0.5; }
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif !important;
-    color: #ffffff;
-    font-size: 1.8rem;
+    color: #ffffff !important;
+    font-size: 2rem;
+    font-style: normal;
+    letter-spacing: 1px;
     margin: 0;
 }
 
 .status-dot {
-    width: 8px; height: 8px;
+    width: 10px; height: 10px;
     background: #ff0000;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ff0000;
+    box-shadow: 0 0 15px #ff0000;
     animation: pulse-red 1.5s infinite;
 }
 
@@ -197,12 +203,13 @@ nav a:hover { opacity: 0.5; }
     100% { opacity: 1; }
 }
 
-.date-rows { list-style: none; padding: 0; }
+/* Columns for the dates */
+.date-rows { list-style: none; padding: 0; margin: 0; }
 
 .date-rows li {
     display: grid;
-    grid-template-columns: 100px 1fr 120px; 
-    padding: 12px 0;
+    grid-template-columns: 120px 1fr 140px; 
+    padding: 18px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     align-items: center;
 }
@@ -210,14 +217,19 @@ nav a:hover { opacity: 0.5; }
 .inter-bold {
     font-family: 'Courier New', Courier, monospace;
     color: #8c8c8c;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
-.event-name { color: #fff; font-size: 0.9rem; }
+.event-name {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+}
 
 .status {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-align: right;
     text-transform: uppercase;
 }
@@ -225,8 +237,25 @@ nav a:hover { opacity: 0.5; }
 .status.upcoming { color: #4ade80; font-weight: bold; }
 .status.past { color: #555; text-decoration: line-through; }
 
-/* --- CLEANUP --- */
-.spine, .central-line, .timeline-line { display: none !important; }
+/* --- 5. CLEANUP --- */
+.spine, .central-line, .timeline-line, [class*="line"] {
+    display: none !important;
+}
+
+/* --- 6. MOBILE --- */
+@media (max-width: 900px) {
+    .video-card, .spotify-card, .photo-card {
+        width: 100% !important;
+        margin: 20px 0 !important;
+        transform: none !important;
+        display: block;
+    }
+    .date-rows li {
+        grid-template-columns: 80px 1fr; /* Stack status on mobile */
+    }
+    .status { text-align: left; grid-column: 2; }
+}
+
 /* --- 6. CHAPTER LINKS --- */
 .chapter-links {
     position: relative;
