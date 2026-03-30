@@ -209,54 +209,67 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.4;
 }
 /* --- DATES SECTION --- */
-/* Container Fix */
+/* --- DATES SECTION (Glassmorphism Version) --- */
 .dates-container {
+    width: 100vw;             /* Force it to span the full screen width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;      /* These 4 lines break it out of any side-padding */
+    
     display: flex;
     justify-content: center;
-    padding: 60px 20px;
-    background-color: #121212; /* Dark background to make the glass pop */
-    width: 100%;
+    padding: 100px 0;
+    background-color: #0f0f0f; /* Pure dark for the glass to pop */
     box-sizing: border-box;
+    z-index: 5;
 }
 
-/* The "Glossy Photo" Card */
 .photo-card {
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 40px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    border-radius: 4px; /* Slight roundness for a premium feel */
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    border-radius: 2px; /* Very sharp, pro edges */
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-}
-
+/* Ensure the titles and list match your brand fonts */
 .playfair {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif !important;
     color: #ffffff;
-    font-size: 1.4rem;
-    margin: 0;
-    letter-spacing: 1px;
+    font-size: 1.6rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
-/* Blinking Red Recording Dot */
+.date-rows li {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    gap: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Inter', sans-serif !important;
+    color: #d1d1d1;
+    align-items: center;
+}
+
+.inter-bold { font-weight: 800; font-size: 0.9rem; color: #fff; }
+.inter-light { font-weight: 300; font-size: 1rem; }
+
+/* Blinking Red Dot */
 .status-dot {
-    width: 12px;
-    height: 12px;
-    background: #ff4d4d;
+    width: 10px;
+    height: 10px;
+    background: #ff0000;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ff4d4d;
-    animation: pulse-red 2s infinite;
+    box-shadow: 0 0 15px #ff0000;
+    animation: pulse-red 1.5s infinite;
 }
 
 @keyframes pulse-red {
