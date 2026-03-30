@@ -209,118 +209,107 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.4;
 }
 /* --- DATES SECTION --- */
-/* Container to center everything on the page */
-.diary-section {
-    width: 100%;
+/* Center the section */
+.dates-container {
     display: flex;
     justify-content: center;
-    padding: 60px 20px;
-    box-sizing: border-box;
+    padding: 80px 20px;
+    background: transparent;
 }
 
-.notebook-page {
-    background-color: #fdfcf8; /* Premium eggshell paper */
-    padding: 40px 50px;
+.photo-card {
+    background: rgba(255, 255, 255, 0.03); /* Extremely subtle tint */
+    backdrop-filter: blur(15px); /* The "Frosted Glass" 2000s look */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Sharp, thin border */
+    padding: 50px;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto; /* Centers the paper itself */
-    box-shadow: 15px 15px 40px rgba(0,0,0,0.08);
-    transform: rotate(-1deg);
+    max-width: 700px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Deep, pro shadow */
     position: relative;
-    
-    /* Artistic torn bottom edge */
-    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 92% 97%, 80% 93%, 70% 98%, 55% 94%, 40% 99%, 25% 93%, 15% 98%, 0% 92%);
+    overflow: hidden;
 }
 
-/* Washi Tape Accent */
-.notebook-page::before {
+/* Add a "Glossy" sheen across the card */
+.photo-card::after {
     content: "";
     position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%) rotate(2deg);
-    width: 90px;
-    height: 25px;
-    background: rgba(30, 30, 30, 0.85); /* Dark matte tape */
-    backdrop-filter: blur(1px);
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: rotate(30deg);
+    pointer-events: none;
 }
 
-.diary-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    text-align: center;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
     margin-bottom: 30px;
-    color: #1a1a1a;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
 }
 
-.date-list {
-    list-style: none;
-    padding: 0;
+.playfair {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
     margin: 0;
 }
 
-.date-list li {
+/* The 2000s "Recording" light */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff0000;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+.date-rows {
+    list-style: none;
+    padding: 0;
+}
+
+.date-rows li {
     display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    align-items: center;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    grid-template-columns: 100px 1fr 100px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     font-family: 'Inter', sans-serif;
-    color: #333;
-    transition: all 0.3s ease;
+    color: rgba(255,255,255,0.8);
+    transition: background 0.3s ease;
 }
 
-.date-list li:hover {
-    transform: translateX(8px);
-    color: #000;
+.date-rows li:hover {
+    background: rgba(255,255,255,0.02);
+    color: #fff;
 }
 
-.date {
-    font-weight: 700;
-    font-size: 0.9rem;
+.inter-bold { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; }
+.inter-light { font-weight: 300; font-size: 1rem; opacity: 0.9; }
+
+.btn-link {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    text-align: right;
 }
 
-.venue {
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.status {
+.sold-out, .past {
     font-size: 0.7rem;
     text-align: right;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    opacity: 0.6;
-}
-
-.status.upcoming {
-    color: #2c5e2e;
-    opacity: 1;
-}
-
-.journal-footer {
-    font-family: 'Inter', sans-serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 30px;
-    color: #888;
-}
-
-/* Mobile Tweaks */
-@media (max-width: 480px) {
-    .date-list li {
-        grid-template-columns: 1fr;
-        gap: 5px;
-        text-align: center;
-    }
-    .status { text-align: center; margin-top: 5px; }
-    .notebook-page { padding: 30px 20px; }
+    opacity: 0.4;
+    letter-spacing: 1px;
 }
 
 /* Status specific colors */
