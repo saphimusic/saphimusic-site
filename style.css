@@ -117,34 +117,38 @@ nav a:hover { opacity: 0.5; }
 .marquee {
   overflow: hidden;
   white-space: nowrap;
-  background: #0f0f0f; /* Match your studio black */
+  background: #0f0f0f;
   color: #ffffff;
-  padding: 15px 0;
-  font-family: 'Courier New', Courier, monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  padding: 12px 0;
   border-top: 1px solid rgba(255,255,255,0.1);
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
 }
 
 .marquee-content {
-  display: inline-block;
-  animation: scroll-left 20s linear infinite;
+  display: flex;
+  white-space: nowrap;
+  /* Adjust 20s to change speed */
+  animation: continuous-scroll 20s linear infinite;
 }
 
 .marquee-content span {
-  padding-right: 50px; /* Space between the loops */
+  display: inline-block;
+  padding-right: 60px; /* The gap between the repeated phrases */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
 }
 
-@keyframes scroll-left {
+@keyframes continuous-scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Moves exactly half-way to start the loop over */
+    /* We move it exactly half its total width */
+    transform: translateX(-50%);
   }
 }
-
 /* --- 4. THE MODULAR HUB --- */
 .bento-grid {
     max-width: 1100px;
