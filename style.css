@@ -181,7 +181,7 @@ nav a:hover { opacity: 0.5; }
 /* --- 5. CHAPTER CARDS (The Scattered Section) --- */
 .chapter-links {
     position: relative;
-    height: 600px; /* Essential to keep the cards from overlapping the next section */
+    height: 500px; /* Essential to keep the cards from overlapping the next section */
     margin: 100px 5%;
 }
 
@@ -245,10 +245,18 @@ nav a:hover { opacity: 0.5; }
 /* --- 6. MEDIA SPREAD (Spotify & YouTube) --- */
 .media-spread {
     display: flex;
+    flex-direction: column; /* Stack video over audio */
+    align-items: center;    /* Horizontal center */
     justify-content: center;
-    align-items: center;
-    padding: 120px 5%;
     width: 100%;
+    margin: 0 auto;         /* Backup centering */
+    text-align: center;
+}
+
+.media-spread video, 
+.media-spread audio {
+    max-width: 90%;         /* Ensures it doesn't hit the screen edges on mobile */
+    width: 640px;           /* Or your preferred size */
 }
 
 .media-stack {
