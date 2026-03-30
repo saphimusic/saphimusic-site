@@ -14,6 +14,23 @@ body {
     padding: 0;
     overflow-x: hidden;
 }
+section {
+    margin-top: 20px;    /* Reduced from the default */
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Specific fix for the space under the header photo */
+header {
+    margin-bottom: 10px; 
+}
+
+/* Ensure headings aren't pushing sections away with their own margins */
+h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 /* The Film Grain Overlay */
 body::before {
@@ -90,6 +107,11 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.9;
     transition: transform 0.3s ease;
 }
+.main-logo:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 15px 20px 40px rgba(0,0,0,0.08);
+}
 
 .hero-text {
     margin-bottom: 30px;
@@ -140,7 +162,7 @@ nav a:hover { opacity: 0.5; }
     z-index: 10;        /* Ensures it stays on top of images */
     pointer-events: none; /* Allows clicking 'through' the note */
     width: 180px;
-    color: #666;
+    color: #2a2a2a;
     line-height: 1.1;
     font-size: 1.1rem;
 }
@@ -202,6 +224,7 @@ nav a:hover { opacity: 0.5; }
     top: 0;
     left: 22%;
     transform: rotate(-2.5deg);
+    background: #5bcefa;
 }
 
 .box-producing {
