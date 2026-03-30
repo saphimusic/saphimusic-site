@@ -209,41 +209,78 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.4;
 }
 /* --- DATES SECTION --- */
-.diary-section {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+.notebook-page {
+    background-color: #fdfcf8; /* A slightly aged, premium paper cream */
+    padding: 40px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
+    transform: rotate(-1.2deg);
+    position: relative;
+    
+    /* This creates the "torn" bottom edge effect */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 95% 98%, 85% 94%, 75% 99%, 60% 95%, 50% 97%, 40% 94%, 25% 99%, 10% 95%, 0% 100%);
 }
 
-.notebook-page {
-    background-color: #fff;
-    background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
-    background-size: 100% 1.5rem; /* Creates the blue/grey lines */
-    padding: 30px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-    transform: rotate(1deg);
-    border-left: 2px solid #ddd; /* "Binding" edge */
+.notebook-page h2 {
+    font-family: 'serif'; /* Or your main brand font */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    display: inline-block;
 }
 
 .date-list {
     list-style: none;
     padding: 0;
-    line-height: 1.5rem; /* Matches the background lines */
 }
 
 .date-list li {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dashed #ccc;
-    padding: 5px 0;
-    font-family: 'Courier New', Courier, monospace; /* Typewriter feel */
+    display: grid;
+    grid-template-columns: 80px 1fr 100px; /* Aligns everything in clean columns */
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
 }
 
-.date { font-weight: bold; width: 80px; }
-.venue { flex-grow: 1; text-align: left; }
-.status { font-size: 0.8rem; text-transform: uppercase; opacity: 0.7; }
+/* Hover effect makes it feel premium and interactive */
+.date-list li:hover {
+    transform: scale(1.02) translateX(5px);
+    color: #555;
+}
+
+.date { 
+    font-family: 'Courier New', monospace; 
+    font-weight: bold; 
+    font-size: 0.9rem;
+}
+
+.venue { 
+    font-style: italic;
+    font-family: Georgia, serif;
+}
+
+.status { 
+    font-size: 0.7rem; 
+    text-align: right;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/* The "Washi Tape" fix: make it look like thin, matte black tape */
+.notebook-page::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 35%;
+    width: 80px;
+    height: 20px;
+    background: rgba(40, 40, 40, 0.8); /* Dark matte tape */
+    transform: rotate(2deg);
+}
 
 /* Status specific colors */
 .upcoming { color: green; }
