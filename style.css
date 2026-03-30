@@ -226,12 +226,14 @@ nav a:hover { opacity: 0.5; }
     top: 100px;
     right: 22%;
     transform: rotate(2deg);
+    background: #5bfad5;
 }
 
 .box-socials {
     top: 205px;
     left: 25%;
     transform: rotate(1.5deg);
+    background: #fa9d5b;
 }
 
 .chapter-box:hover {
