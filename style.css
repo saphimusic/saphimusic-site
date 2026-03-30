@@ -113,73 +113,75 @@ nav a:hover { opacity: 0.5; }
 
 /* --- 4. THE SCATTERED HUB --- */
 .bento-grid {
-    position: relative;
-    max-width: 1100px;
-    height: 800px; /* Gives the angled boxes room to breathe */
-    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* Granular grid for overlapping */
+    grid-auto-rows: minmax(100px, auto);
+    gap: 0;
+    max-width: 1200px;
+    margin: 80px auto; 
     padding: 0 5%;
+    position: relative;
+    z-index: 1; /* Keeps it below the Nav but above the grain */
 }
 
-/* Base for all cards to ensure the "Glass" look stays consistent */
-.video-card, .spotify-card, .photo-card {
-    position: absolute; /* Allows manual "scattered" placement */
-    background: #0f0f0f; 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease, z-index 0.3s ease;
+/* Base for Light Cards (Video & Spotify) */
+.video-card, .spotify-card {
+    background: rgba(253, 252, 248, 0.9); /* Light Paper */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    box-shadow: 15px 20px 40px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
 }
 
-/* Box 1: The Video (Large, Angled Left) */
+/* Box 1: The Video (Top Leftish) */
 .video-card {
-    width: 550px;
-    top: 0;
-    left: 5%;
-    transform: rotate(-2deg);
+    grid-column: 1 / span 7;
+    grid-row: 1 / span 3;
+    transform: rotate(-1.5deg);
     z-index: 2;
 }
 
-/* Box 2: Spotify (Medium, Angled Right, Overlapping slightly) */
+/* Box 2: Spotify (Top Right, overlaps video slightly) */
 .spotify-card {
-    width: 350px;
-    top: 50px;
-    right: 5%;
-    transform: rotate(3deg);
+    grid-column: 7 / span 5;
+    grid-row: 1 / span 2;
+    transform: rotate(2deg) translateY(40px);
     z-index: 3;
 }
 
-/* Box 3: Dates (The "Tall" Box, Tucked Underneath) */
+/* Box 3: Dates (Dark Studio Card - The "Quirky" One) */
 .photo-card {
-    width: 450px;
-    top: 380px;
-    left: 25%;
-    transform: rotate(-1deg);
-    z-index: 1;
+    grid-column: 4 / span 7;
+    grid-row: 3 / span 3;
+    background: #0f0f0f; 
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+    transform: rotate(-0.5deg) translateY(-20px);
+    z-index: 4;
 }
 
-/* --- HEADING & BLINKER SYNC --- */
+/* --- LIVE SCHEDULE QUIRKS --- */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif !important;
     color: #ffffff;
     font-size: 2.2rem;
-    letter-spacing: 1px;
     margin: 0;
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     background: #ff0000;
     border-radius: 50%;
     box-shadow: 0 0 15px #ff0000;
@@ -187,35 +189,38 @@ nav a:hover { opacity: 0.5; }
 }
 
 @keyframes pulse-red {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
-/* Hover effect to "pick up" the card */
-.video-card:hover, .spotify-card:hover, .photo-card:hover {
-    transform: rotate(0deg) scale(1.02);
-    z-index: 10;
-    border-color: rgba(255,255,255,0.3);
+.date-rows li {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #d1d1d1;
+    align-items: center;
 }
 
-/* --- MOBILE: Switch back to a clean list so it doesn't break --- */
+.inter-bold {
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* --- MOBILE --- */
 @media (max-width: 900px) {
     .bento-grid {
-        height: auto;
         display: flex;
         flex-direction: column;
-        gap: 30px;
-        align-items: center;
+        height: auto;
     }
     .video-card, .spotify-card, .photo-card {
-        position: relative;
         width: 100%;
-        max-width: 500px;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        transform: rotate(0deg) !important;
+        transform: rotate(0) !important;
+        margin-bottom: 20px;
     }
 }
 
