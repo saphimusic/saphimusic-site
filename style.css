@@ -107,11 +107,6 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.9;
     transition: transform 0.3s ease;
 }
-.main-logo:hover {
-    transform: scale(1.05) rotate(0deg) !important;
-    z-index: 100;
-    box-shadow: 15px 20px 40px rgba(0,0,0,0.08);
-}
 
 .hero-text {
     margin-bottom: 30px;
