@@ -274,7 +274,7 @@ nav a:hover { opacity: 0.5; }
     background-blend-mode: overlay;
     
     border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 8px 8px 0px #ff6b35; /* Intentional "Misregistration" offset */
+    box-shadow: 8px 8px 0px #ff7c79; /* Intentional "Misregistration" offset */
 }
 
 .description-text {
@@ -292,7 +292,7 @@ nav a:hover { opacity: 0.5; }
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: #ff6b35; /* Orange "Ink" */
+    color: #ff7c79; /* Orange "Ink" */
     margin-bottom: 2rem;
     display: block;
     /* Slight offset to look like a separate print pass */
@@ -305,7 +305,7 @@ nav a:hover { opacity: 0.5; }
     float: left;
     margin-right: 10px;
     line-height: 1;
-    color: #ff6b35;
+    color: #ff7c79;
 }
 
 /* --- 7. CHAPTER LINKS --- */
