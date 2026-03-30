@@ -78,6 +78,7 @@ nav a:hover { opacity: 0.5; }
 .main-logo {
     width: 320px;
     margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .journal-entry {
@@ -113,30 +114,32 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* --- 4. THE SCATTERED HUB (The "Tossed on a Desk" Layout) --- */
+/* --- 4. THE SCATTERED HUB (Refined Layout) --- */
 .bento-grid {
-    max-width: 1100px;
-    margin: 100px auto; /* More space below Hero */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 20px auto 100px auto; /* Tightened top margin */
     padding: 0 5%;
-    display: block; /* Standard flow */
+    position: relative;
 }
 
-/* Base styling for the two light paper cards */
 .video-card, .spotify-card {
     background: #fdfcf8;
     border: 1px solid rgba(0,0,0,0.06);
     padding: 15px;
     box-shadow: 12px 15px 40px rgba(0,0,0,0.05);
-    display: inline-block; /* Allows them to sit side-by-side */
-    vertical-align: top;
     transition: transform 0.3s ease;
 }
 
-/* Video: Main feature, tilted left */
+/* Video: Main feature */
 .video-card {
-    width: 60%;
+    flex: 1 1 500px; /* Grows but stays around 500-600px */
+    max-width: 650px;
     transform: rotate(-1.5deg);
-    position: relative;
+    margin-right: -30px; /* Slight overlap */
     z-index: 2;
 }
 
@@ -147,83 +150,64 @@ nav a:hover { opacity: 0.5; }
     display: block;
 }
 
-/* Spotify: Smaller, tilted right, tucked slightly behind/beside */
+/* Spotify: Positioned to the right and slightly lower */
 .spotify-card {
-    width: 35%;
-    margin-left: -5%; /* The "Magic" overlap */
-    margin-top: 40px;
+    flex: 0 1 320px;
+    margin-top: 60px;
     transform: rotate(2deg);
     z-index: 3;
 }
 
-/* --- THE LIVE SCHEDULE (Landscape Studio Glass) --- */
+/* --- THE LIVE SCHEDULE (Base Layer) --- */
 .photo-card {
-    width: 90%;
+    width: 100%;
     max-width: 950px;
-    margin: -30px auto 0 auto; /* Tucks UNDER the video and spotify */
+    margin: -50px auto 0 auto; /* Pulls it UP to overlap the top cards */
     background: #0f0f0f; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
+    padding: 60px 40px 40px 40px; /* Extra top padding so content clears the overlap */
     box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-    transform: rotate(-0.5deg);
-    position: relative;
+    transform: rotate(-0.3deg);
     z-index: 1;
 }
 
-/* Schedule Internal Logic */
+/* Header & Blinker */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding-bottom: 15px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif !important;
     color: #ffffff !important;
-    font-size: 2rem;
-    font-style: normal;
-    letter-spacing: 1px;
+    font-size: 2.4rem; /* Matching the Chapter Box titles exactly */
+    font-weight: 400;
     margin: 0;
 }
 
-.status-dot {
-    width: 10px; height: 10px;
-    background: #ff0000;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #ff0000;
-    animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
-
-/* Columns for the dates */
-.date-rows { list-style: none; padding: 0; margin: 0; }
-
+/* Date Row Columns - Fixed Spacing */
 .date-rows li {
     display: grid;
-    grid-template-columns: 120px 1fr 140px; 
-    padding: 18px 0;
+    grid-template-columns: 140px 1fr 140px; 
+    padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     align-items: center;
 }
 
 .inter-bold {
     font-family: 'Courier New', Courier, monospace;
-    color: #8c8c8c;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
 .event-name {
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 300;
 }
 
@@ -231,10 +215,10 @@ nav a:hover { opacity: 0.5; }
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.75rem;
     text-align: right;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.status.upcoming { color: #4ade80; font-weight: bold; }
+.status.upcoming { color: #4ade80; }
 .status.past { color: #555; text-decoration: line-through; }
 
 /* --- 5. CLEANUP --- */
