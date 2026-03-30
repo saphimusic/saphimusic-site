@@ -113,7 +113,7 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-//* --- 4. THE SCATTERED HUB (The "Tossed on a Desk" Layout) --- */
+/* --- 4. THE SCATTERED HUB (The "Tossed on a Desk" Layout) --- */
 .bento-grid {
     max-width: 1100px;
     margin: 100px auto; /* More space below Hero */
@@ -281,8 +281,8 @@ nav a:hover { opacity: 0.5; }
 }
 
 .box-weddings { top: 0; left: 22%; transform: rotate(-2.5deg); background: #5bcefa; }
-.box-producing { top: 120px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
-.box-socials { top: 240px; left: 25%; transform: rotate(1.5deg); background: #fa9d5b; }
+.box-producing { top: 130px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
+.box-socials { top: 210px; left: 25%; transform: rotate(1.5deg); background: #fa9d5b; }
 
 .chapter-box:hover {
     transform: scale(1.05) rotate(0deg) !important;
@@ -299,7 +299,7 @@ nav a:hover { opacity: 0.5; }
     color: var(--ink);
 }
 
-.note-1 { top: 10%; left: 5%; transform: rotate(-8deg); }
+.note-1 { top: 0%; left: 5%; transform: rotate(-8deg); }
 .note-2 { top: 40%; right: 5%; transform: rotate(4deg); }
 
 /* --- 8. CLEANUP & MOBILE --- */
