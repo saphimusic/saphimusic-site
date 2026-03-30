@@ -1,0 +1,261 @@
+/* style.css */
+:root {
+    --paper: #f4f1ea;   /* Warm, aged paper */
+    --ink: #2a2a2a;     /* Soft charcoal */
+    --accent: #8c8c8c;  /* Faded grey for "journal" notes */
+}
+
+body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* The Film Grain Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* This creates a subtle digital noise */
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.15;
+    pointer-events: none; /* Allows you to click things underneath */
+    z-index: 9999;
+}
+
+/* The "Human" Header - Wide spacing, elegant */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.8rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--ink);
+    margin-left: 2rem;
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.5;
+}
+
+/* The Hero Section - Inspired by Offbeat/Mynrd */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 10vh 10%;
+    gap: 5%;
+}
+
+/* Ensure the parent container allows absolute positioning */
+.hero {
+    position: relative; 
+}
+
+
+.margin-note {
+    font-family: 'Covered By Your Grace', cursive;
+    position: absolute; /* This is the key: it floats 'above' the grid */
+    z-index: 10;        /* Ensures it stays on top */
+    pointer-events: none; /* You can click 'through' the note to links behind it */
+    width: 180px;
+    color: #666;
+    line-height: 1.1;
+}
+
+/* Specific placements so they don't overlap your main text */
+.note-1 { top: 0%; left: 2%; transform: rotate(-8deg); }
+.note-2 { top: 70%; right: 5%; transform: rotate(4deg); }
+
+.scribble {
+    position: relative;
+    display: inline-block;
+}
+
+.scribble::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    /* A hand-drawn looking SVG wave */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="black" stroke-width="2"/></svg>');
+    background-size: cover;
+    opacity: 0.4;
+}
+
+.date-stamp {
+    font-family: monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 5rem;
+    margin: 0;
+}
+
+.film-photo {
+    width: 100%;
+    /* Tilt it slightly to the left */
+    transform: rotate(-1.5deg); 
+    filter: sepia(0.2) contrast(1.1) brightness(0.9);
+    border: 8px solid #fff; /* White photo border */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+.film-photo::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.4); /* Washi tape look */
+    backdrop-filter: blur(2px);
+}
+
+.chapter-box:nth-child(even) {
+    /* Tilt the second box slightly right to break the symmetry */
+    transform: rotate(1deg);
+}
+
+.sub-hero {
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin-top: 2rem;
+    color: var(--accent);
+}
+
+
+.chapter-links {
+    position: relative;
+    height: 300px; /* Give the 'table' some height */
+    margin: 100px 0;
+    display: block; /* Remove the rigid grid */
+}
+
+.chapter-box {
+    position: absolute; /* Allows us to scatter them */
+    width: 300px;      /* Fixed card size */
+    padding: 2rem;
+    background: #f5f3ef;  /* White 'index card' look */
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.05);
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+/* Scatter the cards manually */
+.box-weddings {
+    top: 0%;
+    left: 22%;
+    transform: rotate(-2deg);
+}
+
+.box-producing {
+    top: 20%;
+    right: 22%;
+    transform: rotate(3deg);
+}
+
+.box-socials {
+    top: 65%;
+    left: 25%;
+    transform: rotate(3deg);
+}
+
+.chapter-box:hover {
+    transform: scale(1.05) rotate(0deg); /* Lifts the card when hovering */
+    z-index: 20;
+}
+
+.num {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.chapter-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.chapter-box p {
+    font-size: 1rem;
+    color: var(--accent);
+    max-width: 300px;
+}
+
+.media-spread {
+    position: relative;
+    padding: 100px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-stack {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px; /* Space between video and audio */
+}
+
+.video-card {
+    width: 450px;
+    background: #f5f3ef;
+    padding: 15px 15px 40px 15px; /* Thicker bottom for the 'Polaroid' look */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transform: rotate(-2deg);
+    z-index: 2;
+}
+
+.video-card iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.spotify-card {
+    width: 300px;
+    transform: rotate(3deg) translateY(-20px); /* Lift it slightly */
+    z-index: 3; /* Sits slightly 'over' the video's corner */
+}
+
+.caption {
+    font-family: 'Covered By Your Grace', cursive;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+/* Mobile Fix: Stack them when the screen is too small */
+@media (max-width: 768px) {
+    .media-stack {
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-card, .spotify-card {
+        width: 100%;
+        transform: rotate(0);
+    }
+}
