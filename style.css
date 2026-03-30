@@ -287,6 +287,34 @@ nav a:hover { opacity: 0.5; }
     max-width: 1000px;
 }
 
+.video-card::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 20%;
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 255, 230, 0.5); /* Translucent yellowish tape */
+    backdrop-filter: blur(2px);
+    transform: rotate(-3deg);
+    border-left: 2px solid rgba(0,0,0,0.05);
+    border-right: 2px solid rgba(0,0,0,0.05);
+}
+
+.spotify-card::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 20%;
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 255, 230, 0.5); /* Translucent yellowish tape */
+    backdrop-filter: blur(2px);
+    transform: rotate(-3deg);
+    border-left: 2px solid rgba(0,0,0,0.05);
+    border-right: 2px solid rgba(0,0,0,0.05);
+}
+
 .video-card {
     flex: 1.5; /* Gives the video more room */
     max-width: 500px;
