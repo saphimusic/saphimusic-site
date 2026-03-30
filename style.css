@@ -233,6 +233,16 @@ nav a:hover { opacity: 0.5; }
     margin: 100px 5%;
 }
 
+.chapter-box {
+    position: absolute;
+    width: 280px;
+    padding: 2.2rem;
+    background: #fdfcf8;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
 .chapter-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
@@ -258,6 +268,13 @@ nav a:hover { opacity: 0.5; }
         2px 2px 0px rgba(0,0,0,0.02), /* Subtle "edge" shadow */
         10px 15px 30px rgba(0,0,0,0.05);
 }
+
+.chapter-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin: 0;
+}
+
 
 .box-weddings { top: 0; left: 22%; transform: rotate(-2.5deg); background: #5bcefa; }
 .box-producing { top: 140px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
