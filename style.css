@@ -114,113 +114,91 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* --- 4. THE SCATTERED HUB (Refined Layout) --- */
+/* --- 4. THE SCATTERED HUB (Forced Landscape) --- */
 .bento-grid {
+    position: relative;
+    max-width: 1150px;
+    margin: 40px auto 120px auto;
+    padding: 0 5%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack the layers, not the cards */
+    align-items: center;
+}
+
+/* Container for the two top cards to keep them side-by-side */
+.top-layer {
+    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: flex-start;
-    max-width: 1200px;
-    margin: 20px auto 100px auto; /* Tightened top margin */
-    padding: 0 5%;
-    position: relative;
-}
-
-.video-card, .spotify-card {
-    background: #fdfcf8;
-    border: 1px solid rgba(0,0,0,0.06);
-    padding: 15px;
-    box-shadow: 12px 15px 40px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-/* Video: Main feature */
-.video-card {
-    flex: 1 1 500px; /* Grows but stays around 500-600px */
-    max-width: 650px;
-    transform: rotate(-1.5deg);
-    margin-right: -30px; /* Slight overlap */
     z-index: 2;
 }
 
-.video-card iframe {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border: none;
-    display: block;
+.video-card {
+    width: 600px;
+    background: #fdfcf8;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 10px 15px 30px rgba(0,0,0,0.05);
+    transform: rotate(-1.5deg);
+    margin-right: -40px; /* Force the overlap */
 }
 
-/* Spotify: Positioned to the right and slightly lower */
 .spotify-card {
-    flex: 0 1 320px;
-    margin-top: 60px;
+    width: 320px;
+    background: #fdfcf8;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 10px 15px 30px rgba(0,0,0,0.05);
     transform: rotate(2deg);
-    z-index: 3;
+    margin-top: 50px; /* Sits lower than video */
 }
 
-/* --- THE LIVE SCHEDULE (Base Layer) --- */
+/* --- THE LIVE SCHEDULE (Horizontal Base) --- */
 .photo-card {
-    width: 100%;
-    max-width: 950px;
-    margin: -50px auto 0 auto; /* Pulls it UP to overlap the top cards */
+    width: 950px; /* Fixed wide landscape */
+    margin-top: -60px; /* Tucks under the top layer */
     background: #0f0f0f; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 60px 40px 40px 40px; /* Extra top padding so content clears the overlap */
+    padding: 60px 40px 30px 40px;
     box-shadow: 0 40px 100px rgba(0,0,0,0.4);
     transform: rotate(-0.3deg);
     z-index: 1;
 }
 
-/* Header & Blinker */
-.card-header {
-    display: flex;
-    justify-content: space-between;
+/* Column Quirks restored */
+.date-rows li {
+    display: grid;
+    grid-template-columns: 120px 1fr 140px; 
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 25px;
-    padding-bottom: 15px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif !important;
     color: #ffffff !important;
-    font-size: 2.4rem; /* Matching the Chapter Box titles exactly */
-    font-weight: 400;
+    font-size: 2.2rem;
     margin: 0;
 }
 
-/* Date Row Columns - Fixed Spacing */
-.date-rows li {
-    display: grid;
-    grid-template-columns: 140px 1fr 140px; 
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    align-items: center;
-}
-
-.inter-bold {
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--accent);
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-}
-
-.event-name {
-    color: #fff;
-    font-size: 1.05rem;
-    font-weight: 300;
-}
-
-.status {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    text-align: right;
-    letter-spacing: 1px;
-}
-
+/* Internal Text Styles */
+.inter-bold { font-family: 'Courier New', Courier, monospace; color: #8c8c8c; font-size: 0.8rem; }
+.event-name { color: #fff; font-size: 1rem; }
+.status { font-family: 'Courier New', Courier, monospace; font-size: 0.75rem; text-align: right; }
 .status.upcoming { color: #4ade80; }
 .status.past { color: #555; text-decoration: line-through; }
 
+/* --- MOBILE: The ONLY place it should be vertical --- */
+@media (max-width: 900px) {
+    .top-layer { flex-direction: column; align-items: center; }
+    .video-card, .spotify-card, .photo-card { 
+        width: 100% !important; 
+        margin: 10px 0 !important; 
+        transform: none !important; 
+    }
+    .date-rows li { grid-template-columns: 1fr 1fr; }
+}
 /* --- 5. CLEANUP --- */
 .spine, .central-line, .timeline-line, [class*="line"] {
     display: none !important;
