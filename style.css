@@ -209,108 +209,84 @@ nav a:hover { opacity: 0.5; }
     opacity: 0.4;
 }
 /* --- DATES SECTION --- */
-/* Center the section */
+/* Container Fix */
 .dates-container {
     display: flex;
     justify-content: center;
-    padding: 80px 20px;
-    background: transparent;
-}
-
-.photo-card {
-    background: rgba(255, 255, 255, 0.03); /* Extremely subtle tint */
-    backdrop-filter: blur(15px); /* The "Frosted Glass" 2000s look */
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Sharp, thin border */
-    padding: 50px;
+    padding: 60px 20px;
+    background-color: #121212; /* Dark background to make the glass pop */
     width: 100%;
-    max-width: 700px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Deep, pro shadow */
-    position: relative;
-    overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* Add a "Glossy" sheen across the card */
-.photo-card::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-    transform: rotate(30deg);
-    pointer-events: none;
+/* The "Glossy Photo" Card */
+.photo-card {
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border-radius: 4px; /* Slight roundness for a premium feel */
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
+    font-size: 1.4rem;
     margin: 0;
+    letter-spacing: 1px;
 }
 
-/* The 2000s "Recording" light */
+/* Blinking Red Recording Dot */
 .status-dot {
-    width: 10px;
-    height: 10px;
-    background: #ff0000;
+    width: 12px;
+    height: 12px;
+    background: #ff4d4d;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ff0000;
-    animation: blink 2s infinite;
+    box-shadow: 0 0 10px #ff4d4d;
+    animation: pulse-red 2s infinite;
 }
 
-@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+@keyframes pulse-red {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
 
 .date-rows {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .date-rows li {
     display: grid;
-    grid-template-columns: 100px 1fr 100px;
+    grid-template-columns: 80px 1fr 80px;
+    gap: 15px;
     padding: 20px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-family: 'Inter', sans-serif;
-    color: rgba(255,255,255,0.8);
-    transition: background 0.3s ease;
+    color: #e0e0e0;
+    align-items: center;
 }
 
-.date-rows li:hover {
-    background: rgba(255,255,255,0.02);
-    color: #fff;
-}
+.inter-bold { font-weight: 700; font-size: 0.85rem; }
+.inter-light { font-weight: 300; font-size: 0.95rem; }
 
-.inter-bold { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; }
-.inter-light { font-weight: 300; font-size: 1rem; opacity: 0.9; }
-
-.btn-link {
-    color: #fff;
-    text-decoration: underline;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    text-align: right;
-}
-
-.sold-out, .past {
-    font-size: 0.7rem;
-    text-align: right;
-    text-transform: uppercase;
-    opacity: 0.4;
-    letter-spacing: 1px;
-}
+.btn-link { color: #fff; text-decoration: underline; text-align: right; font-size: 0.8rem; }
+.sold-out, .past { opacity: 0.4; text-align: right; font-size: 0.7rem; text-transform: uppercase; }
 
 /* Status specific colors */
 .upcoming { color: green; }
