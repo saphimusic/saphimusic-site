@@ -215,7 +215,7 @@ nav a:hover { opacity: 0.5; }
     display: flex;
     justify-content: center;
     padding: 100px 0;
-    background-color: #0f0f0f; /* Dark strip */
+    background-color: #f4f1ea; /* Dark strip */
     margin: 40px 0;
     box-sizing: border-box;
     /* This ensures it ignores any padding leaking from the hero section */
