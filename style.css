@@ -173,14 +173,6 @@ nav a:hover { opacity: 0.5; }
     width: 100%;
 }
 
-.video-card, .spotify-card {
-    background: #0f0f0f; 
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-}
-
 .video-card { flex: 1.6; transform: rotate(-1deg); }
 .spotify-card { flex: 1; transform: rotate(1deg); }
 
