@@ -113,85 +113,81 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* --- 4. THE SCATTERED BENTO HUB --- */
+/* --- 4. THE SCATTERED HUB --- */
 .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(100px, auto);
-    gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto 120px auto; 
-    padding: 0 5%;
-    position: relative;
-    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0; /* We handle spacing with margins for overlap */
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
 }
 
 /* Light Cards (Video & Spotify) */
 .video-card, .spotify-card {
-    background: rgba(253, 252, 248, 0.98); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 25px;
-    box-shadow: 10px 15px 35px rgba(0,0,0,0.03);
+    background: #fdfcf8; /* Solid light paper */
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 15px;
+    box-shadow: 10px 15px 30px rgba(0,0,0,0.05);
 }
 
-/* Video: Top Left */
+/* Video: Large and angled left */
 .video-card {
-    grid-column: 1 / span 7;
-    grid-row: 1 / span 3;
-    transform: rotate(-1.2deg);
+    flex: 0 1 550px;
+    transform: rotate(-1.5deg);
+    margin-right: -40px; /* Force overlap with Spotify */
     z-index: 2;
 }
 
 .video-card iframe {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
+    aspect-ratio: 16/9;
+    display: block;
 }
 
-/* Spotify: Top Right (Landscape) */
+/* Spotify: Small and angled right */
 .spotify-card {
-    grid-column: 8 / span 5;
-    grid-row: 1 / span 2;
-    transform: rotate(1.8deg) translateY(30px);
+    flex: 0 1 320px;
+    transform: rotate(2deg) translateY(40px);
     z-index: 3;
 }
 
-/* --- THE LIVE SCHEDULE (Landscape Studio Box) --- */
+/* --- THE LIVE SCHEDULE (Landscape & Quirky) --- */
 .photo-card {
-    grid-column: 2 / span 10;
-    grid-row: 4 / span 2;
+    flex: 0 1 850px; /* Landscape width */
+    margin-top: -20px; /* Tucks under the video/spotify */
     background: #0f0f0f; 
-    backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.3);
-    transform: rotate(-0.5deg) translateY(-10px);
-    z-index: 4;
+    padding: 30px 40px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    transform: rotate(-0.5deg);
+    z-index: 1;
 }
 
+/* Schedule Internal Logic */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .playfair {
     font-family: 'Playfair Display', serif !important;
     color: #ffffff;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
+    font-size: 1.8rem;
     margin: 0;
 }
 
 .status-dot {
-    width: 10px; height: 10px;
+    width: 8px; height: 8px;
     background: #ff0000;
     border-radius: 50%;
-    box-shadow: 0 0 15px #ff0000;
+    box-shadow: 0 0 10px #ff0000;
     animation: pulse-red 1.5s infinite;
 }
 
@@ -201,13 +197,12 @@ nav a:hover { opacity: 0.5; }
     100% { opacity: 1; }
 }
 
-/* Schedule Column Quirks */
-.date-rows { list-style: none; padding: 0; margin: 0; }
+.date-rows { list-style: none; padding: 0; }
 
 .date-rows li {
     display: grid;
-    grid-template-columns: 120px 1fr 140px; 
-    padding: 18px 0;
+    grid-template-columns: 100px 1fr 120px; 
+    padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     align-items: center;
 }
@@ -215,27 +210,23 @@ nav a:hover { opacity: 0.5; }
 .inter-bold {
     font-family: 'Courier New', Courier, monospace;
     color: #8c8c8c;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    font-size: 0.75rem;
 }
 
-.event-name {
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 300;
-}
+.event-name { color: #fff; font-size: 0.9rem; }
 
 .status {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: right;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.status.upcoming { color: #4ade80; font-weight: bold; } 
+.status.upcoming { color: #4ade80; font-weight: bold; }
 .status.past { color: #555; text-decoration: line-through; }
 
+/* --- CLEANUP --- */
+.spine, .central-line, .timeline-line { display: none !important; }
 /* --- 6. CHAPTER LINKS --- */
 .chapter-links {
     position: relative;
