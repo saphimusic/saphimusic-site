@@ -149,7 +149,7 @@ nav a:hover { opacity: 0.5; }
     transform: translateX(-50%);
   }
 }
-/* --- 4. THE MODULAR HUB --- */
+/* --- 3. THE MODULAR HUB --- */
 .bento-grid {
     max-width: 1100px;
     margin: 60px auto;
@@ -243,12 +243,12 @@ nav a:hover { opacity: 0.5; }
     .photo-card { grid-column: span 1; }
     .date-rows li { grid-template-columns: 1fr 1fr; }
 }
-/* --- 5. CLEANUP --- */
+/* --- 4. CLEANUP --- */
 .spine, .central-line, .timeline-line, [class*="line"] {
     display: none !important;
 }
 
-/* --- 6. MOBILE --- */
+/* --- 5. MOBILE --- */
 @media (max-width: 900px) {
     .video-card, .spotify-card, .photo-card {
         width: 100% !important;
@@ -262,7 +262,53 @@ nav a:hover { opacity: 0.5; }
     .status { text-align: left; grid-column: 2; }
 }
 
-/* --- 6. CHAPTER LINKS --- */
+/* --- 6. THE RISOGRAPH DESCRIPTION --- */
+.description-section {
+    position: relative;
+    max-width: 850px;
+    margin: 80px auto;
+    padding: 80px 10%;
+    /* The "Ink Overlay" effect */
+    background-color: #f2f0e9; /* Off-white cardstock */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+    
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 8px 8px 0px #ff6b35; /* Intentional "Misregistration" offset */
+}
+
+.description-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #004d4d; /* Teal "Ink" */
+    mix-blend-mode: multiply; /* Makes text look printed */
+}
+
+/* The "Stencil" Header */
+.description-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #ff6b35; /* Orange "Ink" */
+    margin-bottom: 2rem;
+    display: block;
+    /* Slight offset to look like a separate print pass */
+    transform: translate(-2px, -2px); 
+}
+
+.description-text p::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    float: left;
+    margin-right: 10px;
+    line-height: 1;
+    color: #ff6b35;
+}
+
+/* --- 7. CHAPTER LINKS --- */
 .chapter-links {
     position: relative;
     height: 550px;
@@ -312,16 +358,16 @@ nav a:hover { opacity: 0.5; }
 }
 
 
-.box-weddings { top: 0; left: 22%; transform: rotate(-2.5deg); background: #5bcefa; }
-.box-producing { top: 140px; right: 22%; transform: rotate(2deg); background: #5bfad5; }
-.box-socials { top: 210px; left: 25%; transform: rotate(1.5deg); background: #fa9d5b; }
+.box-weddings { top: 0; left: 21%; transform: rotate(-2.5deg); background: #5bcefa; }
+.box-producing { top: 140px; right: 21%; transform: rotate(2deg); background: #5bfad5; }
+.box-socials { top: 210px; left: 24%; transform: rotate(1.5deg); background: #fa9d5b; }
 
 .chapter-box:hover {
     transform: scale(1.05) rotate(0deg) !important;
     z-index: 10;
 }
 
-/* --- 7. MARGIN NOTES --- */
+/* --- 8. MARGIN NOTES --- */
 .margin-note {
     font-family: 'Covered By Your Grace', cursive;
     position: absolute;
