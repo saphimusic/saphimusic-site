@@ -93,9 +93,9 @@ nav a:hover { opacity: 0.5; }
 }
 
 .date-stamp {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 1rem;
@@ -150,7 +150,7 @@ nav a:hover { opacity: 0.5; }
     padding: 20px 0; /* Padding moved to the inner content for better control */
     display: flex;
     align-items: center;
-    background: #5bcefa; /* Saphi Blue */
+    background: #2e59ff; /* Toned down Blue */
     color: #fdfcf8;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
     transform: translateY(0);
@@ -176,8 +176,9 @@ nav a:hover { opacity: 0.5; }
 }
 
 .dispatch-label {
-    font-family: 'Courier New', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
+    letter-spacing: 1px;
     padding: 4px 8px;
     border: 1px solid #fdfcf8;
     opacity: 0.8;
@@ -278,9 +279,9 @@ nav a:hover { opacity: 0.5; }
 .marquee-content span {
   display: inline-block;
   padding-right: 60px; /* The gap between the repeated phrases */
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.9rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 @keyframes continuous-scroll {
@@ -592,11 +593,11 @@ nav a:hover { opacity: 0.5; }
 
 /* Adding the Monospace Timestamp Overlay */
 .gallery-item::after {
-    content: "IMG_TRK_" attr(data-id);
+    content: "IMG_ID_" attr(data-id);
     position: absolute;
     bottom: 10px;
     left: 10px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 10px;
     color: #fff;
     background: rgba(0,0,0,0.5);
