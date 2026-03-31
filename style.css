@@ -601,75 +601,60 @@ nav a:hover { opacity: 0.5; }
     }
 }
 
-/* --- SYSTEM OS AUDIO WINDOW --- */
+/* --- 2. THE STRAY AUDIO WINDOW (The Overlap) --- */
 .stray-audio {
-    position: relative; /* It loads where you place it in HTML */
-    z-index: 999;
-    width: 400px;
+    position: absolute;
+    bottom: -50px;    /* Pulls it down past the bottom edge */
+    right: -30px;     /* Pulls it out past the right edge */
+    width: 340px;
     background: #ffffff;
     border: 1px solid #000;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
-    
-    /* HANDEL: Indicates it can be moved */
-    cursor: grab;
-    user-select: none; /* Prevents highlighting text while dragging */
-    
-    /* Initial placement tweaks */
-    margin: 20px auto; 
+    box-shadow: 12px 12px 0px #000; /* Heavier shadow to look 'closer' to the user */
+    z-index: 10;      /* Ensures it sits ON TOP of the description */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.stray-audio:active {
-    cursor: grabbing;
-    box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
-}
-
-/* THE WINDOW HEADER (The Caption) */
+/* Audio Window Header */
 .stray-audio .caption {
     background: #f0f0f0;
     border-bottom: 1px solid #000;
-    padding: 8px 12px;
-    pointer-events: none; /* Let the drag click pass through to the main div */
-}
-
-/* Adding the 3-dot window controls via CSS pseudo-element */
-.stray-audio .caption::after {
-    content: "";
-    width: 40px;
-    height: 6px;
-    background-image: radial-gradient(circle, #ccc 2px, transparent 3px);
-    background-size: 12px 6px;
-    background-repeat: repeat-x;
-}
-
-/* THE PLAYER CONTAINER */
-.stray-audio .minimal-player {
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    filter: grayscale(1) invert(0); /* Forces a clinical, monochrome look */
-}
-
-/* Adding a 'Metadata' footer for extra OS vibes */
-.stray-audio::after {
-    content: "STATUS: AUDIO_STREAM_ACTIVE // BITRATE: 320KBPS";
+    padding: 6px 12px;
+    margin: 0;
     font-family: 'Space Mono', monospace;
-    font-size: 8px;
-    color: #999;
-    padding: 0 15px 10px 15px;
-    text-transform: uppercase;
+    font-size: 10px;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
 }
 
-/* HOVER EFFECT */
+/* The Player Styling */
+.minimal-player {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    filter: grayscale(1) contrast(1.2); /* Clinical OS look */
+}
+
+/* Hover Effect: The window 'lifts' slightly */
 .stray-audio:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0px #5bcefa; /* Saphi Blue highlight on active window */
-    transition: all 0.2s ease;
+    transform: translate(-5px, -5px) rotate(-1deg); /* Slight tilt for 'Found Object' vibe */
+    box-shadow: 18px 18px 0px #5bcefa; /* Saphi Blue highlight */
 }
 
-.stray-audio:hover .caption::after {
-    background-image: radial-gradient(circle, #ff7c79 2px, transparent 3px); /* Red "Close" dot appears */
+/* --- 3. MOBILE ADAPTATION --- */
+@media (max-width: 900px) {
+    .description-window {
+        margin: 40px 20px 180px 20px;
+    }
+    
+    .stray-audio {
+        width: calc(100% - 40px);
+        right: 20px;
+        bottom: -120px; /* Stacks more vertically on small screens */
+    }
 }
-
 /* --- 8. THE 4x4 REEL --- */
 .gallery-grid {
     display: grid;
