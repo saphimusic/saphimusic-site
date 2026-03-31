@@ -438,48 +438,60 @@ nav a:hover { opacity: 0.5; }
     margin: 0;
 }
 
-/* --- 8. FRED AGAIN STYLE MASONRY --- */
-.masonry-gallery {
-    display: columns;
-    column-count: 3;
-    column-gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 5%;
+/* --- 8. THE 4x4 REEL --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* The 4-column "Fred" look */
+    gap: 10px; /* Tight gaps for that dense, digital-folder feel */
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
 }
 
 .gallery-item {
-    display: inline-block;
-    margin-bottom: 20px;
-    width: 100%;
-    background: #fdfcf8;
-    padding: 10px; /* The Polaroid "Border" */
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 5px 5px 0px rgba(0, 77, 77, 0.1); /* Teal Ink shadow */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1; /* Forces square */
+    background: #000;
+    cursor: crosshair;
 }
 
 .gallery-item img {
     width: 100%;
-    display: block;
-    filter: contrast(1.1) brightness(0.9) grayscale(0.2); /* "USB" aesthetic */
-    mix-blend-mode: multiply;
+    height: 100%;
+    object-fit: cover; /* Crops to square */
+    filter: grayscale(0.2) contrast(1.1);
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), filter 0.3s ease;
 }
 
-/* Variation Classes */
-.tilt-left { transform: rotate(-3deg); }
-.tilt-right { transform: rotate(4deg); }
-.tall img { aspect-ratio: 2/3; object-fit: cover; }
-
-/* Interaction */
-.gallery-item:hover {
-    transform: scale(1.05) rotate(0deg);
-    z-index: 10;
-    box-shadow: 15px 15px 30px rgba(0,0,0,0.1);
+/* The "Flash" Interaction */
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0) contrast(1.3) brightness(1.2);
 }
 
-@media (max-width: 800px) {
-    .masonry-gallery { column-count: 2; }
+/* Adding the Monospace Timestamp Overlay */
+.gallery-item::after {
+    content: "IMG_TRK_" attr(data-id);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Mobile: Drop to 2 columns */
+@media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 /* --- 8. MARGIN NOTES --- */
 .margin-note {
