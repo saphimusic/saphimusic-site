@@ -309,6 +309,11 @@ nav a:hover { opacity: 0.5; }
 }
 
 /* --- 7. CHAPTER LINKS (Correct Layering) --- */
+.chapter-links {
+    position: relative;
+    height: 550px;
+    margin: 100px 5%;
+}
 .chapter-box {
     position: absolute;
     width: 280px;
