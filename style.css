@@ -31,6 +31,8 @@ body.theme-chapters { background-color: #ffd6b4; }
 
 /* Dark "Laboratory" Teal for Description */
 body.theme-description { background-color: #fff679; }
+/* gallery colour */
+body.theme-description { background-color: #111111; }
 
 /* --- GLOBAL PRO-FILM GRAIN --- */
 body::after {
