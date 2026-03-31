@@ -191,27 +191,6 @@ nav a:hover { opacity: 0.5; }
     margin-top: 15px;
 }
 
-/* --- SYSTEM APP STYLE FOR MEDIA --- */
-.video-card, .spotify-card {
-    border: 1px solid #000;
-    box-shadow: 4px 4px 0px #000;
-    position: relative;
-}
-
-/* Add a pseudo-header to the video card */
-.video-card::before {
-    content: "MEDIA_PLAYER.EXE";
-    display: block;
-    background: #2e59ff;
-    color: white;
-    padding: 4px 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    border-bottom: 1px solid #000;
-}
-
-@keyframes blink { 50% { opacity: 0; } }
-
 /*MARQUEE BANNER*/
 .marquee {
   overflow: hidden;
@@ -248,93 +227,107 @@ nav a:hover { opacity: 0.5; }
     transform: translateX(-50%);
   }
 }
-/* --- 3. THE MODULAR HUB --- */
+/* --- 3. THE MODULAR HUB (Bento) --- */
 .bento-grid {
     max-width: 1100px;
     margin: 60px auto;
     padding: 0 5%;
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Large left, small right */
+    grid-template-columns: 2fr 1fr; 
     gap: 20px;
 }
 
-/* Video Card (The Anchor) */
-.video-card {
-    background: #fdfcf8;
-    padding: 15px;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.03);
+/* --- BENTO MEDIA CARDS (Windows) --- */
+.video-card, .spotify-card {
+    background: #ffffff;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    padding: 0; 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.video-card iframe {
+/* Unified OS Headers */
+.video-card::before, 
+.spotify-card::before {
+    display: block;
+    background: #2e59ff; 
+    color: #ffffff;
+    padding: 6px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+}
+
+.video-card::before { content: "MEDIA_PLAYER.EXE"; }
+.spotify-card::before { content: "AUDIO_STREAM.SYS"; }
+
+/* iFrame Control */
+.video-card iframe, 
+.spotify-card iframe {
     width: 100%;
-    aspect-ratio: 16/9;
+    border: none;
     display: block;
 }
-/* Youtube Subscribe*/
-.studio-sub-btn {
-    display: inline-flex;
+
+.video-card iframe { aspect-ratio: 16/9; }
+/* We remove aspect-ratio for Spotify so it respects the height in your HTML */
+
+/* --- SYSTEM FOOTERS (Subscribe/Follow Areas) --- */
+.studio-sub-btn, 
+.spotify-follow-wrap {
+    margin: 0; /* REMOVED margin-top so it sticks to bottom of iframe */
+    padding: 12px 15px;
+    background: #f4f1ea; 
+    border-top: 1px solid #000;
+    display: flex;
     align-items: center;
+    text-decoration: none;
+}
+
+/* Youtube Button Refinement */
+.studio-sub-btn {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
-    color: #fdfcf8;
-    background: #2e59ff; /* Federal Blue */
-    padding: 8px 15px;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    color: #000; /* Text is black against the paper background */
+    transition: background 0.3s ease;
 }
 
 .studio-sub-btn .iso-icon {
-    color: #ff7c79; /* Saphi Pink/Orange */
+    color: #ff7c79; 
     margin-right: 10px;
     font-size: 10px;
     animation: blink 1.5s infinite;
 }
 
 .studio-sub-btn:hover {
-    background: #ff7c79;
-    color: #2e59ff;
-    box-shadow: 4px 4px 0px #fdfcf8;
+    background: #e8e5dc; /* Slight darken on hover */
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-/* Spotify Card (The Sidecar) */
-.spotify-card {
-    background: #fdfcf8;
-    padding: 15px;
-    border: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-/* spotify follow */
+/* Spotify Link Refinement */
 .spotify-follow-wrap {
-    margin-top: 15px;
-    border-top: 1px solid rgba(0, 77, 77, 0.1);
-    padding-top: 10px;
+    justify-content: center; /* Center the link in the footer */
 }
 
 .spotify-follow-link {
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
-    color: #004d4d;
+    color: #2e59ff;
     text-decoration: none;
     letter-spacing: 1px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease, color 0.3s ease;
+    font-weight: bold;
 }
 
 .spotify-follow-link:hover {
-    opacity: 1;
-    color: #ff7c79;
     text-decoration: underline;
 }
 
+@keyframes blink {
+    50% { opacity: 0; }
+}
 /* --- UPDATED DESCRIPTION WINDOW (README.TXT) --- */
 .description-window {
     position: relative; 
