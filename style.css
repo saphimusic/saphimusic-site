@@ -475,3 +475,13 @@ nav a:hover { opacity: 0.5; }
     .chapter-links { height: auto; display: flex; flex-direction: column; align-items: center; gap: 30px; }
     .chapter-box { position: relative; width: 85%; transform: rotate(0) !important; }
 }
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
