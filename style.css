@@ -507,109 +507,71 @@ nav a:hover { opacity: 0.5; }
     color: #ff7c79;
 }
 
-/* --- 7. ARCHIVE WINDOWS (USB / Lo-Fi Vibe) --- */
+/* --- 7. SYSTEM WINDOWS (Minimal Archive) --- */
 .chapter-links {
-    position: relative;
-    height: 600px; /* Slightly taller for the new vertical UI elements */
-    margin: 100px 5%;
-    /* No more paper background needed here */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 80px 5%;
+    max-width: 1200px;
 }
 
 .chapter-box {
-    position: absolute;
-    width: 300px;
-    padding: 2rem;
-    /* 1. THE GLASS LOOK: Deep teal/black with transparency */
-    background: rgba(0, 15, 15, 0.8); 
-    backdrop-filter: blur(8px); /* Blurs the grain behind the window */
-    
-    /* 2. THE UI BORDER: A thin 'digital' wireframe */
-    border: 1px solid rgba(91, 206, 250, 0.3); 
-    
+    position: relative;
+    background: #ffffff; /* Clean white */
+    border: 1px solid #000; /* Sharp, thin black stroke */
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    z-index: 5;
-    
-    /* Remove the Riso shadow and add a 'glow' shadow */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 3. THE METADATA LABEL (Replacing the Riso color pass) */
+/* THE WINDOW HEADER */
 .chapter-box::before {
-    content: "STATUS: ACTIVE // [00:" attr(data-id) "]";
-    position: absolute;
-    top: -12px;
-    left: 10px;
+    content: "FILE_0" attr(data-id) ".SYS";
+    display: block;
+    width: 100%;
+    background: #f0f0f0; /* Classic grey header */
+    border-bottom: 1px solid #000;
+    padding: 5px 10px;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
-    background: #004d4d; /* Deep Federal Blue */
-    color: #5bcefa; /* Saphi Blue text */
-    padding: 2px 8px;
-    border: 1px solid #5bcefa;
-    transform: none; /* Reset the 3D layer look */
-    mix-blend-mode: normal;
+    color: #000;
+    text-transform: uppercase;
+    box-sizing: border-box;
 }
 
-/* 4. THE SCANLINE EFFECT (The lo-fi monitor texture) */
-.chapter-box::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.05) 50%
-    );
-    background-size: 100% 4px; /* CRT scanlines */
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-/* Keep your positions but sharpen the angles */
-.box-weddings { top: 0; left: 21%; transform: rotate(-1deg); }
-.box-producing { top: 160px; right: 21%; transform: rotate(1.5deg); }
-.box-socials { top: 240px; left: 24%; transform: rotate(-0.5deg); }
-
-/* 5. INDIVIDUAL ACCENT GLOWS (Replaces the ink colors) */
-.box-weddings { border-left: 4px solid #5bcefa; }
-.box-producing { border-left: 4px solid #5bfad5; }
-.box-socials { border-left: 4px solid #ff7c79; }
-
-/* 6. THE 'ACCESS GRANTED' HOVER */
-.chapter-box:hover {
-    transform: scale(1.03) rotate(0deg) !important;
-    background: rgba(0, 30, 30, 0.9);
-    border: 1px solid #fdfcf8; /* Window highlights on hover */
-    z-index: 50;
-    box-shadow: 0 0 40px rgba(91, 206, 250, 0.2);
+.chapter-box-content {
+    padding: 25px;
 }
 
 .chapter-box h2 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic; /* Editorial lo-fi vibe */
-    font-size: 1.8rem;
-    margin: 10px 0 15px 0;
-    color: #fdfcf8; /* White text for contrast on dark glass */
-    letter-spacing: -1px;
+    font-family: 'Space Mono', monospace; /* Total mono look */
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #000;
+    text-transform: uppercase;
 }
 
-/* Replace the Riso divider with a 'Process Bar' */
-.chapter-box h2::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+.chapter-box p {
+    font-family: 'Space Mono', monospace;
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
-.chapter-box p, .num {
-    font-family: 'Space Mono', monospace; /* Everything tech-oriented */
-    color: rgba(253, 252, 248, 0.7);
-    font-size: 0.8rem;
-    line-height: 1.6;
-    text-transform: uppercase; /* Makes descriptions look like log files */
+/* THE 'SYSTEM' HOVER */
+.chapter-box:hover {
+    transform: translate(-4px, -4px);
+    /* The "Hard Shadow" look - very 90s UI */
+    box-shadow: 4px 4px 0px #5bcefa; 
 }
+
+/* Individual Color Accents (just a small square or line) */
+.box-weddings:hover { box-shadow: 4px 4px 0px #5bcefa; }
+.box-producing:hover { box-shadow: 4px 4px 0px #5bfad5; }
+.box-socials:hover { box-shadow: 4px 4px 0px #ff7c79; }
 
 /* --- 8. THE 4x4 REEL --- */
 .gallery-grid {
