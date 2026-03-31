@@ -507,15 +507,29 @@ nav a:hover { opacity: 0.5; }
     color: #ff7c79;
 }
 
-/* --- SYSTEM WINDOWS WITH CONTROLS --- */
+/* --- 7. SYSTEM WINDOWS (3-Column Row) --- */
+.chapter-links {
+    display: flex;
+    justify-content: center; /* Centers the row */
+    gap: 25px;               /* Space between windows */
+    margin: 80px auto;
+    padding: 0 5%;
+    max-width: 1200px;
+    height: auto;            /* Let the content define the height */
+}
+
 .chapter-box {
-    position: relative;
+    flex: 1;                 /* Makes all 3 boxes equal width */
+    min-width: 280px;        /* Prevents them from getting too skinny */
+    max-width: 350px;
     background: #ffffff;
     border: 1px solid #000;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
 }
 
 /* THE WINDOW HEADER BAR */
@@ -524,17 +538,16 @@ nav a:hover { opacity: 0.5; }
     display: flex;
     align-items: center;
     width: 100%;
-    height: 30px; /* Fixed height for the bar */
+    height: 32px;
     background: #f0f0f0;
     border-bottom: 1px solid #000;
-    padding: 0 10px;
+    padding: 0 12px;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
     color: #000;
-    text-transform: uppercase;
     box-sizing: border-box;
     
-    /* THE BUTTONS: Three dots created with a radial gradient */
+    /* The 3 Control Buttons (The visuals you liked) */
     background-image: 
         radial-gradient(circle, #ccc 2px, transparent 3px),
         radial-gradient(circle, #ccc 2px, transparent 3px),
@@ -546,38 +559,52 @@ nav a:hover { opacity: 0.5; }
         calc(100% - 36px) center;
 }
 
-/* HOVER STATE: Buttons "Light Up" */
-.chapter-box:hover::before {
-    background-image: 
-        radial-gradient(circle, #ff7c79 2px, transparent 3px), /* Close */
-        radial-gradient(circle, #5bfad5 2px, transparent 3px), /* Min */
-        radial-gradient(circle, #5bcefa 2px, transparent 3px); /* Max */
-    background-color: #e0e0e0;
-}
-
+/* THE SYSTEM HOVER */
 .chapter-box:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px #000; /* Sharp black shadow for that 90s feel */
+    box-shadow: 4px 4px 0px #000;
 }
 
-/* CONTENT SPACING */
+.chapter-box:hover::before {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
+    background-color: #e8e8e8;
+}
+
 .chapter-box-content {
-    padding: 20px;
+    padding: 25px;
 }
 
 .chapter-box h2 {
     font-family: 'Space Mono', monospace;
     font-size: 1.1rem;
-    margin: 0 0 8px 0;
+    font-weight: 700;
+    margin: 0 0 10px 0;
     color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .chapter-box p {
     font-family: 'Space Mono', monospace;
     color: #666;
-    font-size: 0.8rem;
-    line-height: 1.4;
+    font-size: 0.85rem;
+    line-height: 1.5;
     margin: 0;
+}
+
+/* MOBILE FIX: Stack them when the screen gets narrow */
+@media (max-width: 900px) {
+    .chapter-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chapter-box {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 /* --- 8. THE 4x4 REEL --- */
