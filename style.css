@@ -461,50 +461,44 @@ nav a:hover { opacity: 0.5; }
     .status { text-align: left; grid-column: 2; }
 }
 
-/* --- 6. THE RISOGRAPH DESCRIPTION --- */
-.description-section {
-    position: relative;
-    max-width: 850px;
-    margin: 80px auto;
-    padding: 80px 10%;
-    /* The "Ink Overlay" effect */
-    background-color: #f2f0e9; /* Off-white cardstock */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
-    
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 8px 8px 0px #ff7c79; /* Intentional "Misregistration" offset */
+/* 6. WINDOW DESCRIPTION*/
+.description-window {
+    max-width: 800px;
+    margin: 60px auto;
+    background: #ffffff;
+    border: 1px solid #000;
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
 }
 
-.description-text {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #004d4d; /* Teal "Ink" */
-    mix-blend-mode: multiply; /* Makes text look printed */
+.window-header {
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* The "Stencil" Header */
-.description-section h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.8rem;
+.window-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #ff7c79; /* Orange "Ink" */
-    margin-bottom: 2rem;
-    display: block;
-    /* Slight offset to look like a separate print pass */
-    transform: translate(-2px, -2px); 
+    color: #666;
 }
 
-.description-text p::first-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    float: left;
-    margin-right: 10px;
-    line-height: 1;
-    color: #ff7c79;
+.description-content {
+    padding: 40px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.description-content h3 {
+    color: #ff7c79; /* Neon Accent */
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 /* --- 7. SYSTEM WINDOWS (3-Column Row) --- */
