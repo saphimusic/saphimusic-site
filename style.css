@@ -461,33 +461,61 @@ nav a:hover { opacity: 0.5; }
     .status { text-align: left; grid-column: 2; }
 }
 
-/* --- 1. THE MAIN DESCRIPTION WINDOW --- */
+/* --- UPDATED DESCRIPTION WINDOW (README.TXT) --- */
 .description-window {
     position: relative; 
     max-width: 800px;
-    margin: 40px auto 80px auto; /* Reduced margins */
+    margin: 40px auto 80px auto;
     background: #ffffff;
     border: 1px solid #000;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 1); /* Minimalist sharp shadow */
+    box-shadow: 2px 2px 0px #000;
     z-index: 1;
 }
 
+/* MATCHING THE CHAPTER BOX HEADER EXACTLY */
 .description-window .window-header {
+    height: 32px; /* Matching the chapter-box::before height */
     background: #f0f0f0;
     border-bottom: 1px solid #000;
-    padding: 6px 12px;
+    padding: 0 12px;
     display: flex;
+    align-items: center; /* Vertical center */
     justify-content: space-between;
-    align-items: center;
+    box-sizing: border-box;
 }
 
-.window-dots span {
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    margin-left: 4px;
-    background: #ccc;
-    border-radius: 50%;
+.description-window .window-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; /* Matching chapter text size */
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* MATCHING THE 3-DOT CONTROL VISUALS */
+.window-dots {
+    display: flex;
+    align-items: center;
+    width: 40px; /* Space for the 3 dots */
+    height: 100%;
+    
+    /* Using the same radial gradient logic from the links */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 0px) center, 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center;
+}
+
+/* Optional: Make the dots turn color on hover to match the others */
+.description-window:hover .window-dots {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 .description-content {
@@ -495,8 +523,8 @@ nav a:hover { opacity: 0.5; }
     font-family: 'Space Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.6;
+    clear: both; /* Safety for the floating audio */
 }
-
 /* --- SYSTEM OS: STRAY AUDIO WINDOW --- */
 .stray-audio {
     /* 1. POSITIONING: Float right so text wraps around it */
