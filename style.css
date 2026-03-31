@@ -601,7 +601,6 @@ nav a:hover::after {
 /* THE SYSTEM HOVER */
 .chapter-box:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px #000;
 }
 
 .chapter-box:hover::before {
