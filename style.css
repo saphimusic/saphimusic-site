@@ -519,31 +519,81 @@ nav a:hover::after {
     }
 }
 
-/* 6.--- THE TERMINAL WINDOW --- */
-.terminal-window {
-    grid-column: span 2;
-    background: #000;
-    border: 1px solid #333;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+/* --- 6. LIVE TERMINAL --- */
+#live-terminal {
+    background: #0a0a0a;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    max-width: 900px;
+    margin: 60px auto 120px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.terminal-body {
-    padding: 20px;
-    color: #00ff00; /* Matrix Green */
+/* OS Header Bar */
+#live-terminal .window-header {
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.window-title {
     font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #000;
 }
 
-.terminal-cmd { color: #888; font-size: 12px; margin-bottom: 20px; }
-
-.terminal-style li {
-    border-bottom: 1px solid #1a1a1a !important;
-    color: #00ff00 !important;
+.window-dots { display: flex; gap: 6px; }
+.window-dots span {
+    width: 6px; height: 6px; border-radius: 50%; background: #ccc;
 }
 
+/* Terminal Content */
+.terminal-body {
+    padding: 30px;
+    font-family: 'Space Mono', monospace;
+    color: #5bfad5; /* Your Green/Cyan */
+    font-size: 0.85rem;
+}
+
+.terminal-cmd { margin-bottom: 25px; opacity: 0.7; }
+
+/* The Data Grid */
+.terminal-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 120px; /* Precise columns for alignment */
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(91, 250, 213, 0.15);
+}
+
+.terminal-entry.past { opacity: 0.4; color: #fff; }
+.terminal-entry.active { color: #5bfad5; font-weight: bold; }
+
+.term-date { color: #fff; }
+.term-status { text-align: right; font-size: 10px; letter-spacing: 1px; }
+
+/* Cursor Animation */
 .terminal-cursor {
-    animation: blink 1s infinite;
+    margin-top: 20px;
     font-weight: bold;
-    margin-top: 15px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Responsive Fix */
+@media (max-width: 700px) {
+    .terminal-entry {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 15px 0;
+    }
+    .term-status { text-align: left; opacity: 0.6; }
 }
 
 
