@@ -128,7 +128,6 @@ nav a:hover::after {
 }
 
 /* Specific Header Titles */
-.journal-entry::before { content: "MANIFESTO.TXT"; }
 .hero-image-wrapper::before { content: "VIEWER.EXE"; }
 
 .journal-entry {
