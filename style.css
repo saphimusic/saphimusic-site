@@ -380,7 +380,7 @@ nav a:hover { opacity: 0.5; }
     left: 0;
     width: 60px;
     height: 1.5px;
-    background: #ff6b35; /* Neon Orange Ink stroke */
+    background: #ff7c79; /* Neon Orange Ink stroke */
 }
 
 /* Individual Ink Colors & Positions (Your exact coordinates) */
@@ -396,7 +396,7 @@ nav a:hover { opacity: 0.5; }
 
 .box-socials { 
     top: 210px; left: 24%; transform: rotate(1.5deg); 
-    box-shadow: 8px 8px 0px #fa9d5b; /* Orange Ink Offset */
+    box-shadow: 8px 8px 0px #ff7c79; /* Orange Ink Offset */
 }
 
 .chapter-box:hover {
@@ -423,7 +423,7 @@ nav a:hover { opacity: 0.5; }
 }
 
 .note-1 { top: 0%; left: 5%; transform: rotate(-8deg); }
-.note-2 { top: 40%; right: 5%; transform: rotate(4deg); }
+.note-2 { top: 80%; right: 5%; transform: rotate(4deg); }
 
 /* --- 8. CLEANUP & MOBILE --- */
 .spine, .timeline-line, .central-line {
