@@ -308,13 +308,6 @@ nav a:hover { opacity: 0.5; }
     color: #ff7c79;
 }
 
-/* --- 7. CHAPTER LINKS --- */
-.chapter-links {
-    position: relative;
-    height: 550px;
-    margin: 100px 5%;
-}
-
 /* --- 7. CHAPTER LINKS (Correct Layering) --- */
 .chapter-box {
     position: absolute;
@@ -363,6 +356,57 @@ nav a:hover { opacity: 0.5; }
 .chapter-box:hover::before {
     top: 3px; left: 3px; /* Ink "aligns" slightly on hover */
 }
+
+
+.chapter-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin: 0 0 15px 0;
+    position: relative;
+    padding-bottom: 15px;
+    color: #004d4d; /* Federal Blue Ink */
+}
+
+/* Riso Divider Line */
+.chapter-box h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1.5px;
+    background: #ff6b35; /* Neon Orange Ink stroke */
+}
+
+/* Individual Ink Colors & Positions (Your exact coordinates) */
+.box-weddings { 
+    top: 0; left: 21%; transform: rotate(-2.5deg); 
+    box-shadow: 8px 8px 0px #5bcefa; /* Blue Ink Offset */
+}
+
+.box-producing { 
+    top: 140px; right: 21%; transform: rotate(2deg); 
+    box-shadow: -8px 8px 0px #5bfad5; /* Green Ink Offset */
+}
+
+.box-socials { 
+    top: 210px; left: 24%; transform: rotate(1.5deg); 
+    box-shadow: 8px 8px 0px #fa9d5b; /* Orange Ink Offset */
+}
+
+.chapter-box:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.chapter-box p {
+    color: #004d4d; /* Teal/Blue Ink */
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
 /* --- 8. MARGIN NOTES --- */
 .margin-note {
     font-family: 'Covered By Your Grace', cursive;
