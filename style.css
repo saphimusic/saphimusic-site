@@ -1,11 +1,16 @@
 /* --- 0. FONTS --- */
-@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Inter:wght@300;400;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Inter:wght@300;400;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* --- 1. CORE THEME --- */
 :root {
     --paper: #f4f1ea;   
     --ink: #2a2a2a;     
-    --accent: #8c8c8c;  
+    --accent: #8c8c8c;
+    
+    /* System OS Additions */
+    --sys-grey: #d4d0c8;     /* Classic Win95 Silver */
+    --sys-blue: #2e59ff;     /* Saphi Blue / Header Blue */
+    --term-green: #00ff41;   /* Matrix/Terminal Green */
 }
 
 body {
@@ -15,8 +20,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    /* Added to ensure the taskbar doesn't cover content later */
+    padding-bottom: 50px; 
 }
-
 
 /* --- 2. NAVIGATION --- */
 nav {
