@@ -497,51 +497,77 @@ nav a:hover { opacity: 0.5; }
     line-height: 1.6;
 }
 
-/* --- 2. THE STRAY AUDIO (Sub-Window) --- */
+/* --- SYSTEM OS: STRAY AUDIO WINDOW --- */
 .stray-audio {
-    position: absolute;
-    /* This pins it to the bottom-right corner of the description window ONLY */
-    bottom: 15px;    
-    right: 15px;     
-    width: 300px;
+    /* 1. POSITIONING: Float right so text wraps around it */
+    float: right;
+    position: relative;
+    width: 280px; /* Controlled width */
+    margin: 10px 0 20px 20px; /* Space between text and window */
+    
+    /* 2. VISUALS: Minimalist Window */
     background: #ffffff;
     border: 1px solid #000;
-    box-shadow: 4px 4px 0px #000; 
+    box-shadow: 3px 3px 0px #000;
     z-index: 5;
-    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
+/* THE WINDOW HEADER */
 .stray-audio .caption {
     background: #f0f0f0;
     border-bottom: 1px solid #000;
-    padding: 4px 10px;
+    padding: 5px 10px;
     margin: 0;
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    color: #000;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* Window Control Dots */
+.stray-audio .caption::after {
+    content: "● ● ●";
+    font-size: 6px;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+/* THE PLAYER: Fixed to fit the window */
 .minimal-player {
-    width: 100%;
+    display: block;
+    width: 100%;       /* Fills the 280px */
+    max-width: 100%;   /* Cannot overflow */
+    height: 35px;      /* Slimmer player profile */
     padding: 8px;
-    filter: grayscale(1);
+    box-sizing: border-box;
+    filter: grayscale(1); /* Monochrome OS vibe */
 }
 
-/* SUBTLE HOVER */
+/* HOVER STATE */
 .stray-audio:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0px #5bcefa; /* Slight blue pop */
+    box-shadow: 4px 4px 0px #5bcefa; /* Subtle Saphi Blue highlight */
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
 }
 
-/* --- MOBILE: Snap back into flow so it doesn't overlap text --- */
-@media (max-width: 768px) {
+/* CLEARFIX: Ensures the next section (Live Schedule) stays below the description */
+.description-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* MOBILE: Stack the player so it doesn't squish the text on small screens */
+@media (max-width: 600px) {
     .stray-audio {
-        position: relative;
-        width: auto;
-        bottom: 0;
-        right: 0;
-        margin: 10px;
-        box-shadow: 2px 2px 0px #000;
+        float: none;
+        width: 100%;
+        margin: 20px 0;
     }
 }
 
