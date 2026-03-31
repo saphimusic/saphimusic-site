@@ -14,11 +14,6 @@
 <body>
 <header class="hero-spread">
     <div class="hero-left">
-        <aside class="margin-note">
-            <div class="note-1">
-                Find <span class="scribble">yourself</span> at<br> a saphi gig.
-            </div>
-        </aside>
         <div class="logo-container">
             <img src="assets/saphi transp logo.png" alt="Saphi Logo" class="main-logo">
         </div>
@@ -77,46 +72,53 @@
     </div>
 </section>
 
-<section class="dates-container">
-    <div class="photo-card">
-        <div class="card-header">
-            <h2 class="playfair">Live Schedule</h2>
-            <div class="status-dot"></div>
+<div class="terminal-window">
+    <div class="window-header">
+        <span class="window-title">C:\USER\SAPHI\LIVE_SCHEDULE.EXE</span>
+        <div class="window-dots">
+            <span></span><span></span><span></span>
         </div>
-        <ul class="date-rows">
-            <li>
-                <span class="date">27 MAR</span>
-                <span class="venue">FIVE VALLEYS, STROUD</span>
-                <span class="status past">PAST</span>
-            </li>
-            <li>
-                <span class="date">28 MAR</span>
-                <span class="venue">THE BOOTLEGGER, CARDIFF</span>
-                <span class="status past">PAST</span>
-            </li>
-            <li>
-                <span class="date">3 APR</span>
-                <span class="venue">NEW HARP INN, HOARWITHY</span>
-                <span class="status upcoming">UPCOMING</span>
-            </li>
-            <li>
-                <span class="date">5 APR</span>
-                <span class="venue">THE GRAPE VAULTS, LEOMINSTER</span>
-                <span class="status upcoming">UPCOMING</span>
-            </li>
-            <li>
-                <span class="date">17 APR</span>
-                <span class="venue">THE GREEN DRAGON, MONMOUTH</span>
-                <span class="status upcoming">UPCOMING</span>
-            </li>
-            <li>
-                <span class="date">25 APR</span>
-                <span class="venue">THE RAILWAY, CAERPHILLY</span>
-                <span class="status upcoming">UPCOMING</span>
-            </li>
-            </ul>
     </div>
-</section>
+    <div class="terminal-body">
+        <p class="terminal-cmd">Ready. Executing fetch_dates... [OK]</p>
+        
+        <ul class="date-rows terminal-style">
+            <li class="terminal-entry past">
+                <span class="term-date">[27 MAR]</span>
+                <span class="term-venue">STROUD // FIVE VALLEYS</span>
+                <span class="term-status">COMPLETED</span>
+            </li>
+            <li class="terminal-entry past">
+                <span class="term-date">[28 MAR]</span>
+                <span class="term-venue">CARDIFF // THE BOOTLEGGER</span>
+                <span class="term-status">COMPLETED</span>
+            </li>
+            
+            <li class="terminal-entry active">
+                <span class="term-date">[03 APR]</span>
+                <span class="term-venue">HOARWITHY // NEW HARP INN</span>
+                <span class="term-status">LOADING...</span>
+            </li>
+            <li class="terminal-entry active">
+                <span class="term-date">[05 APR]</span>
+                <span class="term-venue">LEOMINSTER // THE GRAPE VAULTS</span>
+                <span class="term-status">LOADING...</span>
+            </li>
+            <li class="terminal-entry active">
+                <span class="term-date">[17 APR]</span>
+                <span class="term-venue">MONMOUTH // THE GREEN DRAGON</span>
+                <span class="term-status">LOADING...</span>
+            </li>
+            <li class="terminal-entry active">
+                <span class="term-date">[25 APR]</span>
+                <span class="term-venue">CAERPHILLY // THE RAILWAY</span>
+                <span class="term-status">LOADING...</span>
+            </li>
+        </ul>
+        
+        <p class="terminal-cursor">_</p>
+    </div>
+</div>
 </div>
 <div class="description-window">
     <div class="window-header">
@@ -176,14 +178,17 @@
     <div class="gallery-item" data-id="011"><img src="assets/dogs.webp" alt=""loading="lazy"></div>
     <div class="gallery-item" data-id="012"><img src="assets/kid.webp" alt=""loading="lazy"></div>
     </section>
-<div class="riso-dispatch-bar reveal">
-    <div class="dispatch-content">
-        <span class="dispatch-label">NEW_RELEASE // MASTER_V1.2</span>
-        <h4 class="dispatch-title">"Hot & Beautiful"</h4>
-        <a href="https://open.spotify.com/album/1GuOct4t3X9oI8SyWOOTq5?si=AmiFhE-HQlCiNAuxrAXNJg" class="dispatch-action">LISTEN NOW —></a>
+<nav class="system-taskbar">
+    <div class="start-btn">
+        <span class="iso-icon">✦</span> SAPHI_OS
     </div>
-    <div class="dispatch-bg"></div>
-</div>
+    <div class="task-tabs">
+        <a href="#live" class="task-tab">SCHEDULE.EXE</a>
+        <a href="#archive" class="task-tab">MEDIA_PREVIEW</a>
+        <a href="https://linktr.ee/saphimusic" class="task-tab highlight">CONNECT.SYS</a>
+    </div>
+    <div class="system-clock" id="os-clock">00:00:00</div>
+</nav>
 </body>
 </html>
 <script>
@@ -207,4 +212,27 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 sections.forEach(section => observer.observe(section));
+
+// REAL-TIME SYSTEM CLOCK
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
+    document.getElementById('os-clock').textContent = timeString;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// BOOT SEQUENCE (Staggered Window Entry)
+document.addEventListener("DOMContentLoaded", () => {
+    const windows = document.querySelectorAll('.chapter-box, .video-card, .spotify-card, .terminal-window');
+    windows.forEach((win, index) => {
+        win.style.opacity = "0";
+        win.style.transform = "translateY(20px)";
+        setTimeout(() => {
+            win.style.transition = "all 0.5s ease";
+            win.style.opacity = "1";
+            win.style.transform = "translateY(0)";
+        }, 200 * index);
+    });
+});
 </script>
