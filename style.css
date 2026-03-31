@@ -603,30 +603,32 @@ nav a:hover { opacity: 0.5; }
 
 /* --- SYSTEM OS AUDIO WINDOW --- */
 .stray-audio {
-    max-width: 400px;
-    margin: 40px auto;
+    position: relative; /* It loads where you place it in HTML */
+    z-index: 999;
+    width: 400px;
     background: #ffffff;
     border: 1px solid #000;
-    box-shadow: 5px 5px 0px #000; /* Hard 90s UI shadow */
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+    
+    /* HANDEL: Indicates it can be moved */
+    cursor: grab;
+    user-select: none; /* Prevents highlighting text while dragging */
+    
+    /* Initial placement tweaks */
+    margin: 20px auto; 
+}
+
+.stray-audio:active {
+    cursor: grabbing;
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
 }
 
 /* THE WINDOW HEADER (The Caption) */
 .stray-audio .caption {
-    background: #f0f0f0; /* System Grey */
+    background: #f0f0f0;
     border-bottom: 1px solid #000;
     padding: 8px 12px;
-    margin: 0;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    pointer-events: none; /* Let the drag click pass through to the main div */
 }
 
 /* Adding the 3-dot window controls via CSS pseudo-element */
