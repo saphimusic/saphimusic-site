@@ -119,7 +119,7 @@ nav a:hover::after {
 }
 
 /* Header Content Controls */
-.logo-window::before { content: "BRAND_ASSET.IMG"; }
+.logo-window::before { content: "LOGO.IMG"; }
 .hero-image-wrapper::before { content: "VIEWER.EXE"; }
 .journal-entry::before { content: ""; } /* Removed MANIFESTO.TXT text */
 
