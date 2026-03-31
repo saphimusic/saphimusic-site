@@ -316,6 +316,7 @@ nav a:hover { opacity: 0.5; }
 }
 
 /* --- 7. CHAPTER LINKS (Riso Edition) --- */
+/* --- 7. CHAPTER LINKS (Fixed Opaque Riso) --- */
 .chapter-links {
     position: relative;
     height: 550px;
@@ -326,63 +327,58 @@ nav a:hover { opacity: 0.5; }
     position: absolute;
     width: 280px;
     padding: 2.2rem;
-    background: #fdfcf8; /* Paper Base */
+    background: #fdfcf8; /* Solid Paper - No more transparency! */
     text-decoration: none;
     border: 1px solid rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    mix-blend-mode: multiply; /* Makes the box "ink" into the background */
     z-index: 5;
+}
+
+/* The "Ink Pass" shadow - this is what will multiply */
+.chapter-box::before {
+    content: "";
+    position: absolute;
+    top: 8px; 
+    left: 8px;
+    right: -8px;
+    bottom: -8px;
+    z-index: -1;
+    mix-blend-mode: multiply;
+    transition: all 0.3s ease;
 }
 
 .chapter-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
     margin: 0 0 15px 0;
-    position: relative;
-    padding-bottom: 15px;
-    color: #004d4d; /* Federal Blue Ink */
+    color: #004d4d;
 }
 
-/* Riso Divider Line */
-.chapter-box h2::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 1.5px;
-    background: #ff6b35; /* Neon Orange Ink stroke */
-}
+/* Assign unique ink colors to the shadows only */
+.box-weddings::before { background: #5bcefa; }
+.box-producing::before { background: #5bfad5; }
+.box-socials::before { background: #fa9d5b; }
 
-/* Individual Ink Colors & Positions (Your exact coordinates) */
-.box-weddings { 
-    top: 0; left: 21%; transform: rotate(-2.5deg); 
-    box-shadow: 8px 8px 0px #5bcefa; /* Blue Ink Offset */
-}
-
-.box-producing { 
-    top: 140px; right: 21%; transform: rotate(2deg); 
-    box-shadow: -8px 8px 0px #5bfad5; /* Green Ink Offset */
-}
-
-.box-socials { 
-    top: 210px; left: 24%; transform: rotate(1.5deg); 
-    box-shadow: 8px 8px 0px #fa9d5b; /* Orange Ink Offset */
-}
+/* Positioning (Keeping your good coordinates) */
+.box-weddings { top: 0; left: 21%; transform: rotate(-2.5deg); }
+.box-producing { top: 140px; right: 21%; transform: rotate(2deg); }
+.box-socials { top: 210px; left: 24%; transform: rotate(1.5deg); }
 
 .chapter-box:hover {
     transform: scale(1.05) rotate(0deg) !important;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-    z-index: 10;
+    z-index: 20;
+}
+
+.chapter-box:hover::before {
+    top: 2px; left: 2px; /* Ink "aligns" on hover */
 }
 
 .chapter-box p {
-    color: #004d4d; /* Teal/Blue Ink */
+    color: #004d4d;
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
 }
-
 /* --- 8. MARGIN NOTES --- */
 .margin-note {
     font-family: 'Covered By Your Grace', cursive;
