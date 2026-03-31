@@ -102,6 +102,58 @@ nav a:hover::after {
     background: var(--sys-blue);
 }
 
+/* --- UNIVERSAL DOT SYSTEM --- */
+
+/* This adds the dots to the right side of ANY window header */
+.logo-window::before,
+.journal-entry::before, 
+.hero-image-wrapper::before,
+.chapter-box::before,
+#live-terminal .window-header::after,
+.description-window .window-header::after {
+    /* If it's a pseudo-element (::after), we need to give it size */
+    content: ""; 
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    
+    /* Default Grey Dots */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 0px) center, 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center;
+    transition: background-image 0.2s ease;
+}
+
+/* THE HOVER COLOR MAGIC */
+.logo-window:hover::before,
+.journal-entry:hover::before, 
+.hero-image-wrapper:hover::before,
+.chapter-box:hover::before,
+#live-terminal:hover .window-header::after,
+.description-window:hover .window-header::after {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px) !important;
+}
+
+/* Fix Terminal/Description Header Alignment */
+#live-terminal .window-header, 
+.description-window .window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Kill any remaining stray manual dot styles */
+.window-dots { display: none !important; }
+
 /* --- 3. HERO SPREAD (README.TXT STYLE) --- */
 .hero-spread {
     display: flex;
