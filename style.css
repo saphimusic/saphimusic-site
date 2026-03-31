@@ -139,7 +139,51 @@ nav a:hover { opacity: 0.5; }
     border-left: 1px solid rgba(0,0,0,0.05);
     border-right: 1px solid rgba(0,0,0,0.05);
 }
+/*RISO MUSIC PLAYER*/
+/* --- AUDIO PLAYER CONTAINER --- */
+.riso-player-wrap {
+    position: fixed;
+    bottom: 100px; /* Sits above the FAB */
+    right: 30px;
+    width: 300px;
+    background: #fdfcf8;
+    border: 1px solid #004d4d;
+    box-shadow: 8px 8px 0px #FF6B35; /* Orange Ink Offset */
+    z-index: 9998;
+    padding: 10px;
+    transform: translateX(120%); /* Hidden by default */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    mix-blend-mode: multiply;
+}
 
+.riso-player-wrap.open {
+    transform: translateX(0);
+}
+
+.player-close {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: #FF6B35;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.player-inner {
+    filter: grayscale(1) contrast(1.2); /* Makes the Spotify green match your Riso vibe */
+}
+
+/* Update the FAB to look like a "Toggle" */
+.riso-cta-fab {
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+/*MARQUEE BANNER*/
 .marquee {
   overflow: hidden;
   white-space: nowrap;
