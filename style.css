@@ -507,71 +507,78 @@ nav a:hover { opacity: 0.5; }
     color: #ff7c79;
 }
 
-/* --- 7. SYSTEM WINDOWS (Minimal Archive) --- */
-.chapter-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin: 80px 5%;
-    max-width: 1200px;
-}
-
+/* --- SYSTEM WINDOWS WITH CONTROLS --- */
 .chapter-box {
     position: relative;
-    background: #ffffff; /* Clean white */
-    border: 1px solid #000; /* Sharp, thin black stroke */
+    background: #ffffff;
+    border: 1px solid #000;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* THE WINDOW HEADER */
+/* THE WINDOW HEADER BAR */
 .chapter-box::before {
     content: "FILE_0" attr(data-id) ".SYS";
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
-    background: #f0f0f0; /* Classic grey header */
+    height: 30px; /* Fixed height for the bar */
+    background: #f0f0f0;
     border-bottom: 1px solid #000;
-    padding: 5px 10px;
+    padding: 0 10px;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
     color: #000;
     text-transform: uppercase;
     box-sizing: border-box;
+    
+    /* THE BUTTONS: Three dots created with a radial gradient */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center, 
+        calc(100% - 36px) center;
 }
 
+/* HOVER STATE: Buttons "Light Up" */
+.chapter-box:hover::before {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px), /* Close */
+        radial-gradient(circle, #5bfad5 2px, transparent 3px), /* Min */
+        radial-gradient(circle, #5bcefa 2px, transparent 3px); /* Max */
+    background-color: #e0e0e0;
+}
+
+.chapter-box:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0px #000; /* Sharp black shadow for that 90s feel */
+}
+
+/* CONTENT SPACING */
 .chapter-box-content {
-    padding: 25px;
+    padding: 20px;
 }
 
 .chapter-box h2 {
-    font-family: 'Space Mono', monospace; /* Total mono look */
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0 0 10px 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    margin: 0 0 8px 0;
     color: #000;
-    text-transform: uppercase;
 }
 
 .chapter-box p {
     font-family: 'Space Mono', monospace;
     color: #666;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1.4;
+    margin: 0;
 }
-
-/* THE 'SYSTEM' HOVER */
-.chapter-box:hover {
-    transform: translate(-4px, -4px);
-    /* The "Hard Shadow" look - very 90s UI */
-    box-shadow: 4px 4px 0px #5bcefa; 
-}
-
-/* Individual Color Accents (just a small square or line) */
-.box-weddings:hover { box-shadow: 4px 4px 0px #5bcefa; }
-.box-producing:hover { box-shadow: 4px 4px 0px #5bfad5; }
-.box-socials:hover { box-shadow: 4px 4px 0px #ff7c79; }
 
 /* --- 8. THE 4x4 REEL --- */
 .gallery-grid {
