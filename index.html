@@ -32,23 +32,6 @@
             </div>
     </div>
 </header>
-<div id="audio-player-container" class="riso-player-wrap">
-    <button class="player-close" onclick="togglePlayer()">×</button>
-    <div class="player-inner">
-        <iframe 
-            src="https://open.spotify.com/track/1Pff3zPPf98RT4Z2Zfk1OT?si=d5dda5999d72411e" 
-            width="100%" 
-            height="80" 
-            frameBorder="0" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy">
-        </iframe>
-    </div>
-</div>
-
-<button class="riso-cta-fab" onclick="togglePlayer()">
-    <span class="status-dot"></span> <span class="cta-label">PREVIEW TRACK</span>
-</button>
     <div class="marquee">
   <div class="marquee-content">
     <span>LATEST RELEASE OUT NOW // HOT & BEAUTIFUL MARCH 2026 // </span>
@@ -192,7 +175,14 @@
     <div class="gallery-item" data-id="015"><img src="saphi3.jpg" alt=""loading="lazy"></div>
     <div class="gallery-item" data-id="016"><img src="saphi4.jpg" alt=""loading="lazy"></div>
     </section>
-
+<div class="riso-dispatch-bar reveal">
+    <div class="dispatch-content">
+        <span class="dispatch-label">NEW_RELEASE // MASTER_V1.2</span>
+        <h4 class="dispatch-title">"CONTROLLED CHAOS"</h4>
+        <a href="YOUR_LINK" class="dispatch-action">ENTER THE LAB —></a>
+    </div>
+    <div class="dispatch-bg"></div>
+</div>
 </body>
 </html>
 <script>
@@ -216,18 +206,4 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 sections.forEach(section => observer.observe(section));
-
-function togglePlayer() {
-    const player = document.getElementById('audio-player-container');
-    const fabLabel = document.querySelector('.cta-label');
-    
-    player.classList.toggle('open');
-    
-    // Optional: Change label text when open
-    if (player.classList.contains('open')) {
-        fabLabel.innerText = "CLOSE PLAYER";
-    } else {
-        fabLabel.innerText = "PREVIEW TRACK";
-    }
-}
 </script>

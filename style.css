@@ -139,49 +139,76 @@ nav a:hover { opacity: 0.5; }
     border-left: 1px solid rgba(0,0,0,0.05);
     border-right: 1px solid rgba(0,0,0,0.05);
 }
-/*RISO MUSIC PLAYER*/
-/* --- AUDIO PLAYER CONTAINER --- */
-.riso-player-wrap {
+
+/* RISO DISPATCH BAR */
+.riso-dispatch-bar {
     position: fixed;
-    bottom: 100px; /* Sits above the FAB */
-    right: 30px;
-    width: 300px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    background: #FF6B35; /* Neon Orange Ink */
+    color: #fdfcf8;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dispatch-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dispatch-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border: 1px solid #fdfcf8;
+    opacity: 0.8;
+}
+
+.dispatch-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.dispatch-action {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FF6B35;
     background: #fdfcf8;
-    border: 1px solid #004d4d;
-    box-shadow: 8px 8px 0px #FF6B35; /* Orange Ink Offset */
-    z-index: 9998;
-    padding: 10px;
-    transform: translateX(120%); /* Hidden by default */
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    mix-blend-mode: multiply;
+    padding: 12px 25px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
 
-.riso-player-wrap.open {
-    transform: translateX(0);
+.dispatch-action:hover {
+    letter-spacing: 4px;
+    background: #004d4d; /* Federal Blue */
+    color: #fdfcf8;
 }
 
-.player-close {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    background: #FF6B35;
-    color: white;
-    border: none;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    font-family: monospace;
-    font-weight: bold;
+/* The "arrival" was too clean—let's make it flicker in */
+.riso-dispatch-bar.reveal {
+    animation: tape-flicker 0.4s steps(4);
 }
 
-.player-inner {
-    filter: grayscale(1) contrast(1.2); /* Makes the Spotify green match your Riso vibe */
-}
-
-/* Update the FAB to look like a "Toggle" */
-.riso-cta-fab {
-    cursor: pointer;
-    border: 1px solid rgba(0,0,0,0.1);
+@keyframes tape-flicker {
+    0% { opacity: 0; transform: translateY(100%); }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; transform: translateY(0); }
 }
 /*MARQUEE BANNER*/
 .marquee {
