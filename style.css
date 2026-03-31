@@ -1,18 +1,13 @@
-/* --- 0. FONTS & ROOT --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* --- 0. FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Inter:wght@300;400;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
+/* --- 1. CORE THEME --- */
 :root {
-    --paper: #f4f1ea;
-    --ink: #2a2a2a;
-    --system-grey: #d4d0c8;
-    --system-border-light: #fff;
-    --system-border-dark: #808080;
-    --terminal-green: #00ff41;
-    --saphi-blue: #2e59ff;
-    --saphi-pink: #ff7c79;
+    --paper: #f4f1ea;   
+    --ink: #2a2a2a;     
+    --accent: #8c8c8c;  
 }
 
-/* --- 1. GLOBAL OS STYLES --- */
 body {
     background-color: var(--paper);
     color: var(--ink);
@@ -20,283 +15,652 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    padding-bottom: 60px; /* Space for Taskbar */
 }
 
-/* CRT Scanline Overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.03) 50%);
-    background-size: 100% 4px;
-    z-index: 9999;
-    pointer-events: none;
+
+/* --- 2. NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 5%;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.8rem;
 }
 
-/* --- 2. HERO & MARQUEE --- */
+nav a {
+    text-decoration: none;
+    color: var(--ink);
+    margin-left: 2rem;
+    transition: opacity 0.3s;
+}
+
+nav a:hover { opacity: 0.5; }
+
+/* --- 3. HERO SPREAD --- */
 .hero-spread {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 5%;
+    padding: 80px 5%; 
+    position: relative;
+    z-index: 5;
 }
 
-.main-logo { width: 320px; }
+.hero-left {
+    flex: 1;
+    padding-left: 100px; 
+}
+
+.date-stamp {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.main-logo {
+    width: 320px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.journal-entry {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 420px;
+}
 
 .hero-image-wrapper {
-    background: #fff;
-    padding: 10px 10px 40px 10px;
-    border: 1px solid #ddd;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 450px;
+    background: #fdfcf8;
+    padding: 12px 12px 45px 12px;
+    box-shadow: 10px 15px 35px rgba(0,0,0,0.05);
     transform: rotate(1.5deg);
+    position: relative;
 }
 
-.marquee {
-    background: #000;
-    color: #fff;
-    padding: 10px 0;
-    font-family: 'Space Mono', monospace;
-    overflow: hidden;
+.film-photo {
+    width: 100%;
+    filter: sepia(0.15) contrast(1.05);
 }
 
-.marquee-content {
+.hero-image-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -15px; left: 20%;
+    width: 100px; height: 30px;
+    background: rgba(255, 255, 230, 0.4);
+    backdrop-filter: blur(2px);
+    transform: rotate(4deg);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+/* --- THE SYSTEM TASKBAR (Web1 Style) --- */
+.system-taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background: #d4d0c8; /* Classic Win95 Grey */
+    border-top: 2px solid #fff;
     display: flex;
-    animation: scroll 40s linear infinite;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* --- 3. THE BENTO GRID (Apps) --- */
-.bento-grid {
-    max-width: 1100px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.video-card, .spotify-card {
-    background: #fff;
-    border: 1px solid #000;
-    box-shadow: 4px 4px 0px #000;
-}
-
-.video-card::before {
-    content: "MEDIA_PLAYER.EXE";
-    display: block;
-    background: var(--saphi-blue);
-    color: #fff;
-    padding: 5px 10px;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 10000;
+    box-sizing: border-box;
     font-family: 'Space Mono', monospace;
-    font-size: 10px;
 }
 
-/* --- 4. THE TERMINAL (Live Schedule) --- */
+.start-btn {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 2px 10px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.start-btn:active {
+    border-color: #808080 #fff #fff #808080;
+}
+
+.task-tabs {
+    display: flex;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.task-tab {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 2px 12px;
+    font-size: 11px;
+    text-decoration: none;
+    color: #000;
+}
+
+.task-tab.highlight { color: #2e59ff; font-weight: bold; }
+
+.system-clock {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 2px 10px;
+    font-size: 12px;
+}
+
+/* --- THE TERMINAL WINDOW --- */
 .terminal-window {
     grid-column: span 2;
     background: #000;
     border: 1px solid #333;
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
-}
-
-.terminal-window .window-header {
-    height: 32px;
-    background: #1a1a1a;
-    border-bottom: 1px solid #333;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.terminal-window .window-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #888;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
 }
 
 .terminal-body {
-    padding: 25px;
+    padding: 20px;
+    color: #00ff00; /* Matrix Green */
     font-family: 'Space Mono', monospace;
-    color: var(--terminal-green);
-    background: #000;
 }
 
-.terminal-entry {
-    display: grid;
-    grid-template-columns: 110px 1fr 150px;
-    padding: 10px 0;
-    border-bottom: 1px solid #111;
+.terminal-cmd { color: #888; font-size: 12px; margin-bottom: 20px; }
+
+.terminal-style li {
+    border-bottom: 1px solid #1a1a1a !important;
+    color: #00ff00 !important;
 }
-
-.terminal-entry.past { color: #003b00; text-decoration: line-through; }
-
-.term-status { text-align: right; font-weight: bold; }
 
 .terminal-cursor {
-    display: inline-block;
-    animation: blink 1s steps(2) infinite;
+    animation: blink 1s infinite;
+    font-weight: bold;
+    margin-top: 15px;
 }
 
-/* --- 5. DESCRIPTION WINDOW (README.TXT) --- */
-.description-window {
-    max-width: 800px;
+/* --- SYSTEM APP STYLE FOR MEDIA --- */
+.video-card, .spotify-card {
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    position: relative;
+}
+
+/* Add a pseudo-header to the video card */
+.video-card::before {
+    content: "MEDIA_PLAYER.EXE";
+    display: block;
+    background: #2e59ff;
+    color: white;
+    padding: 4px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    border-bottom: 1px solid #000;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/*MARQUEE BANNER*/
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #0f0f0f;
+  color: #ffffff;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  /* Adjust 20s to change speed */
+  animation: continuous-scroll 40s linear infinite;
+}
+
+.marquee-content span {
+  display: inline-block;
+  padding-right: 60px; /* The gap between the repeated phrases */
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+@keyframes continuous-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* We move it exactly half its total width */
+    transform: translateX(-50%);
+  }
+}
+/* --- 3. THE MODULAR HUB --- */
+.bento-grid {
+    max-width: 1100px;
     margin: 60px auto;
-    background: #fff;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Large left, small right */
+    gap: 20px;
+}
+
+/* Video Card (The Anchor) */
+.video-card {
+    background: #fdfcf8;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.03);
+}
+
+.video-card iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+}
+/* Youtube Subscribe*/
+.studio-sub-btn {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #fdfcf8;
+    background: #2e59ff; /* Federal Blue */
+    padding: 8px 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.studio-sub-btn .iso-icon {
+    color: #ff7c79; /* Saphi Pink/Orange */
+    margin-right: 10px;
+    font-size: 10px;
+    animation: blink 1.5s infinite;
+}
+
+.studio-sub-btn:hover {
+    background: #ff7c79;
+    color: #2e59ff;
+    box-shadow: 4px 4px 0px #fdfcf8;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Spotify Card (The Sidecar) */
+.spotify-card {
+    background: #fdfcf8;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* spotify follow */
+.spotify-follow-wrap {
+    margin-top: 15px;
+    border-top: 1px solid rgba(0, 77, 77, 0.1);
+    padding-top: 10px;
+}
+
+.spotify-follow-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: #004d4d;
+    text-decoration: none;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.spotify-follow-link:hover {
+    opacity: 1;
+    color: #ff7c79;
+    text-decoration: underline;
+}
+
+/* --- UPDATED DESCRIPTION WINDOW (README.TXT) --- */
+.description-window {
+    position: relative; 
+    max-width: 800px;
+    margin: 40px auto 80px auto;
+    background: #ffffff;
     border: 1px solid #000;
     box-shadow: 2px 2px 0px #000;
+    z-index: 1;
 }
 
+/* MATCHING THE CHAPTER BOX HEADER EXACTLY */
 .description-window .window-header {
-    height: 32px;
-    background: var(--system-grey);
+    height: 32px; /* Matching the chapter-box::before height */
+    background: #f0f0f0;
     border-bottom: 1px solid #000;
     padding: 0 12px;
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertical center */
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
+.description-window .window-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; /* Matching chapter text size */
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* MATCHING THE 3-DOT CONTROL VISUALS */
 .window-dots {
-    width: 40px;
+    display: flex;
+    align-items: center;
+    width: 40px; /* Space for the 3 dots */
     height: 100%;
-    background-image: radial-gradient(circle, #ccc 2px, transparent 3px);
-    background-size: 12px 100%;
-    background-repeat: repeat-x;
+    
+    /* Using the same radial gradient logic from the links */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 0px) center, 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center;
+}
+
+/* Optional: Make the dots turn color on hover to match the others */
+.description-window:hover .window-dots {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 .description-content {
     padding: 30px;
     font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
     line-height: 1.6;
+    clear: both; /* Safety for the floating audio */
 }
-
-/* --- 6. STRAY AUDIO (Sub-Window) --- */
+/* --- SYSTEM OS: STRAY AUDIO WINDOW --- */
 .stray-audio {
+    /* 1. POSITIONING: Float right so text wraps around it */
     float: right;
-    width: 280px;
-    margin: 10px 0 20px 20px;
-    background: #fff;
+    position: relative;
+    width: 280px; /* Controlled width */
+    margin: 10px 0 20px 20px; /* Space between text and window */
+    
+    /* 2. VISUALS: Minimalist Window */
+    background: #ffffff;
     border: 1px solid #000;
     box-shadow: 3px 3px 0px #000;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
 }
 
+/* THE WINDOW HEADER */
 .stray-audio .caption {
-    background: var(--system-grey);
+    background: #f0f0f0;
     border-bottom: 1px solid #000;
     padding: 5px 10px;
-    font-size: 9px;
+    margin: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #000;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* Window Control Dots */
+.stray-audio .caption::after {
+    content: "● ● ●";
+    font-size: 6px;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+/* THE PLAYER: Fixed to fit the window */
 .minimal-player {
-    width: 100%;
-    filter: grayscale(1);
-    padding: 5px;
+    display: block;
+    width: 100%;       /* Fills the 280px */
+    max-width: 100%;   /* Cannot overflow */
+    height: 35px;      /* Slimmer player profile */
+    padding: 8px;
+    box-sizing: border-box;
+    filter: grayscale(1); /* Monochrome OS vibe */
 }
 
-/* --- 7. CHAPTER LINKS --- */
+/* HOVER STATE */
+.stray-audio:hover {
+    box-shadow: 4px 4px 0px #5bcefa; /* Subtle Saphi Blue highlight */
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* CLEARFIX: Ensures the next section (Live Schedule) stays below the description */
+.description-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* MOBILE: Stack the player so it doesn't squish the text on small screens */
+@media (max-width: 600px) {
+    .stray-audio {
+        float: none;
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+
+/* --- 7. SYSTEM WINDOWS (3-Column Row) --- */
 .chapter-links {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 60px auto;
-    max-width: 1100px;
+    justify-content: center; /* Centers the row */
+    gap: 25px;               /* Space between windows */
+    margin: 80px auto;
+    padding: 0 5%;
+    max-width: 1200px;
+    height: auto;            /* Let the content define the height */
 }
 
 .chapter-box {
-    flex: 1;
-    background: #fff;
+    flex: 1;                 /* Makes all 3 boxes equal width */
+    min-width: 280px;        /* Prevents them from getting too skinny */
+    max-width: 350px;
+    background: #ffffff;
     border: 1px solid #000;
     text-decoration: none;
-    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
 }
 
+/* THE WINDOW HEADER BAR */
 .chapter-box::before {
     content: "FILE_0" attr(data-id) ".SYS";
-    display: block;
-    background: var(--system-grey);
-    padding: 5px 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    border-bottom: 1px solid #000;
-}
-
-/* --- 8. SYSTEM TASKBAR --- */
-.system-taskbar {
-    position: fixed;
-    bottom: 0; left: 0;
+    display: flex;
+    align-items: center;
     width: 100%;
-    height: 40px;
-    background: var(--system-grey);
-    border-top: 2px solid var(--system-border-light);
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    z-index: 10000;
-    box-shadow: inset 1px 1px 0 #fff;
-}
-
-.start-btn {
-    background: var(--system-grey);
-    border: 2px solid;
-    border-color: #fff #808080 #808080 #fff;
-    padding: 2px 10px;
-    font-family: 'Space Mono', monospace;
-    font-weight: bold;
-    font-size: 12px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.task-tab {
-    background: var(--system-grey);
-    border: 2px solid;
-    border-color: #fff #808080 #808080 #fff;
-    padding: 2px 12px;
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 12px;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
-    text-decoration: none;
     color: #000;
-    margin-right: 4px;
+    box-sizing: border-box;
+    
+    /* The 3 Control Buttons (The visuals you liked) */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center, 
+        calc(100% - 36px) center;
 }
 
-.system-clock {
-    margin-left: auto;
-    background: var(--system-grey);
-    border: 2px solid;
-    border-color: #808080 #fff #fff #808080;
-    padding: 2px 10px;
+/* THE SYSTEM HOVER */
+.chapter-box:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.chapter-box:hover::before {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
+    background-color: #e8e8e8;
+}
+
+.chapter-box-content {
+    padding: 25px;
+}
+
+.chapter-box h2 {
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-@keyframes blink { 50% { opacity: 0; } }
+.chapter-box p {
+    font-family: 'Space Mono', monospace;
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}
 
-/* --- 9. GALLERY GRID --- */
+/* MOBILE FIX: Stack them when the screen gets narrow */
+@media (max-width: 900px) {
+    .chapter-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chapter-box {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* --- 8. THE 4x4 REEL --- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 1100px;
-    margin: 40px auto;
+    grid-template-columns: repeat(4, 1fr); /* The 4-column "Fred" look */
+    gap: 10px; /* Tight gaps for that dense, digital-folder feel */
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1; /* Forces square */
+    background: #000;
+    cursor: crosshair;
 }
 
 .gallery-item img {
+    will-change: transform, filter;
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    filter: grayscale(0.5);
-    transition: 0.3s;
+    height: 100%;
+    object-fit: cover; /* Crops to square */
+    filter: grayscale(0.2) contrast(1.1);
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), filter 0.3s ease;
 }
 
-.gallery-item:hover img { filter: grayscale(0); }
+/* The "Flash" Interaction */
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0) contrast(1.3) brightness(1.2);
+}
+
+/* Adding the Monospace Timestamp Overlay */
+.gallery-item::after {
+    content: "IMG_ID_" attr(data-id);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Mobile: Drop to 2 columns */
+@media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.gallery-item {
+    background-color: #e5e2d9; /* The "Paper" color */
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Optional: A subtle "loading" pulse */
+.gallery-item:empty {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { background-color: #f2f0e9; }
+    50% { background-color: #e5e2d9; }
+    100% { background-color: #f2f0e9; }
+}
+
+/* --- 8. CLEANUP & MOBILE --- */
+.spine, .timeline-line, .central-line {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .hero-spread { flex-direction: column; text-align: center; }
+    .hero-left { padding-left: 0; }
+    .bento-grid { display: flex; flex-direction: column; }
+    .video-card, .spotify-card, .photo-card { 
+        width: 100%; 
+        transform: none !important; 
+        margin-bottom: 20px; 
+    }
+    .chapter-links { height: auto; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    .chapter-box { position: relative; width: 85%; transform: rotate(0) !important; }
+}
