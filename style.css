@@ -558,6 +558,12 @@ nav a:hover { opacity: 0.5; }
     line-height: 1.5;
     margin: 0;
 }
+.num {
+    color: #004d4d; /* Teal/Blue Ink */
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
 
 /* --- 8. THE 4x4 REEL --- */
 .gallery-grid {
