@@ -177,6 +177,7 @@ nav a:hover { opacity: 0.5; }
 
 .dispatch-label {
     font-family: 'Space Mono', monospace;
+    text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.2); /* Mimics a slight ink bleed */
     font-size: 0.7rem;
     letter-spacing: 1px;
     padding: 4px 8px;
@@ -185,7 +186,7 @@ nav a:hover { opacity: 0.5; }
     flex-shrink: 0; /* Keeps label from squishing */
     margin-right: 15px;
 }
-
+    
 .dispatch-title {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -273,7 +274,7 @@ nav a:hover { opacity: 0.5; }
   display: flex;
   white-space: nowrap;
   /* Adjust 20s to change speed */
-  animation: continuous-scroll 20s linear infinite;
+  animation: continuous-scroll 40s linear infinite;
 }
 
 .marquee-content span {
