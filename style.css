@@ -154,7 +154,8 @@ nav a:hover::after {
 /* Kill any remaining stray manual dot styles */
 .window-dots { display: none !important; }
 
-/* --- 3. HERO SPREAD (README.TXT STYLE) --- */
+/* --- 3. HERO SPREAD (CLEANED & SYNCED) --- */
+
 .hero-spread {
     display: flex;
     align-items: flex-start;
@@ -173,7 +174,7 @@ nav a:hover::after {
     gap: 20px;
 }
 
-/* THE WINDOWS */
+/* THE WINDOWS (Now standard across the site) */
 .logo-window, .journal-entry, .hero-image-wrapper {
     background: #ffffff;
     border: 1px solid #000;
@@ -184,7 +185,18 @@ nav a:hover::after {
     padding: 0 !important; 
 }
 
-/* UNIVERSAL HEADER (Replaces old ::before logic) */
+/* 1. DELETE OLD RELICS: These were causing the ghosting in Figure 2 */
+.logo-window::before,
+.journal-entry::before, 
+.hero-image-wrapper::before,
+.logo-window:hover::before,
+.journal-entry:hover::before, 
+.hero-image-wrapper:hover::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* 2. STYLE THE ACTUAL HEADERS (Matching Terminal/README) */
 .logo-window .window-header,
 .journal-entry .window-header,
 .hero-image-wrapper .window-header {
@@ -194,11 +206,11 @@ nav a:hover::after {
     padding: 0 12px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Snaps title left, dots right */
+    justify-content: space-between; /* Keeps title left, dots right */
     box-sizing: border-box;
 }
 
-/* THE DOTS (Right-aligned via ::after) */
+/* 3. UNIVERSAL DOTS VIA ::AFTER */
 .logo-window .window-header::after,
 .journal-entry .window-header::after,
 .hero-image-wrapper .window-header::after {
@@ -218,7 +230,7 @@ nav a:hover::after {
     transition: background-image 0.2s ease;
 }
 
-/* SHARED HOVER EFFECT */
+/* 4. HOVER GLOW EFFECT */
 .logo-window:hover .window-header::after,
 .journal-entry:hover .window-header::after,
 .hero-image-wrapper:hover .window-header::after {
@@ -226,13 +238,6 @@ nav a:hover::after {
         radial-gradient(circle, #ff7c79 2px, transparent 3px),
         radial-gradient(circle, #5bfad5 2px, transparent 3px),
         radial-gradient(circle, #5bcefa 2px, transparent 3px) !important;
-}
-
-.window-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: #000;
 }
 
 /* THE CONTENT BODIES */
