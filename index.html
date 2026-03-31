@@ -209,21 +209,30 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => observer.observe(section));
 
 const dragElement = document.querySelector(".stray-audio");
+const dragHeader = dragElement.querySelector(".caption");
+
 let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-if (dragElement) {
-    dragElement.onmousedown = dragMouseDown;
+if (dragElement && dragHeader) {
+    dragHeader.onmousedown = dragMouseDown;
 }
 
 function dragMouseDown(e) {
     e = e || window.event;
-    // Don't drag if clicking the play button/audio controls
-    if (e.target.tagName === 'AUDIO' || e.target.closest('audio')) return;
-
     e.preventDefault();
-    // Get mouse position at startup
+
+    // Get the initial mouse position
     pos3 = e.clientX;
     pos4 = e.clientY;
+
+    // Set position to absolute IMMEDIATELY to prevent the jump
+    // We calculate its current position on screen so it doesn't move when we switch
+    const rect = dragElement.getBoundingClientRect();
+    dragElement.style.margin = "0"; // Kill margins to prevent offset math errors
+    dragElement.style.left = rect.left + "px";
+    dragElement.style.top = rect.top + "px";
+    dragElement.style.position = "fixed"; // Fixed is safer for "on top" windows
+
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
 }
@@ -231,19 +240,19 @@ function dragMouseDown(e) {
 function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
+    
     // Calculate new cursor position
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
+    
     // Set the element's new position
     dragElement.style.top = (dragElement.offsetTop - pos2) + "px";
     dragElement.style.left = (dragElement.offsetLeft - pos1) + "px";
-    dragElement.style.position = "absolute"; // Switches to absolute only once moved
 }
 
 function closeDragElement() {
-    // Stop moving when mouse button is released
     document.onmouseup = null;
     document.onmousemove = null;
 }
