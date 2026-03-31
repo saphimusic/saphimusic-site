@@ -315,69 +315,53 @@ nav a:hover { opacity: 0.5; }
     margin: 100px 5%;
 }
 
-/* --- 7. CHAPTER LINKS (Riso Edition) --- */
-/* --- 7. CHAPTER LINKS (Fixed Opaque Riso) --- */
-.chapter-links {
-    position: relative;
-    height: 550px;
-    margin: 100px 5%;
-}
-
+/* --- 7. CHAPTER LINKS (Correct Layering) --- */
 .chapter-box {
     position: absolute;
     width: 280px;
     padding: 2.2rem;
-    background: #fdfcf8; /* Solid Paper - No more transparency! */
+    background: #fdfcf8; /* Solid Paper */
     text-decoration: none;
     border: 1px solid rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    z-index: 5;
+    
+    /* This creates the sandwich layers */
+    transform-style: preserve-3d; 
+    z-index: 5; 
 }
 
-/* The "Ink Pass" shadow - this is what will multiply */
 .chapter-box::before {
     content: "";
     position: absolute;
-    top: 8px; 
-    left: 8px;
-    right: -8px;
-    bottom: -8px;
-    z-index: -1;
+    top: 10px;    /* The "Misregistration" offset */
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    
+    /* This pushes the color pass BEHIND the paper */
+    transform: translateZ(-1px); 
+    
     mix-blend-mode: multiply;
     transition: all 0.3s ease;
 }
 
-.chapter-box h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    margin: 0 0 15px 0;
-    color: #004d4d;
-}
-
-/* Assign unique ink colors to the shadows only */
+/* Individual Ink Pass Colors */
 .box-weddings::before { background: #5bcefa; }
 .box-producing::before { background: #5bfad5; }
 .box-socials::before { background: #fa9d5b; }
 
-/* Positioning (Keeping your good coordinates) */
+/* Keep your existing positions! */
 .box-weddings { top: 0; left: 21%; transform: rotate(-2.5deg); }
 .box-producing { top: 140px; right: 21%; transform: rotate(2deg); }
 .box-socials { top: 210px; left: 24%; transform: rotate(1.5deg); }
 
 .chapter-box:hover {
     transform: scale(1.05) rotate(0deg) !important;
-    z-index: 20;
+    z-index: 20; /* Bring the whole sandwich to the front */
 }
 
 .chapter-box:hover::before {
-    top: 2px; left: 2px; /* Ink "aligns" on hover */
-}
-
-.chapter-box p {
-    color: #004d4d;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
+    top: 3px; left: 3px; /* Ink "aligns" slightly on hover */
 }
 /* --- 8. MARGIN NOTES --- */
 .margin-note {
