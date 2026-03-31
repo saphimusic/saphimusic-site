@@ -23,8 +23,8 @@ body {
 }
 
 /* Federal Blue for Live Section */
-body.theme-dates-container { background-color: #111111; }
-body.theme-dates-container .photo-card { border-color: rgba(255,255,255,0.3); }
+body.theme-bento-grid { background-color: #111111; }
+body.theme-bento-grid .photo-card { border-color: rgba(255,255,255,0.3); }
 
 /* Fluorescent Pink/Orange for Chapters */
 body.theme-chapters { background-color: #ffcca3; }
