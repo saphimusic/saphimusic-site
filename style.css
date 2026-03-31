@@ -228,19 +228,37 @@ nav a:hover { opacity: 0.5; }
   }
 }
 
-/* --- 3. THE MODULAR HUB (Bento Force-Reset) --- */
+/* --- 3. THE MODULAR HUB (Bento Fix) --- */
 .bento-grid {
     max-width: 1100px;
     margin: 40px auto;
     padding: 0 5%;
-    display: grid !important; /* Force grid behavior */
-    grid-template-columns: 1.6fr 1fr !important; /* Force two columns */
+    display: grid !important; 
+    /* Force 2 columns on desktop */
+    grid-template-columns: 1.6fr 1fr !important; 
     gap: 25px;
     align-items: start;
-    clear: both; /* Prevents the 'stray-audio' from pushing columns down */
+    clear: both; 
 }
 
-/* Ensure the cards don't try to take up the full width individually */
+/* Ensure the cards occupy their specific grid cells */
+.video-card {
+    grid-column: 1;
+}
+
+.spotify-card {
+    grid-column: 2;
+}
+
+/* Force the Terminal to sit underneath the two media boxes */
+.terminal-window {
+    grid-column: span 2 !important;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    margin-top: 10px; /* Slight gap from the boxes above */
+}
+
 .video-card, .spotify-card {
     width: 100%; 
     background: #ffffff;
@@ -273,7 +291,7 @@ nav a:hover { opacity: 0.5; }
     background: #f4f1ea;
     border-top: 1px solid #000;
     padding: 12px;
-    margin: 0 !important; /* Removes any old margins */
+    margin: 0 !important; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -281,144 +299,6 @@ nav a:hover { opacity: 0.5; }
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     color: #000;
-}
-
-/* --- UPDATED DESCRIPTION WINDOW (README.TXT) --- */
-.description-window {
-    position: relative; 
-    max-width: 800px;
-    margin: 40px auto 80px auto;
-    background: #ffffff;
-    border: 1px solid #000;
-    box-shadow: 2px 2px 0px #000;
-    z-index: 1;
-}
-
-/* MATCHING THE CHAPTER BOX HEADER EXACTLY */
-.description-window .window-header {
-    height: 32px; /* Matching the chapter-box::before height */
-    background: #f0f0f0;
-    border-bottom: 1px solid #000;
-    padding: 0 12px;
-    display: flex;
-    align-items: center; /* Vertical center */
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.description-window .window-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px; /* Matching chapter text size */
-    text-transform: uppercase;
-    color: #000;
-}
-
-/* MATCHING THE 3-DOT CONTROL VISUALS */
-.window-dots {
-    display: flex;
-    align-items: center;
-    width: 40px; /* Space for the 3 dots */
-    height: 100%;
-    
-    /* Using the same radial gradient logic from the links */
-    background-image: 
-        radial-gradient(circle, #ccc 2px, transparent 3px),
-        radial-gradient(circle, #ccc 2px, transparent 3px),
-        radial-gradient(circle, #ccc 2px, transparent 3px);
-    background-repeat: no-repeat;
-    background-position: 
-        calc(100% - 0px) center, 
-        calc(100% - 12px) center, 
-        calc(100% - 24px) center;
-}
-
-/* Optional: Make the dots turn color on hover to match the others */
-.description-window:hover .window-dots {
-    background-image: 
-        radial-gradient(circle, #ff7c79 2px, transparent 3px),
-        radial-gradient(circle, #5bfad5 2px, transparent 3px),
-        radial-gradient(circle, #5bcefa 2px, transparent 3px);
-}
-
-.description-content {
-    padding: 30px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    clear: both; /* Safety for the floating audio */
-}
-/* --- SYSTEM OS: STRAY AUDIO WINDOW --- */
-.stray-audio {
-    /* 1. POSITIONING: Float right so text wraps around it */
-    float: right;
-    position: relative;
-    width: 280px; /* Controlled width */
-    margin: 10px 0 20px 20px; /* Space between text and window */
-    
-    /* 2. VISUALS: Minimalist Window */
-    background: #ffffff;
-    border: 1px solid #000;
-    box-shadow: 3px 3px 0px #000;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-}
-
-/* THE WINDOW HEADER */
-.stray-audio .caption {
-    background: #f0f0f0;
-    border-bottom: 1px solid #000;
-    padding: 5px 10px;
-    margin: 0;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #000;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Window Control Dots */
-.stray-audio .caption::after {
-    content: "● ● ●";
-    font-size: 6px;
-    color: #ccc;
-    letter-spacing: 2px;
-}
-
-/* THE PLAYER: Fixed to fit the window */
-.minimal-player {
-    display: block;
-    width: 100%;       /* Fills the 280px */
-    max-width: 100%;   /* Cannot overflow */
-    height: 35px;      /* Slimmer player profile */
-    padding: 8px;
-    box-sizing: border-box;
-    filter: grayscale(1); /* Monochrome OS vibe */
-}
-
-/* HOVER STATE */
-.stray-audio:hover {
-    box-shadow: 4px 4px 0px #5bcefa; /* Subtle Saphi Blue highlight */
-    transform: translateY(-1px);
-    transition: all 0.2s ease;
-}
-
-/* CLEARFIX: Ensures the next section (Live Schedule) stays below the description */
-.description-content::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* MOBILE: Stack the player so it doesn't squish the text on small screens */
-@media (max-width: 600px) {
-    .stray-audio {
-        float: none;
-        width: 100%;
-        margin: 20px 0;
-    }
 }
 
 /* --- 7. SYSTEM WINDOWS (3-Column Row) --- */
