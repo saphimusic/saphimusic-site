@@ -140,17 +140,17 @@ nav a:hover { opacity: 0.5; }
     border-right: 1px solid rgba(0,0,0,0.05);
 }
 
-/* RISO DISPATCH BAR */
+/* --- RISO DISPATCH BAR (Integrated & Spaced) --- */
 .riso-dispatch-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 10000;
-    padding: 20px 5%;
+    padding: 20px 0; /* Padding moved to the inner content for better control */
     display: flex;
     align-items: center;
-    background: #5bcefa; /* BLUEEEE */
+    background: #5bcefa; /* Saphi Blue */
     color: #fdfcf8;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
     transform: translateY(0);
@@ -160,15 +160,18 @@ nav a:hover { opacity: 0.5; }
 .dispatch-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* Pushes left group and right button apart */
+    justify-content: space-between; 
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     
-    /* THE FIX: This ensures a 5% gap from the screen edges at all times */
-    padding: 0 5%; 
+    /* THE GUTTER: 40px ensures it never touches the screen edges */
+    padding: 0 40px; 
     
-    /* Optional: helps with vertical centering if the bar feels cramped */
+    /* THE BREATHING ROOM: Prevents title and button from crashing */
+    gap: 40px; 
+    
     box-sizing: border-box; 
 }
 
@@ -178,6 +181,8 @@ nav a:hover { opacity: 0.5; }
     padding: 4px 8px;
     border: 1px solid #fdfcf8;
     opacity: 0.8;
+    flex-shrink: 0; /* Keeps label from squishing */
+    margin-right: 15px;
 }
 
 .dispatch-title {
@@ -185,7 +190,8 @@ nav a:hover { opacity: 0.5; }
     font-style: italic;
     font-size: 1.5rem;
     margin: 0;
-    flex-grow: 1;
+    flex-grow: 0; /* Keeps it tight to the left */
+    white-space: nowrap; /* Keeps the title on one line for the editorial look */
 }
    
 .dispatch-action {
@@ -193,19 +199,13 @@ nav a:hover { opacity: 0.5; }
     font-weight: 800;
     text-transform: uppercase;
     text-decoration: none;
-    color: #ff7c79;
+    color: #ff7c79; /* Saphi Pink/Orange */
     background: #fdfcf8;
-    padding: 12px 25px;
+    padding: 12px 35px; /* Chunky industrial feel */
     letter-spacing: 1px;
     transition: all 0.3s ease;
-     /* Ensure the button has its own internal breathing room */
-    padding: 12px 30px; 
-    
-    /* Add a slight right margin if you want it even further from the glass */
-    margin-right: 10px; 
-    
     white-space: nowrap;
-    flex-shrink: 0; /* Prevents the button from squishing on small screens */
+    flex-shrink: 0; /* Critical: stops the button from distorting */
 }
 
 .dispatch-action:hover {
@@ -214,7 +214,7 @@ nav a:hover { opacity: 0.5; }
     color: #fdfcf8;
 }
 
-/* The "arrival" was too clean—let's make it flicker in */
+/* Flicker Arrival Animation */
 .riso-dispatch-bar.reveal {
     animation: tape-flicker 0.4s steps(4);
 }
@@ -224,16 +224,35 @@ nav a:hover { opacity: 0.5; }
     50% { opacity: 0.5; }
     100% { opacity: 1; transform: translateY(0); }
 }
-/* Mobile Tweak: On very small phones, center everything */
+
+/* Responsive Mobile Layout */
+@media (max-width: 850px) {
+    .dispatch-content {
+        padding: 0 20px;
+        gap: 20px;
+    }
+    .dispatch-title {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 600px) {
+    .riso-dispatch-bar {
+        padding: 15px 0;
+    }
     .dispatch-content {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         text-align: center;
+        padding: 0 15px;
+    }
+    .dispatch-label {
+        margin-right: 0;
     }
     .dispatch-action {
         margin-right: 0;
         width: 100%;
+        padding: 10px 20px;
     }
 }
 
