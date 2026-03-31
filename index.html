@@ -161,3 +161,25 @@
 
 </body>
 </html>
+<script>
+const sections = document.querySelectorAll('section, .bento-grid, .chapter-links');
+const body = document.body;
+
+const options = { threshold: 0.3 }; // Trigger when 30% of section is visible
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Remove all existing themes
+            body.classList.remove('theme-live', 'theme-chapters', 'theme-description');
+            
+            // Add theme based on the section's ID or class
+            if (entry.target.classList.contains('photo-card')) body.classList.add('theme-live');
+            if (entry.target.classList.contains('chapter-links')) body.classList.add('theme-chapters');
+            if (entry.target.classList.contains('description-section')) body.classList.add('theme-description');
+        }
+    });
+}, options);
+
+sections.forEach(section => observer.observe(section));
+</script>
