@@ -173,7 +173,7 @@ nav a:hover::after {
     gap: 20px;
 }
 
-/* THE WINDOWS (Shared logic for Flush Headers) */
+/* THE WINDOWS */
 .logo-window, .journal-entry, .hero-image-wrapper {
     background: #ffffff;
     border: 1px solid #000;
@@ -181,43 +181,61 @@ nav a:hover::after {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 0 !important; /* Forces header bar to touch the edges */
+    padding: 0 !important; 
 }
 
-/* THE SHARED HEADER */
-.logo-window::before,
-.journal-entry::before, 
-.hero-image-wrapper::before {
+/* UNIVERSAL HEADER (Replaces old ::before logic) */
+.logo-window .window-header,
+.journal-entry .window-header,
+.hero-image-wrapper .window-header {
     height: 32px;
     background: #f0f0f0;
     border-bottom: 1px solid #000;
     padding: 0 12px;
     display: flex;
     align-items: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: #000;
+    justify-content: space-between; /* Snaps title left, dots right */
     box-sizing: border-box;
-    
-    /* Dots strictly right-aligned */
+}
+
+/* THE DOTS (Right-aligned via ::after) */
+.logo-window .window-header::after,
+.journal-entry .window-header::after,
+.hero-image-wrapper .window-header::after {
+    content: "";
+    width: 40px;
+    height: 10px;
+    display: inline-block;
     background-image: 
         radial-gradient(circle, #ccc 2px, transparent 3px),
         radial-gradient(circle, #ccc 2px, transparent 3px),
         radial-gradient(circle, #ccc 2px, transparent 3px);
     background-repeat: no-repeat;
     background-position: 
+        calc(100% - 0px) center, 
         calc(100% - 12px) center, 
-        calc(100% - 24px) center, 
-        calc(100% - 36px) center;
+        calc(100% - 24px) center;
+    transition: background-image 0.2s ease;
 }
 
-/* Header Content Controls */
-.logo-window::before { content: "LOGO.IMG"; }
-.hero-image-wrapper::before { content: "VIEWER.EXE"; }
-.journal-entry::before { content: ""; } /* Removed MANIFESTO.TXT text */
+/* SHARED HOVER EFFECT */
+.logo-window:hover .window-header::after,
+.journal-entry:hover .window-header::after,
+.hero-image-wrapper:hover .window-header::after {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px) !important;
+}
 
-/* THE CONTENT BODIES (Padding moved here) */
+.window-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* THE CONTENT BODIES */
 .logo-body, .window-body {
     padding: 25px;
     font-family: 'Space Mono', monospace;
@@ -227,7 +245,7 @@ nav a:hover::after {
 
 /* LOGO SPECIFIC */
 .logo-window { width: fit-content; }
-.logo-body { padding: 30px 40px; } /* Breathable space for the logo */
+.logo-body { padding: 30px 40px; }
 .main-logo {
     width: 250px;
     display: block;
@@ -243,16 +261,6 @@ nav a:hover::after {
     width: 100%;
     display: block;
     filter: contrast(1.05) saturate(0.9);
-}
-
-/* Shared Hover Effect */
-.logo-window:hover::before,
-.journal-entry:hover::before, 
-.hero-image-wrapper:hover::before {
-    background-image: 
-        radial-gradient(circle, #ff7c79 2px, transparent 3px),
-        radial-gradient(circle, #5bfad5 2px, transparent 3px),
-        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 /* Mobile Alignment */
