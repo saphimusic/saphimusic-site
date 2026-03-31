@@ -23,14 +23,14 @@ body {
 }
 
 /* Federal Blue for Live Section */
-body.theme-bento-grid { background-color: #111111; }
+body.theme-bento-grid { background-color: #c70000; }
 body.theme-bento-grid .photo-card { border-color: rgba(255,255,255,0.3); }
 
 /* Fluorescent Pink/Orange for Chapters */
-body.theme-chapters { background-color: #ffcca3; }
+body.theme-chapters { background-color: #ffd6b4; }
 
 /* Dark "Laboratory" Teal for Description */
-body.theme-description { background-color: #111111; }
+body.theme-description { background-color: #fff679; }
 
 /* --- GLOBAL PRO-FILM GRAIN --- */
 body::after {
