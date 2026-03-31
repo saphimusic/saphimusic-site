@@ -122,8 +122,8 @@ nav a:hover::after {
 .hero-image-wrapper::before {
     content: "VIEWER.EXE";
     display: block;
-    background: var(--sys-blue);
-    color: #ffffff;
+    background: var(--sys-grey);
+    color: #000000;
     padding: 6px 12px;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
