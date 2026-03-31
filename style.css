@@ -674,18 +674,6 @@ nav a:hover { opacity: 0.5; }
     50% { background-color: #e5e2d9; }
     100% { background-color: #f2f0e9; }
 }
-/* --- 8. MARGIN NOTES --- */
-.margin-note {
-    font-family: 'Covered By Your Grace', cursive;
-    position: absolute;
-    z-index: 10;
-    width: 180px;
-    font-size: 1.2rem;
-    color: var(--ink);
-}
-
-.note-1 { top: 0%; left: 5%; transform: rotate(-8deg); }
-.note-2 { top: 80%; right: 5%; transform: rotate(4deg); }
 
 /* --- 8. CLEANUP & MOBILE --- */
 .spine, .timeline-line, .central-line {
