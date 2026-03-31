@@ -324,7 +324,7 @@ nav a:hover { opacity: 0.5; }
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     color: #fdfcf8;
-    background: #004d4d; /* Federal Blue */
+    background: #2e59ff; /* Federal Blue */
     padding: 8px 15px;
     text-decoration: none;
     border: 1px solid rgba(255,255,255,0.2);
@@ -341,7 +341,7 @@ nav a:hover { opacity: 0.5; }
 
 .studio-sub-btn:hover {
     background: #ff7c79;
-    color: #004d4d;
+    color: #2e59ff;
     box-shadow: 4px 4px 0px #fdfcf8;
 }
 
