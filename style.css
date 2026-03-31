@@ -160,10 +160,16 @@ nav a:hover { opacity: 0.5; }
 .dispatch-content {
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    
+    /* THE FIX: This ensures a 5% gap from the screen edges at all times */
+    padding: 0 5%; 
+    
+    /* Optional: helps with vertical centering if the bar feels cramped */
+    box-sizing: border-box; 
 }
 
 .dispatch-label {
@@ -181,7 +187,7 @@ nav a:hover { opacity: 0.5; }
     margin: 0;
     flex-grow: 1;
 }
-
+   
 .dispatch-action {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
@@ -192,6 +198,14 @@ nav a:hover { opacity: 0.5; }
     padding: 12px 25px;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+     /* Ensure the button has its own internal breathing room */
+    padding: 12px 30px; 
+    
+    /* Add a slight right margin if you want it even further from the glass */
+    margin-right: 10px; 
+    
+    white-space: nowrap;
+    flex-shrink: 0; /* Prevents the button from squishing on small screens */
 }
 
 .dispatch-action:hover {
@@ -210,6 +224,19 @@ nav a:hover { opacity: 0.5; }
     50% { opacity: 0.5; }
     100% { opacity: 1; transform: translateY(0); }
 }
+/* Mobile Tweak: On very small phones, center everything */
+@media (max-width: 600px) {
+    .dispatch-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .dispatch-action {
+        margin-right: 0;
+        width: 100%;
+    }
+}
+
 /*MARQUEE BANNER*/
 .marquee {
   overflow: hidden;
