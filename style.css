@@ -102,53 +102,6 @@ nav a:hover::after {
     background: var(--sys-blue);
 }
 
-/* --- THE UNIVERSAL HOVER SYSTEM --- */
-
-/* This targets every window header on your site */
-.logo-window::before, 
-.journal-entry::before, 
-.hero-image-wrapper::before,
-.terminal-window .window-header::after,
-.description-window .window-header::after {
-    content: "";
-    width: 40px;
-    height: 32px;
-    display: inline-block;
-    
-    /* Default Grey Dots */
-    background-image: 
-        radial-gradient(circle, #ccc 2px, transparent 3px),
-        radial-gradient(circle, #ccc 2px, transparent 3px),
-        radial-gradient(circle, #ccc 2px, transparent 3px);
-    background-repeat: no-repeat;
-    background-position: 
-        calc(100% - 0px) center, 
-        calc(100% - 12px) center, 
-        calc(100% - 24px) center;
-    transition: background-image 0.2s ease;
-}
-
-/* THE HOVER TRIGGER */
-/* When you hover the window, the dots "wake up" */
-.logo-window:hover::before,
-.journal-entry:hover::before,
-.hero-image-wrapper:hover::before,
-.terminal-window:hover .window-header::after,
-.description-window:hover .window-header::after {
-    background-image: 
-        radial-gradient(circle, #ff7c79 2px, transparent 3px),
-        radial-gradient(circle, #5bfad5 2px, transparent 3px),
-        radial-gradient(circle, #5bcefa 2px, transparent 3px) !important;
-}
-
-/* Ensure Terminal/Description headers align correctly */
-.terminal-window .window-header, 
-.description-window .window-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 /* --- 3. HERO SPREAD (README.TXT STYLE) --- */
 .hero-spread {
     display: flex;
@@ -177,6 +130,34 @@ nav a:hover::after {
     flex-direction: column;
     overflow: hidden;
     padding: 0 !important; /* Forces header bar to touch the edges */
+}
+
+/* THE SHARED HEADER */
+.logo-window::before,
+.journal-entry::before, 
+.hero-image-wrapper::before {
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #000;
+    box-sizing: border-box;
+    
+    /* Dots strictly right-aligned */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center, 
+        calc(100% - 36px) center;
 }
 
 /* Header Content Controls */
@@ -210,6 +191,16 @@ nav a:hover::after {
     width: 100%;
     display: block;
     filter: contrast(1.05) saturate(0.9);
+}
+
+/* Shared Hover Effect */
+.logo-window:hover::before,
+.journal-entry:hover::before, 
+.hero-image-wrapper:hover::before {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 /* Mobile Alignment */
@@ -401,11 +392,50 @@ nav a:hover::after {
     z-index: 1;
 }
 
+/* MATCHING THE CHAPTER BOX HEADER EXACTLY */
+.description-window .window-header {
+    height: 32px; /* Matching the chapter-box::before height */
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 12px;
+    display: flex;
+    align-items: center; /* Vertical center */
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
 .description-window .window-title {
     font-family: 'Space Mono', monospace;
     font-size: 10px; /* Matching chapter text size */
     text-transform: uppercase;
     color: #000;
+}
+
+/* MATCHING THE 3-DOT CONTROL VISUALS */
+.window-dots {
+    display: flex;
+    align-items: center;
+    width: 40px; /* Space for the 3 dots */
+    height: 100%;
+    
+    /* Using the same radial gradient logic from the links */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 0px) center, 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center;
+}
+
+/* Optional: Make the dots turn color on hover to match the others */
+.description-window:hover .window-dots {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 .description-content {
@@ -501,10 +531,26 @@ nav a:hover::after {
     overflow: hidden;
 }
 
+/* OS Header Bar */
+#live-terminal .window-header {
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .window-title {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
     color: #000;
+}
+
+.window-dots { display: flex; gap: 6px; }
+.window-dots span {
+    width: 6px; height: 6px; border-radius: 50%; background: #ccc;
 }
 
 /* Terminal Content */
@@ -574,6 +620,33 @@ nav a:hover::after {
     transition: all 0.2s ease;
     position: relative;
     box-sizing: border-box;
+}
+
+/* THE WINDOW HEADER BAR */
+.chapter-box::before {
+    content: "FILE_0" attr(data-id) ".SYS";
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #000;
+    box-sizing: border-box;
+    
+    /* The 3 Control Buttons (The visuals you liked) */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center, 
+        calc(100% - 36px) center;
 }
 
 /* THE SYSTEM HOVER */
