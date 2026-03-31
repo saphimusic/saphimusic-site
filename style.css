@@ -28,58 +28,6 @@ body {
     padding-bottom: 50px; 
 }
 
-/* --- UNIVERSAL WINDOW SYSTEM --- */
-.window-entry {
-    background: #fff;
-    border: 1px solid #000;
-    box-shadow: 4px 4px 0px #000;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.window-header {
-    height: 32px;
-    background: #f0f0f0;
-    border-bottom: 1px solid #000;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.window-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-}
-
-.window-dots {
-    display: flex;
-    gap: 6px;
-}
-
-.window-dots span {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-}
-
-/* Dots are always these colors now */
-.window-dots span:nth-child(1) { background: #ff7c79; }
-.window-dots span:nth-child(2) { background: #5bfad5; }
-.window-dots span:nth-child(3) { background: #5bcefa; }
-
-/* Remove ALL old "ghost" header logic */
-.journal-entry::before, 
-.hero-image-wrapper::before,
-.logo-window::before,
-.video-card::before,
-.spotify-card::before {
-    display: none !important;
-}
-
 /*1.2 MARQUEE BANNER*/
 .marquee {
   overflow: hidden;
@@ -154,7 +102,7 @@ nav a:hover::after {
     background: var(--sys-blue);
 }
 
-/* --- 3. HERO SPREAD (Cleaned) --- */
+/* --- 3. HERO SPREAD (README.TXT STYLE) --- */
 .hero-spread {
     display: flex;
     align-items: flex-start;
@@ -173,12 +121,51 @@ nav a:hover::after {
     gap: 20px;
 }
 
-/* THE WINDOWS (Styling now inherited from Universal System) */
+/* THE WINDOWS (Shared logic for Flush Headers) */
 .logo-window, .journal-entry, .hero-image-wrapper {
-    padding: 0 !important; 
+    background: #ffffff;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 !important; /* Forces header bar to touch the edges */
 }
 
-/* THE CONTENT BODIES */
+/* THE SHARED HEADER */
+.logo-window::before,
+.journal-entry::before, 
+.hero-image-wrapper::before {
+    height: 32px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #000;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #000;
+    box-sizing: border-box;
+    
+    /* Dots strictly right-aligned */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center, 
+        calc(100% - 36px) center;
+}
+
+/* Header Content Controls */
+.logo-window::before { content: "LOGO.IMG"; }
+.hero-image-wrapper::before { content: "VIEWER.EXE"; }
+.journal-entry::before { content: ""; } /* Removed MANIFESTO.TXT text */
+
+/* THE CONTENT BODIES (Padding moved here) */
 .logo-body, .window-body {
     padding: 25px;
     font-family: 'Space Mono', monospace;
@@ -188,7 +175,7 @@ nav a:hover::after {
 
 /* LOGO SPECIFIC */
 .logo-window { width: fit-content; }
-.logo-body { padding: 30px 40px; } 
+.logo-body { padding: 30px 40px; } /* Breathable space for the logo */
 .main-logo {
     width: 250px;
     display: block;
@@ -206,6 +193,16 @@ nav a:hover::after {
     filter: contrast(1.05) saturate(0.9);
 }
 
+/* Shared Hover Effect */
+.logo-window:hover::before,
+.journal-entry:hover::before, 
+.hero-image-wrapper:hover::before {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
+}
+
 /* Mobile Alignment */
 @media (max-width: 850px) {
     .hero-spread { flex-direction: column; align-items: center; }
@@ -213,7 +210,6 @@ nav a:hover::after {
     .logo-window { width: 100%; }
     .logo-body { display: flex; justify-content: center; }
 }
-
 /* --- 4. THE SYSTEM TASKBAR (Functional) --- */
 .system-taskbar {
     position: fixed;
@@ -289,7 +285,7 @@ nav a:hover::after {
     }
 }
 
-/* --- 5. THE MEDIA HUB (Bento Layout) --- */
+/* --- 5. THE MODULAR HUB (Height Alignment) --- */
 #media-hub {
     display: grid !important;
     grid-template-columns: 1.4fr 1fr !important;
@@ -297,33 +293,39 @@ nav a:hover::after {
     max-width: 1050px;
     margin: 60px auto;
     padding: 0 5%;
+    /* This ensures both columns take up the same vertical space */
     align-items: stretch; 
 }
 
 .video-column, .spotify-column {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    /* This pushes the buttons to the very bottom so they align */
+    justify-content:沟通; 
 }
 
-/* Fixed height sync for both players */
+/* Force YouTube to a specific height if you want total pixel-perfection, 
+   or let it stay 16/9 and we'll match Spotify to it */
 .video-column iframe {
     width: 100%;
-    height: 352px; /* Fixed height to match Spotify */
+    height: 352px;
+    aspect-ratio: 16/9;
     border: none;
     display: block;
 }
 
 .spotify-column iframe {
     width: 100%;
-    height: 352px;
+    /* We change height to 100% so it fills the flex container, 
+       but we give it a min-height so it doesn't collapse */
+    height: 100% !important;
+    min-height: 352px; 
     border: none;
     border-radius: 12px;
 }
 
-/* System Buttons */
 .native-sub-btn {
-    margin-top: 15px;
+    margin-top: 15px; /* Consistent gap from the player above */
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     text-transform: uppercase;
@@ -342,7 +344,6 @@ nav a:hover::after {
     box-shadow: 2px 2px 0px #000;
     background: #f0f0f0;
 }
-
 /* Mobile: Stack them */
 @media (max-width: 850px) {
     #media-hub {
@@ -350,72 +351,91 @@ nav a:hover::after {
     }
 }
 
-/* --- 4. THE TASKBAR (Cleaned) --- */
+/* --- 4. THE TASKBAR (Spacing Fix) --- */
 .system-taskbar {
+    /* ... keep your existing position/bg settings ... */
     display: flex;
     justify-content: flex-start;
     padding: 0 10px;
     gap: 10px;
-    background: #f0f0f0; /* Standard system grey */
-    border-top: 1px solid #000;
 }
 
 .task-tabs {
     display: flex;
-    gap: 8px; 
+    gap: 8px; /* Increased gap so buttons don't touch */
     align-items: center;
 }
 
 .task-tab {
-    padding: 4px 15px; 
-    white-space: nowrap; 
-    min-width: 80px; 
-    display: flex;
-    align-items: center;
+    /* ... keep your existing border/bg settings ... */
+    padding: 4px 15px; /* More horizontal padding for better click area */
+    white-space: nowrap; /* Prevents text from wrapping inside the button */
+    min-width: 80px; /* Gives them a consistent "system" look */
     justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    border: 1px solid #000;
-    background: #fff;
-    text-decoration: none;
-    color: #000;
 }
 
-/* --- UPDATED DESCRIPTION WINDOW (Cleaned) --- */
+/* Responsive: Only stack when the screen is actually small */
+@media (max-width: 950px) {
+    .bento-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* --- UPDATED DESCRIPTION WINDOW (README.TXT) --- */
 .description-window {
     position: relative; 
     max-width: 800px;
     margin: 40px auto 80px auto;
     background: #ffffff;
     border: 1px solid #000;
-    box-shadow: 4px 4px 0px #000; /* Matched to site-wide 4px shadow */
+    box-shadow: 2px 2px 0px #000;
     z-index: 1;
 }
 
-/* Universal Header Alignment */
+/* MATCHING THE CHAPTER BOX HEADER EXACTLY */
 .description-window .window-header {
-    height: 32px;
+    height: 32px; /* Matching the chapter-box::before height */
     background: #f0f0f0;
     border-bottom: 1px solid #000;
     padding: 0 12px;
     display: flex;
-    align-items: center; 
+    align-items: center; /* Vertical center */
     justify-content: space-between;
     box-sizing: border-box;
 }
 
 .description-window .window-title {
     font-family: 'Space Mono', monospace;
-    font-size: 10px;
+    font-size: 10px; /* Matching chapter text size */
     text-transform: uppercase;
     color: #000;
 }
 
-/* Dots now controlled by Universal span logic */
+/* MATCHING THE 3-DOT CONTROL VISUALS */
 .window-dots {
     display: flex;
-    gap: 6px;
     align-items: center;
+    width: 40px; /* Space for the 3 dots */
+    height: 100%;
+    
+    /* Using the same radial gradient logic from the links */
+    background-image: 
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px),
+        radial-gradient(circle, #ccc 2px, transparent 3px);
+    background-repeat: no-repeat;
+    background-position: 
+        calc(100% - 0px) center, 
+        calc(100% - 12px) center, 
+        calc(100% - 24px) center;
+}
+
+/* Optional: Make the dots turn color on hover to match the others */
+.description-window:hover .window-dots {
+    background-image: 
+        radial-gradient(circle, #ff7c79 2px, transparent 3px),
+        radial-gradient(circle, #5bfad5 2px, transparent 3px),
+        radial-gradient(circle, #5bcefa 2px, transparent 3px);
 }
 
 .description-content {
@@ -423,14 +443,7 @@ nav a:hover::after {
     font-family: 'Space Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.6;
-    clear: both; 
-}
-
-/* Mobile Fix */
-@media (max-width: 950px) {
-    .description-window {
-        margin: 20px 5%;
-    }
+    clear: both; /* Safety for the floating audio */
 }
 /* --- SYSTEM OS: STRAY AUDIO WINDOW --- */
 .stray-audio {
