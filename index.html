@@ -171,10 +171,10 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             // Remove all existing themes
-            body.classList.remove('theme-live', 'theme-chapters', 'theme-description');
+            body.classList.remove('theme-bento-grid', 'theme-chapters', 'theme-description');
             
             // Add theme based on the section's ID or class
-            if (entry.target.classList.contains('photo-card')) body.classList.add('theme-live');
+            if (entry.target.classList.contains('bento-grid')) body.classList.add('theme-live');
             if (entry.target.classList.contains('chapter-links')) body.classList.add('theme-chapters');
             if (entry.target.classList.contains('description-section')) body.classList.add('theme-description');
         }
