@@ -63,10 +63,10 @@ nav a:hover::after {
 /* --- 3. HERO SPREAD (README.TXT STYLE) --- */
 .hero-spread {
     display: flex;
-    align-items: flex-start; /* Align to top of windows */
+    align-items: flex-start;
     justify-content: center; 
-    gap: 30px;               /* Tightened gap */
-    max-width: 1000px;       /* Pulled in for better focus */
+    gap: 30px;
+    max-width: 1000px;
     margin: 60px auto;
     padding: 0 5%;
 }
@@ -74,24 +74,13 @@ nav a:hover::after {
 .hero-left {
     flex: 1;
     max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between logo window and text window */
 }
 
-.date-stamp {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    margin-bottom: 15px;
-    display: block;
-}
-
-.main-logo {
-    width: 100%;
-    max-width: 280px;
-    margin-bottom: 25px;
-}
-
-/* --- THE WINDOWS (Shared README Logic) --- */
-.journal-entry, .hero-image-wrapper {
+/* THE WINDOWS (Shared logic for Logo, Journal, and Image) */
+.logo-window, .journal-entry, .hero-image-wrapper {
     background: #ffffff;
     border: 1px solid #000;
     box-shadow: 4px 4px 0px #000;
@@ -101,9 +90,9 @@ nav a:hover::after {
 }
 
 /* THE SHARED HEADER (Grey bar with dots) */
+.logo-window::before,
 .journal-entry::before, 
 .hero-image-wrapper::before {
-    content: attr(data-title); /* Pulls title from HTML */
     height: 32px;
     background: #f0f0f0;
     border-bottom: 1px solid #000;
@@ -115,7 +104,6 @@ nav a:hover::after {
     text-transform: uppercase;
     color: #000;
     
-    /* The 3-Dot Controls */
     background-image: 
         radial-gradient(circle, #ccc 2px, transparent 3px),
         radial-gradient(circle, #ccc 2px, transparent 3px),
@@ -128,18 +116,34 @@ nav a:hover::after {
 }
 
 /* Specific Header Titles */
+.logo-window::before { content: "BRAND_ASSET.IMG"; }
+.journal-entry::before { content: "MANIFESTO.TXT"; }
 .hero-image-wrapper::before { content: "VIEWER.EXE"; }
 
+/* LOGO WINDOW CONTENT */
+.logo-window {
+    width: fit-content;
+}
+
+.main-logo {
+    width: 250px;
+    padding: 30px 40px; /* Now creates a nice 'gallery' frame around the logo */
+    display: block;
+    height: auto;
+}
+
+/* TEXT WINDOW CONTENT */
 .journal-entry {
     font-family: 'Space Mono', monospace;
     font-size: 0.85rem;
     line-height: 1.6;
-    padding: 25px; /* Content padding */
+    padding: 25px;
 }
 
+/* IMAGE WINDOW CONTENT */
 .hero-image-wrapper {
     flex: 1;
-    max-width: 400px;
+    max-width: 420px;
 }
 
 .film-photo {
@@ -148,7 +152,8 @@ nav a:hover::after {
     filter: contrast(1.05) saturate(0.9);
 }
 
-/* Optional hover effect to color the dots like the README */
+/* Shared Hover Effect for all Window Headers */
+.logo-window:hover::before,
 .journal-entry:hover::before, 
 .hero-image-wrapper:hover::before {
     background-image: 
@@ -167,6 +172,8 @@ nav a:hover::after {
         width: 100%;
         max-width: 100%;
     }
+    .logo-window { width: 100%; } /* Stretches logo window to fit mobile width */
+    .main-logo { margin: 0 auto; } /* Centers logo inside the window on mobile */
 }
 
 /* --- THE SYSTEM TASKBAR (Web1 Style) --- */
