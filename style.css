@@ -162,7 +162,7 @@ nav a:hover::after {
     justify-content: center; 
     gap: 30px;
     max-width: 1000px;
-    margin: 60px auto;
+    margin: 30px auto;
     padding: 0 5%;
 }
 
@@ -359,7 +359,7 @@ nav a:hover::after {
     grid-template-columns: 1.4fr 1fr !important;
     gap: 25px;
     max-width: 1050px;
-    margin: 60px auto;
+    margin: 50px auto;
     padding: 0 5%;
     /* This ensures both columns take up the same vertical space */
     align-items: stretch; 
@@ -593,7 +593,7 @@ nav a:hover::after {
     border: 1px solid #000;
     box-shadow: 4px 4px 0px #000;
     max-width: 900px;
-    margin: 60px auto 120px;
+    margin: 30px auto 120px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
