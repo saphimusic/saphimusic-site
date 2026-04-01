@@ -187,6 +187,117 @@ textarea { height: 150px; margin-top: 1rem; }
     line-height: 1.6;
 }
 
+/* --- Pricing Section --- */
+.pricing {
+    padding: 8rem 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch; /* Ensures all cards are the same height */
+}
+
+.price-card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s ease;
+}
+
+.price-card:first-child {
+    border-style: dashed; /* Looks like a "Plugin" or "Add-on" */
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.featured-price {
+    border: 1px solid var(--accent);
+    background: linear-gradient(145deg, #111 0%, #1a1a1a 100%);
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(0, 255, 170, 0.15);
+}
+
+.tier-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.price-value {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 1.5rem 0;
+}
+
+.per {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 400;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+}
+
+.features li {
+    padding: 0.5rem 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    border-bottom: 1px solid #222;
+}
+
+.features li::before {
+    content: "> ";
+    color: var(--accent);
+    font-family: var(--font-mono);
+}
+
+.price-btn {
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #444;
+    color: white;
+    transition: 0.3s;
+}
+
+.price-btn.active {
+    background: var(--accent);
+    color: black;
+    border-color: var(--accent);
+}
+
+.price-btn:hover {
+    background: white;
+    color: black;
+}
+
+.pricing-note {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+}
+
+/* --- Mobile Fix for Featured Card --- */
+@media (max-width: 768px) {
+    .featured-price {
+        transform: scale(1);
+        margin: 1rem 0;
+    }
+}
+
 /* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
     .step {
