@@ -249,11 +249,34 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 .operator-bio p { color: var(--text-dim); margin-bottom: 1.5rem; font-size: 1.1rem; }
 
 .signature { margin-top: 3rem; }
+/* 1. Register the custom font */
+@font-face {
+    font-family: 'BristolCustom'; 
+    src: url('fonts/bristol.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* This ensures text shows up immediately */
+}
+
+/* 2. Apply it to your signature */
 .handwritten {
-    font-family: 'Brush Script MT', cursive; /* Or a Google Font like 'Caveat' */
-    font-size: 2.5rem;
+    font-family: 'BristolCustom', cursive;
+    font-size: 4.5rem; /* Bristol is usually quite 'thin', so don't be afraid to go big */
     color: var(--accent);
-    opacity: 0.8;
+    line-height: 0.8;
+    display: inline-block;
+    transform: rotate(-3deg); /* Adds a natural 'human' slant to the signature */
+    margin-top: 10px;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 170, 0.3)); /* Subtle neon glow */
+    text-transform: none; /* Keeps the font's intended casing */
+}
+
+.signature p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0;
 }
 
 /* Mobile Responsive */
