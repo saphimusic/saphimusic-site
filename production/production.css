@@ -125,3 +125,75 @@ textarea { height: 150px; margin-top: 1rem; }
     .form-group { flex-direction: column; }
     h1 { font-size: 2.5rem; }
 }
+
+/* --- Workflow Section --- */
+.workflow {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #0f0f0f 100%);
+}
+
+.section-label {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.pipeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0; /* Connected look */
+    border: 1px solid #222;
+}
+
+.step {
+    padding: 3rem;
+    border-right: 1px solid #222;
+    transition: background 0.3s ease;
+}
+
+.step:last-child {
+    border-right: none;
+}
+
+.step:hover {
+    background: rgba(0, 255, 170, 0.02);
+}
+
+.step-header {
+    margin-bottom: 1.5rem;
+}
+
+.step-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: #1a1a1a;
+    padding: 4px 8px;
+    color: var(--text-dim);
+    border-radius: 3px;
+    border: 1px solid #333;
+}
+
+.step h4 {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.step p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .step {
+        border-right: none;
+        border-bottom: 1px solid #222;
+    }
+    .step:last-child {
+        border-bottom: none;
+    }
+}
