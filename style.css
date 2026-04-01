@@ -770,6 +770,7 @@ nav a:hover::after {
     gap: 30px;
     padding: 40px;
     justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -792,7 +793,7 @@ nav a:hover::after {
 .icon-label {
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 2px 4px;
     word-wrap: break-word;
@@ -802,7 +803,8 @@ nav a:hover::after {
 
 /* THE 'SELECTED' EFFECT */
 .desktop-icon:hover .icon-label {
-    background-color: #000080; /* Classic Win95 selection blue */
+    background-color: #000080;
+    color: rgb(255, 255, 255); /* Classic Win95 selection blue */
     border: 1px dotted #ffff00; /* Yellow dotted selection border */
 }
 
