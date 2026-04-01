@@ -14,7 +14,7 @@ html {
     /* System OS Additions */
     --sys-grey: #d4d0c8;     /* Classic Win95 Silver */
     --sys-blue: #2e59ff;     /* Saphi Blue / Header Blue */
-    --term-green: #00ff41;   /* Matrix/Terminal Green */
+    --term-pink: #ff7c79;   /* Matrix/Terminal Green */
 }
 
 body {
@@ -625,7 +625,7 @@ nav a:hover::after {
 .terminal-body {
     padding: 30px;
     font-family: 'Space Mono', monospace;
-    color: #5bfad5; /* Your Green/Cyan */
+    color: var(--term-pink); /* Your Green/Cyan */
     font-size: 0.85rem;
 }
 
