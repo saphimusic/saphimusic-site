@@ -290,6 +290,62 @@ textarea { height: 150px; margin-top: 1rem; }
     font-family: var(--font-mono);
 }
 
+/* --- Q&A Specific Styles --- */
+.qa-card {
+    background: #000 !important; /* Pure black for that terminal look */
+    border: 1px dashed #444 !important;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+}
+
+.terminal-input {
+    background: #1a1a1a;
+    padding: 0.75rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #333;
+}
+
+.prompt {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: bold;
+}
+
+.terminal-input input {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    width: 100%;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.terminal-input input::placeholder {
+    color: #444;
+}
+
+/* Make the FREE text pulse slightly */
+.qa-card .price-value {
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
 /* --- Mobile Fix for Featured Card --- */
 @media (max-width: 768px) {
     .featured-price {
