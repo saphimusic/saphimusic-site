@@ -593,7 +593,7 @@ nav a:hover::after {
     border: 1px solid #000;
     box-shadow: 4px 4px 0px #000;
     max-width: 900px;
-    margin: 30px auto 120px;
+    margin: 30px auto 80px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
