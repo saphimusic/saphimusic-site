@@ -8,6 +8,13 @@
     --font-main: 'Inter', system-ui, sans-serif;
     --font-mono: 'Courier New', monospace; /* Used for numbers/small tech details */
 }
+@font-face {
+    font-family: 'Bristol';
+    /* This path MUST match where you saved the file */
+    src: url('/Users/sophieholliday/Desktop/saphimusic-site/assets/bristol.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -250,13 +257,7 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 
 .signature { margin-top: 3rem; }
 /* 1. Register the custom font */
-@font-face {
-    font-family: 'BristolCustom'; 
-    src: url('fonts/bristol.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap; /* This ensures text shows up immediately */
-}
+
 
 /* 2. Apply it to your signature */
 .handwritten {
