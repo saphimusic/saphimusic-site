@@ -142,6 +142,53 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     color: var(--text-dim);
     text-transform: uppercase;
 }
+/* --- Genre Compatibility --- */
+.compatibility {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    background: #111;
+    color: var(--text-dim);
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 255, 170, 0.05);
+    transform: translateY(-2px);
+}
+
+.compatibility-footer {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #444;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+    color: var(--accent);
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
 /* --- Services Grid --- */
 .grid {
     display: grid;
