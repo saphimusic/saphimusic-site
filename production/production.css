@@ -8,13 +8,6 @@
     --font-main: 'Inter', system-ui, sans-serif;
     --font-mono: 'Courier New', monospace; /* Used for numbers/small tech details */
 }
-@font-face {
-    font-family: 'Bristol';
-    /* This path MUST match where you saved the file */
-    src: url('Users/sophieholliday/Desktop/saphimusic-site/assets/bristol.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -259,27 +252,34 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 /* 1. Register the custom font */
 
 
-/* 2. Apply it to your signature */
 .handwritten {
-    font-family: 'BristolCustom', cursive;
-    font-size: 4.5rem; /* Bristol is usually quite 'thin', so don't be afraid to go big */
+    /* The CDN name is usually 'Bristol' or 'Bristol Regular' */
+    font-family: 'Bristol', 'Bristol Regular', cursive; 
+    
+    /* Scale it up - Bristol is a thin, elegant font */
+    font-size: 5rem; 
     color: var(--accent);
-    line-height: 0.8;
+    
+    /* Technical tweaks for a clean look */
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
     display: inline-block;
-    transform: rotate(-3deg); /* Adds a natural 'human' slant to the signature */
-    margin-top: 10px;
-    filter: drop-shadow(0 0 5px rgba(0, 255, 170, 0.3)); /* Subtle neon glow */
-    text-transform: none; /* Keeps the font's intended casing */
+    
+    /* The 'Human' touch */
+    transform: rotate(-2deg); 
+    margin-top: 5px;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 170, 0.2));
 }
 
+/* Ensure the label above it looks like a system prompt */
 .signature p {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    text-transform: uppercase;
     color: var(--text-dim);
-    margin-bottom: 0;
+    margin-bottom: -10px; /* Pulls the signature up closer to the label */
+    letter-spacing: 1px;
 }
-
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
