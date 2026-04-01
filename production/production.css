@@ -70,7 +70,78 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     text-decoration: none;
     border-radius: 4px;
 }
+/* --- Reviews Section --- */
+.reviews {
+    padding: 6rem 0;
+    background: #080808;
+}
 
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.review-card {
+    background: #111;
+    border-left: 3px solid var(--accent); /* Accent stripe on the side */
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: scale(1.02);
+    background: #161616;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.status-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    background: rgba(0, 255, 170, 0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+.stars {
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.review-text {
+    font-style: italic;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.review-footer {
+    border-top: 1px solid #222;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.client-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.client-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
 /* --- Services Grid --- */
 .grid {
     display: grid;
