@@ -170,14 +170,23 @@
         <h3>Ask a Question</h3>
     </div>
     <div class="price-value">FREE</div>
-    <p class="card-description">Stuck on a mix? Not sure which mic to buy? drop a technical or creative question below.</p>
+    <p class="card-description">Stuck on a mix? Drop a technical or creative question below.</p>
     
-    <div class="terminal-input">
-        <span class="prompt">></span>
-        <input type="text" placeholder="type_question_here..." id="qa-query">
-    </div>
-    
-    <a href="#contact" class="price-btn">Submit to Debug</a>
+    <form action="https://formspree.io/f/mlgoljlv" method="POST" id="qa-form">
+        <div class="terminal-input">
+            <span class="prompt">></span>
+            <input type="text" name="question" placeholder="type_question_here..." id="qa-query" required>
+        </div>
+        
+        <div class="terminal-input" style="margin-top: 10px;">
+            <span class="prompt">@</span>
+            <input type="email" name="email" placeholder="your_email_address..." required>
+        </div>
+
+        <button type="submit" class="price-btn" style="width: 100%; margin-top: 1.5rem; cursor: pointer;">
+            EXECUTE_SEND
+        </button>
+    </form>
 </div>
         </div>
         <p class="pricing-note">* All prices are estimates. Custom quotes provided after initial INIT_01 discovery call.</p>
@@ -204,3 +213,41 @@
 
 </body>
 </html>
+<script>
+
+const form = document.getElementById('qa-form');
+const queryInput = document.getElementById('qa-query');
+
+form.onsubmit = async (e) => {
+    e.preventDefault(); // Stop the page from reloading
+    
+    const button = form.querySelector('button');
+    const originalText = button.innerText;
+    button.innerText = "SENDING...";
+
+    const data = new FormData(form);
+    
+    const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+        button.innerText = "SUCCESS: SENT";
+        button.style.color = "var(--accent)";
+        queryInput.value = ""; // Clear the input
+        form.reset();
+    } else {
+        button.innerText = "ERROR: TRY AGAIN";
+        button.style.color = "red";
+    }
+    
+    // Reset button after 3 seconds
+    setTimeout(() => {
+        button.innerText = originalText;
+        button.style.color = "";
+    }, 3000);
+};
+
+</script>
