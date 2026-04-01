@@ -11,7 +11,7 @@
 @font-face {
     font-family: 'Bristol';
     /* This path MUST match where you saved the file */
-    src: url('/Users/sophieholliday/Desktop/saphimusic-site/assets/bristol.otf') format('opentype');
+    src: url('Users/sophieholliday/Desktop/saphimusic-site/assets/bristol.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
