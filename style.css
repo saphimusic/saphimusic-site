@@ -765,6 +765,51 @@ nav a:hover::after {
     }
 }
 
+.desktop-icons-container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.icon-image {
+    font-size: 40px; /* Or use a 32x32 pixel art icon */
+    margin-bottom: 5px;
+    filter: drop-shadow(1px 1px 0px #000);
+}
+
+.icon-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    padding: 2px 4px;
+    word-wrap: break-word;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+/* THE 'SELECTED' EFFECT */
+.desktop-icon:hover .icon-label {
+    background-color: #000080; /* Classic Win95 selection blue */
+    border: 1px dotted #ffff00; /* Yellow dotted selection border */
+}
+
+.desktop-icon:active {
+    transform: translate(1px, 1px);
+}
+
 /* --- 8. CLEANUP & MOBILE --- */
 .spine, .timeline-line, .central-line {
     display: none !important;
