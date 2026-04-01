@@ -262,24 +262,41 @@ textarea { height: 150px; margin-top: 1rem; }
 }
 
 .price-btn {
+    display: block;
     text-align: center;
     padding: 1rem;
     text-decoration: none;
     font-weight: bold;
-    border: 1px solid #444;
-    color: white;
-    transition: 0.3s;
+    font-family: var(--font-mono); /* Keep the tech vibe */
+    letter-spacing: 1px;
+    
+    /* The Fix: Dark background with Accent Border */
+    background: #000; 
+    color: var(--accent); 
+    border: 1px solid var(--accent);
+    
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .price-btn.active {
     background: var(--accent);
-    color: black;
-    border-color: var(--accent);
+    color: #000;
+}
+
+.price-btn.active:hover {
+    background: #fff;
+    border-color: #fff;
+    box-shadow: 0 0 20px #fff;
 }
 
 .price-btn:hover {
-    background: white;
-    color: black;
+    /* "Power Up" effect */
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent);
+    transform: translateY(-2px);
 }
 
 .pricing-note {
