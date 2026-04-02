@@ -38,14 +38,14 @@
     
     <div class="comparison-grid">
         <div class="track-list">
-            <button class="track-select active" onclick="loadTrack(0)">01. Midnight Haze</button>
-            <button class="track-select" onclick="loadTrack(1)">02. Neon Soul</button>
-            <button class="track-select" onclick="loadTrack(2)">03. Pressure</button>
+            <button class="track-select active" onclick="loadTrack(0)">01. Lost At Home</button>
+            <button class="track-select" onclick="loadTrack(1)">02. Hottest In The World</button>
+            <button class="track-select" onclick="loadTrack(2)">03. CMAT (Bootleg Remix)</button>
             </div>
 
         <div class="comparison-card">
             <div class="track-info">
-                <span id="active-track-name" class="track-name">01. Midnight Haze</span>
+                <span id="active-track-name" class="track-name">01. Lost At Home</span>
                 <span id="version-label" class="version-tag">SAPHI_MASTER</span>
             </div>
             
@@ -364,9 +364,9 @@ form.onsubmit = async (e) => {
 
 // 1. Data Store for your tracks
 const trackData = [
-    { name: "01. Midnight Haze", before: "assets/audio/haze-raw.mp3", after: "assets/audio/haze-master.mp3" },
-    { name: "02. Neon Soul", before: "assets/audio/neon-raw.mp3", after: "assets/audio/neon-master.mp3" },
-    { name: "03. Pressure", before: "assets/audio/pressure-raw.mp3", after: "assets/audio/pressure-master.mp3" }
+    { name: "01. Lost At Home", before: "assets/audio/haze-raw.mp3", after: "assets/audio/haze-master.mp3" },
+    { name: "02. Hottest In The World", before: "assets/audio/HITW-raw.mp3", after: "assets/audio/HITW-master.mp3" },
+    { name: "03. CMAT (Bootleg Remix)", before: "assets/audio/pressure-raw.mp3", after: "assets/audio/pressure-master.mp3" }
 ];
 
 let currentTrackIndex = 0;
