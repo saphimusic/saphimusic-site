@@ -34,27 +34,34 @@
         </div>
 
         <div class="comparison-module">
-            <h3 class="comparison-title">The Transformation</h3>
-            <p class="comparison-desc">Real-time comparison: Raw demo vs. Saphi.</p>
+    <h3 class="comparison-title">// SONIC_TRANSFORMATION_LOG</h3>
+    
+    <div class="comparison-grid">
+        <div class="track-list">
+            <button class="track-select active" onclick="loadTrack(0)">01. Midnight Haze</button>
+            <button class="track-select" onclick="loadTrack(1)">02. Neon Soul</button>
+            <button class="track-select" onclick="loadTrack(2)">03. Pressure</button>
+            </div>
+
+        <div class="comparison-card">
+            <div class="track-info">
+                <span id="active-track-name" class="track-name">01. Midnight Haze</span>
+                <span id="version-label" class="version-tag">SAPHI_MASTER</span>
+            </div>
             
-            <div class="comparison-card">
-                <div class="track-info">
-                    <span class="track-name">Track_01: "LOST_AT_HOME"</span>
-                    <span id="version-label" class="version-tag">FINAL_MASTER</span>
+            <div class="audio-controls">
+                <audio id="comparison-audio" src="assets/audio/haze-master.mp3"></audio>
+                
+                <div class="toggle-container">
+                    <button onclick="switchVersion('before')" class="toggle-btn" id="btn-before">RAW_DEMO</button>
+                    <button onclick="switchVersion('after')" class="toggle-btn active" id="btn-after">SAPHI_MASTER</button>
                 </div>
                 
-                <div class="audio-controls">
-                    <audio id="comparison-audio" src="assets/audio/mastered-track.mp3"></audio>
-                    
-                    <div class="toggle-container">
-                        <button onclick="switchAudio('before')" class="toggle-btn" id="btn-before">RAW_DEMO</button>
-                        <button onclick="switchAudio('after')" class="toggle-btn active" id="btn-after">SAPHI_MASTER</button>
-                    </div>
-                    
-                    <button onclick="togglePlay()" id="play-btn" class="play-main">PLAY_STREAM</button>
-                </div>
+                <button onclick="togglePlay()" id="play-btn" class="play-main">PLAY_STREAM</button>
             </div>
         </div>
+    </div>
+</div>
     </div>
 </section>
 <section class="reviews">
@@ -354,5 +361,63 @@ form.onsubmit = async (e) => {
         button.style.color = "";
     }, 3000);
 };
+
+// 1. Data Store for your tracks
+const trackData = [
+    { name: "01. Midnight Haze", before: "assets/audio/haze-raw.mp3", after: "assets/audio/haze-master.mp3" },
+    { name: "02. Neon Soul", before: "assets/audio/neon-raw.mp3", after: "assets/audio/neon-master.mp3" },
+    { name: "03. Pressure", before: "assets/audio/pressure-raw.mp3", after: "assets/audio/pressure-master.mp3" }
+];
+
+let currentTrackIndex = 0;
+let currentMode = 'after'; // Default to the 'After' version
+
+const audio = document.getElementById('comparison-audio');
+const trackLabel = document.getElementById('active-track-name');
+const versionLabel = document.getElementById('version-label');
+const playBtn = document.getElementById('play-btn');
+
+function loadTrack(index) {
+    currentTrackIndex = index;
+    const isPlaying = !audio.paused;
+    
+    // Update UI tracklist
+    document.querySelectorAll('.track-select').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+    });
+
+    trackLabel.innerText = trackData[index].name;
+    updateAudioSource(isPlaying);
+}
+
+function switchVersion(mode) {
+    currentMode = mode;
+    const isPlaying = !audio.paused;
+    const currentTime = audio.currentTime; // Seamless sync
+    
+    updateAudioSource(isPlaying, currentTime);
+
+    // Update buttons
+    document.getElementById('btn-before').classList.toggle('active', mode === 'before');
+    document.getElementById('btn-after').classList.toggle('active', mode === 'after');
+    versionLabel.innerText = mode === 'before' ? "RAW_DEMO" : "SAPHI_MASTER";
+}
+
+function updateAudioSource(shouldPlay, time = 0) {
+    audio.src = trackData[currentTrackIndex][currentMode];
+    audio.load();
+    audio.currentTime = time;
+    if (shouldPlay) audio.play();
+}
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        playBtn.innerText = "PAUSE_STREAM";
+    } else {
+        audio.pause();
+        playBtn.innerText = "PLAY_STREAM";
+    }
+}
 
 </script>
