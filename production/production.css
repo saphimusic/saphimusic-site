@@ -44,92 +44,69 @@ body {
 }
 .back-link:hover { color: var(--accent); }
 
-/* --- Hero / Header Section --- */
+/* --- The Final Hero Fix --- */
 .hero {
     position: relative;
-    padding: 1rem 0 1rem;
-    /* This creates the "glow" in the center so it's not a black hole */
-    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    padding: 12rem 0 10rem;
+    background-color: #000; /* Base color */
     overflow: hidden;
     text-align: center;
-    min-height: 80vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
 }
 
-.hero-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(0, 255, 170, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    filter: blur(50px);
-    z-index: 1;
-    animation: pulseGlow 8s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-}
-
+/* Layer 1: The Technical Grid */
 .hero::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 255, 170, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 170, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px; /* Size of the grid squares */
+        linear-gradient(rgba(0, 255, 170, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 170, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    /* This makes the grid fade out toward the edges */
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
     z-index: 1;
-    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
 }
+
+/* Layer 2: The Breathing Glow */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; height: 60%;
+    background: radial-gradient(circle, rgba(0, 255, 170, 0.12) 0%, transparent 70%);
+    z-index: 2;
+    animation: pulseGlow 10s infinite ease-in-out;
+}
+
+/* Layer 3: The CRT Scanlines */
 .hero-noise {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.1) 1px,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
         transparent 1px,
         transparent 2px
     );
     pointer-events: none;
-    z-index: 2;
-    opacity: 0.5;
+    z-index: 3;
 }
 
-/* Status Bar Styling */
-.status-bar {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    margin-bottom: 2.5rem;
-    letter-spacing: 2px;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+/* Make sure content stays on TOP of all background layers */
+.hero .container {
+    position: relative;
+    z-index: 10;
 }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -2px;
-    margin-bottom: 2rem;
-    color: #fff;
-}
-
-.hero .subtitle {
-    font-size: 1.2rem;
-    color: var(--text-dim);
-    max-width: 700px;
-    margin: 0 auto 4rem;
-    line-height: 1.6;
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
 }
 
 /* --- THE BUTTON FIX --- */
