@@ -189,155 +189,149 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 @keyframes blinker {
     50% { opacity: 0; }
 }
-/* --- Operator Section --- */
-.operator { 
-    padding: 10rem 0; 
-    background: #050505; 
-    border-top: 1px solid #111;
+/* --- Bio Module --- */
+.bio-module {
+    padding: 10rem 0;
+    background: #050505;
+    color: #fff;
+    overflow: hidden;
 }
 
-.operator .container {
-    max-width: 1400px; /* Expands total width */
+.bio-container {
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 4rem;
+    display: flex;
+    gap: 8rem; /* Space between photo and text */
+    align-items: flex-start;
 }
 
-.grid-2 {
-    display: grid;
-    /* Photo stays fixed at 350px, Bio takes the rest (1fr) */
-    grid-template-columns: 350px 1fr; 
-    gap: 8rem; 
-    align-items: start;
+/* --- Visual Column (Left) --- */
+.bio-visual {
+    flex: 0 0 380px; /* Fixed width: Won't grow, won't shrink */
 }
 
-/* --- Image / Frame Styling --- */
-.operator-frame {
-    width: 100%;
-}
-
-.image-glitch-wrapper {
+.bio-image-wrapper {
     position: relative;
     border: 1px solid #222;
-    overflow: hidden;
+    background: #111;
     line-height: 0;
-    background: #000;
+    aspect-ratio: 4/5; /* Professional portrait ratio */
 }
 
-.profile-img {
+.bio-img {
     width: 100%;
-    height: auto;
-    filter: grayscale(0.4) contrast(1.1);
-    transition: 0.5s ease;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) brightness(0.8);
+    transition: 0.6s ease;
 }
 
-.image-glitch-wrapper:hover .profile-img {
-    filter: grayscale(0) contrast(1);
+.bio-visual:hover .bio-img {
+    filter: grayscale(0) brightness(1);
 }
 
-.scanline {
-    width: 100%;
-    height: 100px;
-    z-index: 3;
-    background: linear-gradient(0deg, rgba(0, 255, 170, 0) 0%, rgba(0, 255, 170, 0.05) 50%, rgba(0, 255, 170, 0) 100%);
-    position: absolute;
-    bottom: 100%;
-    animation: scanline 6s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes scanline {
-    0% { bottom: 100%; }
-    100% { bottom: -100px; }
-}
-
-.meta-data {
-    display: flex;
-    justify-content: space-between;
+.bio-stats {
+    margin-top: 1.5rem;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--accent);
-    margin-top: 1rem;
-    border-top: 1px solid #222;
-    padding-top: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 1px;
 }
 
-/* --- Bio / Text Styling --- */
-.operator-bio {
-    width: 100%;
-}
-
-.operator-bio h3 {
-    font-size: 3.5rem;
-    line-height: 1;
-    margin-bottom: 2.5rem;
-    color: #fff;
-    letter-spacing: -2px;
-}
-
-.lead-text {
-    font-size: 1.5rem !important;
-    color: #fff !important;
-    line-height: 1.4 !important;
-    margin-bottom: 2rem;
-}
-
-.operator-bio p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-    margin-bottom: 1.5rem;
-    max-width: 900px; /* Optimal reading width */
-}
-
-.highlight {
+.stat-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #111;
     color: var(--accent);
-    box-shadow: inset 0 -1px 0 var(--accent);
+}
+
+.status-pulse {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* --- Content Column (Right) --- */
+.bio-content {
+    flex: 1; /* Takes up ALL remaining space */
+}
+
+.bio-label {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.bio-title {
+    font-size: clamp(3rem, 6vw, 5.5rem); /* Responsive sizing */
+    line-height: 0.9;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+}
+
+.bio-text {
+    max-width: 850px; /* Limits line length for readability */
+}
+
+.bio-intro {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    color: #eee;
+}
+
+.bio-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.accent-text {
+    color: var(--accent);
+    font-weight: bold;
 }
 
 /* --- Signature --- */
-.signature {
+.bio-footer {
     margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #111;
 }
 
-.signature p {
+.sig-label {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: #444;
-    margin-bottom: -10px;
-    letter-spacing: 2px;
+    display: block;
 }
 
 .handwritten {
-    font-family: 'Bristol', 'Bristol Regular', cursive;
+    font-family: 'Bristol', cursive;
     font-size: 5rem;
     color: var(--accent);
     display: inline-block;
-    transform: rotate(-3deg);
-    line-height: 1;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.15));
+    transform: rotate(-2deg);
+    margin-top: 0.5rem;
 }
 
-/* --- Responsive Fix --- */
-@media (max-width: 1100px) {
-    .grid-2 { gap: 4rem; }
-    .operator-bio h3 { font-size: 2.5rem; }
-}
-
-@media (max-width: 900px) {
-    .operator .container { padding: 0 2rem; }
-    .grid-2 { 
-        grid-template-columns: 1fr; 
-        gap: 3rem; 
+/* --- Mobile Fix --- */
+@media (max-width: 1024px) {
+    .bio-container {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 0 2rem;
     }
-    .operator-frame { 
-        max-width: 400px; 
-        margin: 0 auto; 
+    .bio-visual {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
-    .operator-bio h3 { text-align: center; }
-    .operator-bio p { text-align: center; margin-left: auto; margin-right: auto; }
-    .signature { text-align: center; }
 }
 /* --- Services Grid --- */
 .grid {
