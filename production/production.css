@@ -190,38 +190,45 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     50% { opacity: 0; }
 }
 /* --- Operator Section --- */
-.operator { padding: 8rem 0; background: #050505; }
-
-.container {
-    max-width: 1300px; /* Increased from 1100px or 1200px */
-    margin: 0 auto;
-    padding: 0 2rem;
+.operator { 
+    padding: 10rem 0; 
+    background: #050505; 
+    border-top: 1px solid #111;
 }
 
-/* 2. Update the Grid to give the Bio more 'weight' */
+.operator .container {
+    max-width: 1400px; /* Expands total width */
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
 .grid-2 {
     display: grid;
-    /* The first col stays at 300px, the second col takes EVERY bit of remaining space */
-    grid-template-columns: 300px 1fr; 
-    gap: 5rem; 
+    /* Photo stays fixed at 350px, Bio takes the rest (1fr) */
+    grid-template-columns: 350px 1fr; 
+    gap: 8rem; 
     align-items: start;
-    width: 100%; /* Force the grid to fill the container */
 }
+
+/* --- Image / Frame Styling --- */
 .operator-frame {
-    max-width: 350px; /* Keeps your photo from growing too large */
+    width: 100%;
 }
 
 .image-glitch-wrapper {
     position: relative;
-    border: 1px solid #333;
+    border: 1px solid #222;
     overflow: hidden;
     line-height: 0;
+    background: #000;
 }
 
 .profile-img {
     width: 100%;
-    filter: grayscale(0.5) contrast(1.2);
-    transition: 0.5s;
+    height: auto;
+    filter: grayscale(0.4) contrast(1.1);
+    transition: 0.5s ease;
+    display: block;
 }
 
 .image-glitch-wrapper:hover .profile-img {
@@ -232,11 +239,11 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     width: 100%;
     height: 100px;
     z-index: 3;
-    background: linear-gradient(0deg, rgba(0, 255, 170, 0) 0%, rgba(0, 255, 170, 0.1) 50%, rgba(0, 255, 170, 0) 100%);
-    opacity: 0.1;
+    background: linear-gradient(0deg, rgba(0, 255, 170, 0) 0%, rgba(0, 255, 170, 0.05) 50%, rgba(0, 255, 170, 0) 100%);
     position: absolute;
     bottom: 100%;
-    animation: scanline 4s linear infinite;
+    animation: scanline 6s linear infinite;
+    pointer-events: none;
 }
 
 @keyframes scanline {
@@ -244,100 +251,93 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     100% { bottom: -100px; }
 }
 
-/* --- Fix the Metadata Row --- */
 .meta-data {
     display: flex;
-    justify-content: space-between; /* Pushes items to far left, center, and far right */
-    align-items: center;
+    justify-content: space-between;
     font-family: var(--font-mono);
-    font-size: 0.65rem; /* Slightly smaller for that 'fine print' tech look */
+    font-size: 0.65rem;
     color: var(--accent);
     margin-top: 1rem;
-    width: 100%; /* Ensures it spans the full width of the photo */
-    border-top: 1px solid #222; /* Adds a nice separator line */
-    padding-top: 0.5rem;
+    border-top: 1px solid #222;
+    padding-top: 0.75rem;
+    letter-spacing: 1px;
 }
 
-/* Bio Text */
-
-/* 3. Remove any restrictive max-widths on the bio itself */
+/* --- Bio / Text Styling --- */
 .operator-bio {
     width: 100%;
-    max-width: none; /* This ensures it fills that '1fr' column entirely */
-    text-align: left;
-}
-
-/* 4. Ensure paragraphs aren't centered or squeezed */
-.operator-bio p {
-    max-width: 900px; /* Prevents lines from becoming TOO long to read, but keeps it wide */
-    margin-left: 0;
-    margin-right: auto;
 }
 
 .operator-bio h3 {
-    margin-top: 0; /* Ensures the headline stays level with the top of the photo */
-    font-size: 2.5rem;
-    line-height: 1.1;
-}
-
-.signature { margin-top: 3rem; }
-/* 1. Register the custom font */
-
-
-.handwritten {
-    /* The CDN name is usually 'Bristol' or 'Bristol Regular' */
-    font-family: 'Bristol', 'Bristol Regular', cursive; 
-    
-    /* Scale it up - Bristol is a thin, elegant font */
-    font-size: 5rem; 
-    color: var(--accent);
-    
-    /* Technical tweaks for a clean look */
-    font-weight: 400;
-    text-transform: none;
+    font-size: 3.5rem;
     line-height: 1;
-    display: inline-block;
-    
-    /* The 'Human' touch */
-    transform: rotate(-2deg); 
-    margin-top: 5px;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 170, 0.2));
+    margin-bottom: 2.5rem;
+    color: #fff;
+    letter-spacing: -2px;
 }
 
-/* Ensure the label above it looks like a system prompt */
-.signature p {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-bottom: -10px; /* Pulls the signature up closer to the label */
-    letter-spacing: 1px;
-}
 .lead-text {
-    font-size: 1.4rem !important;
-    color: #fff;
-    font-weight: 500;
+    font-size: 1.5rem !important;
+    color: #fff !important;
+    line-height: 1.4 !important;
+    margin-bottom: 2rem;
+}
+
+.operator-bio p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    max-width: 900px; /* Optimal reading width */
 }
 
 .highlight {
     color: var(--accent);
-    border-bottom: 1px solid var(--accent);
+    box-shadow: inset 0 -1px 0 var(--accent);
 }
 
-/* --- Mobile Responsiveness (Critical Fix) --- */
-/* --- Mobile Fix --- */
-@media (max-width: 992px) {
-    .grid-2 {
-        grid-template-columns: 1fr; /* Stacks them on tablets/phones */
-        gap: 3rem;
+/* --- Signature --- */
+.signature {
+    margin-top: 4rem;
+}
+
+.signature p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #444;
+    margin-bottom: -10px;
+    letter-spacing: 2px;
+}
+
+.handwritten {
+    font-family: 'Bristol', 'Bristol Regular', cursive;
+    font-size: 5rem;
+    color: var(--accent);
+    display: inline-block;
+    transform: rotate(-3deg);
+    line-height: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.15));
+}
+
+/* --- Responsive Fix --- */
+@media (max-width: 1100px) {
+    .grid-2 { gap: 4rem; }
+    .operator-bio h3 { font-size: 2.5rem; }
+}
+
+@media (max-width: 900px) {
+    .operator .container { padding: 0 2rem; }
+    .grid-2 { 
+        grid-template-columns: 1fr; 
+        gap: 3rem; 
     }
-    
-    .operator-frame {
-        margin: 0 auto;
-        max-width: 400px; /* Lets the photo be a bit bigger when stacked */
+    .operator-frame { 
+        max-width: 400px; 
+        margin: 0 auto; 
     }
-    .meta-data {
-        font-size: 0.8rem; /* Makes it readable on small screens */
-    }
+    .operator-bio h3 { text-align: center; }
+    .operator-bio p { text-align: center; margin-left: auto; margin-right: auto; }
+    .signature { text-align: center; }
 }
 /* --- Services Grid --- */
 .grid {
