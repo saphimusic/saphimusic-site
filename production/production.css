@@ -47,7 +47,7 @@ body {
 /* --- Hero / Header Section --- */
 .hero {
     position: relative;
-    padding: 12rem 0 10rem;
+    padding: 6rem 0 6rem;
     /* This creates the "glow" in the center so it's not a black hole */
     background: radial-gradient(circle at center, #111 0%, #000 100%);
     overflow: hidden;
@@ -56,6 +56,51 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(0, 255, 170, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 1;
+    animation: pulseGlow 8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 170, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 170, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px; /* Size of the grid squares */
+    z-index: 1;
+    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+}
+.hero-noise {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.5;
 }
 
 /* Status Bar Styling */
