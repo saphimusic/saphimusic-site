@@ -192,16 +192,21 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 /* --- Operator Section --- */
 .operator { padding: 8rem 0; background: #050505; }
 
-.grid-2 {
-    display: grid;
-    /* Column 1 (Image) is fixed at 300px, Column 2 (Bio) takes all remaining space */
-    grid-template-columns: 300px 1fr; 
-    gap: 6rem; /* High-end spacing between image and text */
-    align-items: start;
-    max-width: 1200px; /* Limits the overall width so lines don't get TOO long to read */
+.container {
+    max-width: 1300px; /* Increased from 1100px or 1200px */
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
+/* 2. Update the Grid to give the Bio more 'weight' */
+.grid-2 {
+    display: grid;
+    /* The first col stays at 300px, the second col takes EVERY bit of remaining space */
+    grid-template-columns: 300px 1fr; 
+    gap: 5rem; 
+    align-items: start;
+    width: 100%; /* Force the grid to fill the container */
+}
 .operator-frame {
     max-width: 350px; /* Keeps your photo from growing too large */
 }
@@ -255,18 +260,20 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 
 /* Bio Text */
 
+/* 3. Remove any restrictive max-widths on the bio itself */
 .operator-bio {
-    /* Ensures the text spans the full width of the new larger column */
-    width: 100%; 
-    max-width: 800px; /* Optimal reading width for the human eye */
+    width: 100%;
+    max-width: none; /* This ensures it fills that '1fr' column entirely */
+    text-align: left;
 }
 
+/* 4. Ensure paragraphs aren't centered or squeezed */
 .operator-bio p {
-    font-size: 1.15rem;
-    line-height: 1.7; /* Adds vertical breathing room between lines */
-    margin-bottom: 2rem;
-    color: var(--text-main); /* Makes the main bio slightly brighter than the dim text */
+    max-width: 900px; /* Prevents lines from becoming TOO long to read, but keeps it wide */
+    margin-left: 0;
+    margin-right: auto;
 }
+
 .operator-bio h3 {
     margin-top: 0; /* Ensures the headline stays level with the top of the photo */
     font-size: 2.5rem;
