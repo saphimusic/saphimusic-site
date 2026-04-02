@@ -47,7 +47,7 @@ body {
 /* --- Hero / Header Section --- */
 .hero {
     position: relative;
-    padding: 6rem 0 6rem;
+    padding: 1rem 0 1rem;
     /* This creates the "glow" in the center so it's not a black hole */
     background: radial-gradient(circle at center, #111 0%, #000 100%);
     overflow: hidden;
