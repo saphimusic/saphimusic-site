@@ -72,6 +72,7 @@ body {
     mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
     -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
     z-index: 1;
+    pointer-events: none; /* FIX: Clicks pass through the grid */
 }
 
 /* Layer 2: The Breathing Glow */
@@ -109,6 +110,7 @@ body {
     max-width: 1200px; /* Slightly wider to accommodate larger text */
     margin: 0 auto;
     display: block !important;
+    pointer-events: auto;
 }
 
 .hero h1 {
