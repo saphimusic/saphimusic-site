@@ -189,125 +189,84 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 @keyframes blinker {
     50% { opacity: 0; }
 }
-/* --- Bio Module --- */
+/* --- New Bio Module (Self-Contained) --- */
 .bio-module {
     padding: 10rem 0;
     background: #050505;
-    color: #fff;
-    overflow: hidden;
+    width: 100%;
 }
 
-.bio-container {
-    max-width: 1400px;
+/* We use a unique container name to bypass your 1100px global limit */
+.bio-wide-wrapper {
+    max-width: 1400px; 
     margin: 0 auto;
     padding: 0 4rem;
     display: flex;
-    gap: 8rem; /* Space between photo and text */
+    gap: 6rem;
     align-items: flex-start;
 }
 
-/* --- Visual Column (Left) --- */
+/* Left Column: Fixed Photo */
 .bio-visual {
-    flex: 0 0 380px; /* Fixed width: Won't grow, won't shrink */
+    flex: 0 0 380px; /* This forces the photo to be 380px wide exactly */
 }
 
 .bio-image-wrapper {
-    position: relative;
     border: 1px solid #222;
     background: #111;
-    line-height: 0;
-    aspect-ratio: 4/5; /* Professional portrait ratio */
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    position: relative;
 }
 
 .bio-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1) brightness(0.8);
-    transition: 0.6s ease;
-}
-
-.bio-visual:hover .bio-img {
-    filter: grayscale(0) brightness(1);
+    display: block;
+    filter: grayscale(1);
 }
 
 .bio-stats {
     margin-top: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    letter-spacing: 1px;
+    color: var(--accent);
 }
 
 .stat-line {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    padding: 5px 0;
     border-bottom: 1px solid #111;
-    color: var(--accent);
 }
 
-.status-pulse {
-    color: var(--accent);
-    text-shadow: 0 0 8px var(--accent);
-}
-
-/* --- Content Column (Right) --- */
+/* Right Column: Fluid Text */
 .bio-content {
-    flex: 1; /* Takes up ALL remaining space */
+    flex: 1; /* This forces the text to take EVERY pixel left on the screen */
+    min-width: 0; /* Critical fix for flexbox text wrapping */
 }
 
 .bio-label {
     font-family: var(--font-mono);
     color: var(--accent);
-    font-size: 0.8rem;
     display: block;
     margin-bottom: 1rem;
 }
 
 .bio-title {
-    font-size: clamp(3rem, 6vw, 5.5rem); /* Responsive sizing */
+    font-size: clamp(3rem, 6vw, 5rem);
     line-height: 0.9;
-    font-weight: 800;
-    margin-bottom: 3rem;
-    letter-spacing: -3px;
+    margin-bottom: 2rem;
     text-transform: uppercase;
 }
 
-.bio-text {
-    max-width: 850px; /* Limits line length for readability */
-}
-
-.bio-intro {
-    font-size: 1.6rem;
-    line-height: 1.4;
-    margin-bottom: 2rem;
-    color: #eee;
-}
-
 .bio-text p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.8;
-    color: #888;
+    color: var(--text-dim);
     margin-bottom: 1.5rem;
-}
-
-.accent-text {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* --- Signature --- */
-.bio-footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid #111;
-}
-
-.sig-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: #444;
-    display: block;
+    max-width: 900px; /* Stops lines from being TOO long, but allows width */
 }
 
 .handwritten {
@@ -316,15 +275,15 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     color: var(--accent);
     display: inline-block;
     transform: rotate(-2deg);
-    margin-top: 0.5rem;
+    margin-top: 2rem;
 }
 
-/* --- Mobile Fix --- */
+/* Mobile Fix */
 @media (max-width: 1024px) {
-    .bio-container {
+    .bio-wide-wrapper {
         flex-direction: column;
-        gap: 4rem;
         padding: 0 2rem;
+        gap: 3rem;
     }
     .bio-visual {
         flex: 0 0 auto;
