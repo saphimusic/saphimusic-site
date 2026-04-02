@@ -200,7 +200,7 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 
 /* This replaces the 'container' to allow 1400px width */
 .bio-wide-wrapper {
-    max-width: 1400px !important; /* Bypassing your 1100px limit */
+    max-width: 100%;
     margin: 0 auto !important;
     padding: 0 4rem;
     display: flex !important;
