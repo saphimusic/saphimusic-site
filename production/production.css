@@ -219,24 +219,79 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 }
 
 /* --- Mobile Responsive Adjustment --- */
-@media (max-width: 992px) {
-    .comparison-grid {
-        grid-template-columns: 1fr;
+/* --- Mobile Audio Overhaul --- */
+@media (max-width: 768px) {
+    .comparison-module {
+        padding: 1.5rem; /* Tighter padding for small screens */
     }
-    
+
+    .comparison-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    /* 1. Transform the Sidebar into a Horizontal Scroll Menu */
     .track-list {
-        border-right: none;
-        border-bottom: 1px solid #222;
-        padding-right: 0;
-        padding-bottom: 2rem;
-        flex-direction: row;
-        overflow-x: auto; /* Allows horizontal scroll for tracks on mobile */
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important; /* Allows swiping left/right through songs */
+        border-right: none !important;
+        border-bottom: 1px solid #222 !important;
+        padding-right: 0 !important;
+        padding-bottom: 1rem !important;
+        gap: 10px;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iPhone */
+    }
+
+    .track-list::-webkit-scrollbar {
+        height: 4px;
+    }
+    .track-list::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 10px;
     }
 
     .track-select {
-        white-space: nowrap;
-        border-bottom: none;
-        border-right: 1px solid #111;
+        white-space: nowrap !important; /* Stops song titles from wrapping to 2 lines */
+        padding: 0.8rem 1.2rem !important;
+        border-bottom: none !important;
+        border: 1px solid #111 !important;
+        background: #0a0a0a !important;
+        font-size: 0.75rem !important;
+        flex-shrink: 0; /* Prevents buttons from squishing */
+    }
+
+    /* 2. Adjust the Player Card */
+    .comparison-card {
+        padding: 1.5rem !important;
+    }
+
+    .track-info {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .track-name {
+        font-size: 1rem;
+    }
+
+    /* 3. Make Toggle Buttons Full Width for Thumb-Tapping */
+    .toggle-container {
+        grid-template-columns: 1fr 1fr !important;
+        width: 100%;
+    }
+
+    .toggle-btn {
+        padding: 1rem 0.5rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .play-main {
+        padding: 1.2rem !important;
+        font-size: 0.8rem !important;
     }
 }
 /* --- Reviews Section --- */
