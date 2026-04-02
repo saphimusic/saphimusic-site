@@ -47,7 +47,7 @@ body {
 /* --- The Final Hero Fix (Merged & Corrected) --- */
 .hero {
     position: relative;
-    padding: 10rem 0;
+    padding: 1rem 0;
     background-color: #000;
     overflow: hidden;
     text-align: center;
