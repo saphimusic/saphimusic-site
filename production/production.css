@@ -113,7 +113,7 @@ body {
 
 .hero h1 {
     /* Increased size: was 5rem, now 6.5rem max */
-    font-size: clamp(3rem, 10vw, 6.5rem); 
+    font-size: clamp(3rem, 10vw, 6rem); 
     font-weight: 900;
     line-height: 0.9; /* Tighter line height for big text */
     letter-spacing: -3px;
@@ -167,26 +167,41 @@ body {
     50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
 }
 
-/* --- Mobile Fix --- */
+/* --- Hero Button Mobile Overlap Fix --- */
 @media (max-width: 768px) {
-    .hero {
-        padding: 4rem 1rem;
-    }
-    .hero h1 {
-        font-size: 3.2rem;
-        letter-spacing: -1px;
-    }
-    .hero .subtitle {
-        font-size: 1.1rem;
-    }
+    /* 1. Ensure the container centers everything */
     .hero-btns {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important; /* Vertical stack */
+        align-items: center !important;
         width: 100%;
-        align-items: center;
+        gap: 0 !important; /* We'll use margins for better control */
+        padding: 0 20px;
     }
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        max-width: 320px;
+
+    /* 2. Force buttons to behave as blocks */
+    .btn-primary, 
+    .btn-secondary {
+        display: block !important;
+        width: 100% !important;
+        max-width: 300px; /* Prevents them from being too wide on tablets */
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    /* 3. The "Gap" Fix */
+    .btn-primary {
+        margin-bottom: 15px !important; /* Creates the space between them */
+    }
+
+    .btn-secondary {
+        margin-bottom: 0 !important;
+    }
+
+    /* 4. Optional: Shrink headline slightly if it's hitting the edges */
+    .hero h1 {
+        font-size: 2.8rem !important;
+        line-height: 1.1 !important;
     }
 }
 /* --- Portfolio & Spotify --- */
