@@ -194,9 +194,12 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 
 .grid-2 {
     display: grid;
-    grid-template-columns: 350px 1fr; /* Fixes the image width so it doesn't get too small */
-    gap: 5rem; /* Increases space between photo and text */
-    align-items: start; /* Aligns text to the top of the photo */
+    /* Column 1 (Image) is fixed at 300px, Column 2 (Bio) takes all remaining space */
+    grid-template-columns: 300px 1fr; 
+    gap: 6rem; /* High-end spacing between image and text */
+    align-items: start;
+    max-width: 1200px; /* Limits the overall width so lines don't get TOO long to read */
+    margin: 0 auto;
 }
 
 .operator-frame {
@@ -251,12 +254,24 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
 }
 
 /* Bio Text */
+
+.operator-bio {
+    /* Ensures the text spans the full width of the new larger column */
+    width: 100%; 
+    max-width: 800px; /* Optimal reading width for the human eye */
+}
+
+.operator-bio p {
+    font-size: 1.15rem;
+    line-height: 1.7; /* Adds vertical breathing room between lines */
+    margin-bottom: 2rem;
+    color: var(--text-main); /* Makes the main bio slightly brighter than the dim text */
+}
 .operator-bio h3 {
     margin-top: 0; /* Ensures the headline stays level with the top of the photo */
     font-size: 2.5rem;
     line-height: 1.1;
 }
-.operator-bio p { color: var(--text-dim); margin-bottom: 1.5rem; font-size: 1.1rem; }
 
 .signature { margin-top: 3rem; }
 /* 1. Register the custom font */
@@ -290,15 +305,28 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; line-height: 1.
     margin-bottom: -10px; /* Pulls the signature up closer to the label */
     letter-spacing: 1px;
 }
+.lead-text {
+    font-size: 1.4rem !important;
+    color: #fff;
+    font-weight: 500;
+}
+
+.highlight {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+}
 
 /* --- Mobile Responsiveness (Critical Fix) --- */
-@media (max-width: 768px) {
+/* --- Mobile Fix --- */
+@media (max-width: 992px) {
     .grid-2 {
-        grid-template-columns: 1fr; /* Stacks them on top of each other */
-        gap: 2rem;
+        grid-template-columns: 1fr; /* Stacks them on tablets/phones */
+        gap: 3rem;
     }
+    
     .operator-frame {
-        margin: 0 auto; /* Centers the photo on mobile */
+        margin: 0 auto;
+        max-width: 400px; /* Lets the photo be a bit bigger when stacked */
     }
     .meta-data {
         font-size: 0.8rem; /* Makes it readable on small screens */
