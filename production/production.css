@@ -673,7 +673,7 @@ body {
 
 .card {
     background: var(--card-bg);
-    padding: 3rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 8px;
     position: relative;
     border-bottom: 2px solid transparent;
