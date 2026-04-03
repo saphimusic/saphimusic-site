@@ -316,47 +316,65 @@
         </p>
     </div>
 </section>
-   <form action="https://formspree.io/f/maqlpoqk" method="POST" id="inquiry-form">
-    
-    <div class="form-group">
-        <label for="name">NAME / ARTIST_ALIAS</label>
-        <input type="text" name="name" id="name" required placeholder="Enter name...">
-    </div>
+   <section class="contact-section">
+    <div class="hero-noise"></div>
+    <div class="container">
+        <div class="contact-card">
+            <div class="card-header">
+                <span class="protocol">INQUIRY_PROTOCOL_v2.0</span>
+                <span class="status-dot"></span>
+            </div>
 
-    <div class="form-group">
-        <label for="email">EMAIL_ADDRESS</label>
-        <input type="email" name="_replyto" id="email" required placeholder="email@example.com">
-    </div>
+            <form action="https://formspree.io/f/maqlpoqk" method="POST" id="inquiry-form">
+                
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <label for="name">NAME / ARTIST_ALIAS</label>
+                        <input type="text" name="name" id="name" required placeholder="Enter name...">
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="email">EMAIL_ADDRESS</label>
+                        <input type="email" name="_replyto" id="email" required placeholder="email@example.com">
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label for="project">PROJECT_TYPE</label>
-        <select name="project-type" id="project">
-            <option value="Production">Production</option>
-            <option value="Productionplus">Production+ (Mixed & Mastered)</option>
-            <option value="Mixing">Mixing Only</option>
-            <option value="Mastering">Mastering Only</option>
-            <option value="Consultancy">Find My Sound</option>
-        </select>
-    </div>
-<div class="form-group">
-        <label for="project">PROJECT_SCOPE</label>
-        <select name="project-type" id="project">
-            <option value="Demo">Demo</option>
-            <option value="Basic">Basic</option>
-            <option value="Full">Full</option>
-            <option value="Mixing">EP</option>
-            <option value="Mastering">Album</option>
-            <option value="Consultancy">Custom</option>
-        </select>
-    </div>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <label for="project">PROJECT_TYPE</label>
+                        <select name="project-type" id="project">
+                            <option value="Production">Production</option>
+                            <option value="Productionplus">Production+ (Mixed & Mastered)</option>
+                            <option value="Mixing">Mixing Only</option>
+                            <option value="Mastering">Mastering Only</option>
+                            <option value="Consultancy">Find My Sound</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="scope">PROJECT_SCOPE</label>
+                        <select name="project-scope" id="scope">
+                            <option value="Demo">Demo</option>
+                            <option value="Basic">Basic</option>
+                            <option value="Full">Full</option>
+                            <option value="EP">EP</option>
+                            <option value="Album">Album</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label for="message">PROJECT_DETAILS</label>
-        <textarea name="message" id="message" rows="5" placeholder="Tell me about your Project..."></textarea>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <label for="message">PROJECT_DETAILS</label>
+                        <textarea name="message" id="message" rows="5" placeholder="Tell me about your Project..."></textarea>
+                    </div>
+                </div>
+
+                <input type="text" name="_gotcha" style="display:none">
+                <button type="submit" class="btn-primary">SEND_INQUIRY</button>
+            </form>
+        </div>
     </div>
-<input type="text" name="_gotcha" style="display:none">
-    <button type="submit" class="btn-primary">SEND_INQUIRY</button>
-</form>
+</section>
 
     <footer>
         <p>&copy; 2024 Saphi Music. All Rights Reserved.</p>

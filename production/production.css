@@ -684,108 +684,72 @@ body {
 .card-num { font-family: var(--font-mono); color: var(--accent); display: block; margin-bottom: 1rem; }
 .featured { border: 1px solid #333; }
 
-/* --- Contact Form --- */
-/* --- Contact Section (Saphi Terminal Style) --- */
-.contact-section { 
-    background: #050505; /* Matches the deep hero black */
-    padding: 8rem 0; 
-    text-align: center;
-    position: relative;
+/* --- The Studio Container --- */
+.contact-card {
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid #1a1a1a;
+    padding: 3rem;
+    max-width: 850px;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-#prod-form { 
-    max-width: 700px; 
-    margin: 4rem auto; 
-    padding: 0 2rem;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #1a1a1a;
 }
 
-/* Label Styling */
-.form-group label {
-    display: block;
-    text-align: left;
+.protocol {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--accent);
+    letter-spacing: 2px;
+}
+
+/* Layout Spacing */
+.form-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-wrapper label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent);
     margin-bottom: 0.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.form-group { 
-    display: flex; 
-    gap: 1.5rem; 
-    margin-bottom: 1.5rem; 
-}
-
-/* Input & Textarea Overhaul */
-input, select, textarea {
-    width: 100%;
-    padding: 1.2rem;
-    background: #0a0a0a; /* Darker, recessed look */
-    border: 1px solid #1a1a1a;
-    color: white;
-    border-radius: 2px; /* Sharper corners for a pro look */
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-/* The Focus State - Matches your Hero Glow */
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: #0d0d0d;
-    box-shadow: 0 0 15px rgba(0, 255, 170, 0.1);
-}
-
-textarea { 
-    height: 180px; 
-    margin-top: 0.5rem; 
-    resize: none; /* Keeps the layout clean */
-}
-
-/* Custom Dropdown Styling */
+/* Customizing the dropdowns to look like the inputs */
 select {
-    appearance: none;
     cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300ffaa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
 }
 
-/* --- The Submit Button --- */
-.btn-submit {
-    background: var(--accent);
-    border: none;
-    color: #000;
-    padding: 1.2rem 4rem;
-    margin-top: 2rem;
-    cursor: pointer;
-    font-family: var(--font-mono);
-    font-weight: 900;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    width: auto;
-}
-
-.btn-submit:hover { 
-    background: #fff; 
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0, 255, 170, 0.2);
-}
-
-/* --- Mobile Responsive --- */
+/* Mobile Tweak */
 @media (max-width: 768px) {
-    .contact-section { padding: 4rem 0; }
-    
-    .form-group { 
-        flex-direction: column; 
-        gap: 1.5rem; 
+    .contact-card {
+        padding: 2rem 1.2rem;
+        background: transparent;
+        border: none;
     }
-    
-    .btn-submit {
-        width: 100%; /* Full width for easy thumb-tapping */
+    .form-group {
+        flex-direction: column;
     }
-    
-    h2 { font-size: 2rem; }
 }
 
 /* --- Workflow Section --- */
