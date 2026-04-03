@@ -693,6 +693,8 @@ body {
     margin: 0 auto;
     border-radius: 4px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 5;
 }
 
 .card-header {
@@ -710,7 +712,42 @@ body {
     letter-spacing: 2px;
 }
 
-/* Layout Spacing */
+/* --- New Text Box Aesthetic --- */
+input, 
+select, 
+textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: #050505 !important; /* Deep black recessed look */
+    border: 1px solid #1a1a1a !important;
+    color: #ffffff !important;
+    font-family: var(--font-mono), monospace !important;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Placeholder text (the "ghost" hint) */
+input::placeholder, 
+textarea::placeholder {
+    color: #444;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+/* The "Power On" Focus State */
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none;
+    border-color: var(--accent) !important;
+    background: #080808 !important;
+    box-shadow: 0 0 15px rgba(0, 255, 170, 0.15);
+}
+
+/* --- Layout Spacing --- */
 .form-group {
     display: flex;
     gap: 1.5rem;
@@ -730,14 +767,22 @@ body {
     color: var(--accent);
     margin-bottom: 0.5rem;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Customizing the dropdowns to look like the inputs */
+/* Customizing the dropdowns */
 select {
     cursor: pointer;
+    appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300ffaa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: calc(100% - 1rem) center;
+    background-position: calc(100% - 1.2rem) center;
+    padding-right: 3rem;
+}
+
+textarea {
+    height: 160px;
+    resize: none;
 }
 
 /* Mobile Tweak */
@@ -749,6 +794,7 @@ select {
     }
     .form-group {
         flex-direction: column;
+        gap: 1.5rem;
     }
 }
 
