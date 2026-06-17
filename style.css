@@ -640,7 +640,7 @@ nav a:hover::after {
 }
 
 .terminal-entry.past { opacity: 0.4; color: #fff; }
-.terminal-entry.active { color: #5bfad5; font-weight: bold; }
+.terminal-entry.active { color: var(--term-pink); font-weight: bold; }
 
 .term-date { color: #fff; }
 .term-status { text-align: right; font-size: 10px; letter-spacing: 1px; }
